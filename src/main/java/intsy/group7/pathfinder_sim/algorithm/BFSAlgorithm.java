@@ -58,7 +58,7 @@ public class BFSAlgorithm {
      */
     private static List<Node> reconstructPath(Map<Node, Node> parent, Node goal) {
         List<Node> path = new LinkedList<>();
-        for (Node node = goal; node != null; node = parent.get(node)) {
+        for (Node node = goal; node != null; node = parent.get(node)) { // constructs the path until the goal is reached
             path.add(0, node);
         }
         return path;
