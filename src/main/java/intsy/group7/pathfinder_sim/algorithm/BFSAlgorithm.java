@@ -15,38 +15,38 @@ import intsy.group7.pathfinder_sim.model.Edge;
 public class BFSAlgorithm {
 
     /**
-     * The algorithm implementation for BFS
+     * The algorithm implementation for BFS Pathfinding algorithm
      * 
      * @author Jaztin Jimenez
      * @return the path of the BFS algorithm or null if path is not found
      */
     public static List<Node> bfs(Graph graph, Node start, Node goal) {
-    Queue<Node> queue = new LinkedList<>();
-    Set<Node> visited = new HashSet<>();
-    Map<Node, Node> parent = new HashMap<>();
+        Queue<Node> queue = new LinkedList<>(); // Queue implementation for BFS Traversal
+        Set<Node> visited = new HashSet<>();
+        Map<Node, Node> parent = new HashMap<>();
 
-    queue.add(start);
-    visited.add(start);
-    parent.put(start, null);
+        queue.add(start);
+        visited.add(start);
+        parent.put(start, null);
 
-    while (!queue.isEmpty()) {
-        Node node = queue.poll();
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
 
-        if (node.equals(goal)) { // if goal node is found, construct the path for the BFS path output
-            return reconstructPath(parent, goal);
-        }
+            if (node.equals(goal)) { // If goal node is found, construct the path for the BFS path output
+                return reconstructPath(parent, goal);
+            }
 
-        for (Edge edge : node.getEdges()) { // Goes through every child node of the parent node
-            Node neighbor = edge.getDestination();
-            if (!visited.contains(neighbor)) { // skips the node if the node is already visited
-                queue.add(neighbor);
-                visited.add(neighbor);
-                parent.put(neighbor, node);
+            for (Edge edge : node.getEdges()) { // Goes through every child node of the parent node
+                Node neighbor = edge.getDestination();
+                if (!visited.contains(neighbor)) { // Skips the node if the node is already visited
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                    parent.put(neighbor, node);
+                }
             }
         }
-    }
     
-    return null; // No Path found
+    return null; // No path found
     
 }
 
