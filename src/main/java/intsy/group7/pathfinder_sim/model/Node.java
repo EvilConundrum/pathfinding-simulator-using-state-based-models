@@ -12,9 +12,9 @@ public Node(String id, int heuristic){
     this.edges = new LinkedList<>();
 }
 
-public String getId(){
-    return this.id;
-}
+    public String getId(){
+        return this.id;
+    }
 
 public int getHeuristic(){
     return this.heuristic;
@@ -24,11 +24,16 @@ public void setId(String id){
     this.id = id;
 }
 
-public void addEdge(Edge edge){
-    edges.add(edge);
-}
+    public void addEdge(Edge edge){
+        edges.add(edge);
+    }
 
-public void removeEdge(Edge edge){
-    edges.remove(edge);
-}
+    public void removeEdge(Edge edge){
+        edges.remove(edge);
+    }
+
+    public LinkedList<Edge> getEdges() {
+        return edges;
+    }
+
 }
