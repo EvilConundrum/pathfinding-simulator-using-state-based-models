@@ -1,8 +1,10 @@
-module intsy.group7.pathfinder_sim {
-    requires javafx.graphics;
-    requires javafx.controls;
-    requires javafx.fxml;
+// This is incompatible and unneeded with Swing
 
-    opens intsy.group7.pathfinder_sim.controller to javafx.fxml;
-    exports intsy.group7.pathfinder_sim;
-}
+// module intsy.group7.pathfinder_sim {
+//     requires javafx.graphics;
+//     requires javafx.controls;
+//     requires javafx.fxml;
+
+//     opens intsy.group7.pathfinder_sim.controller to javafx.fxml;
+//     exports intsy.group7.pathfinder_sim;
+// }
