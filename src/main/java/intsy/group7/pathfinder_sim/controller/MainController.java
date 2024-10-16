@@ -7,13 +7,18 @@ import java.awt.event.*;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
-// import intsy.group7.pathfinder_sim.view.*;
+import intsy.group7.pathfinder_sim.view.*;
 
 public class MainController implements ActionListener, MouseListener {
 
+    private AboutPage aboutPage;
+    private DefaultPage defaultPage;
+    private ImageResizer imageResizer;
 
     public MainController() {
-        
+        aboutPage = new AboutPage();
+        defaultPage = new DefaultPage();
+        imageResizer = new ImageResizer();
     }
 
 

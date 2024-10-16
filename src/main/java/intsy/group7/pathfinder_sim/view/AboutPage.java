@@ -1,3 +1,5 @@
+// 10/17/2024: Added Constructor 
+
 package intsy.group7.pathfinder_sim.view;
 
 import java.awt.*;
@@ -33,9 +35,12 @@ public class AboutPage {
     Color greenText = new Color(5, 65, 3);
     Color greenTHA2 = new Color(0, 112, 60);
 
+    public AboutPage() {
+        launchAboutPage(new JFrame(), "About Page");
+    }
 
     //@param MainFrame & list of locations
-    public void launchAboutPage(JFrame mainFrame, String text){
+    public void launchAboutPage(JFrame mainFrame, String text) {
 
         // Header panel
         JPanel pageHeader = new JPanel();
