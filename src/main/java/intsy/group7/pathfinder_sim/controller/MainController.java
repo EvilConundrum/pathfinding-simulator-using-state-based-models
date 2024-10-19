@@ -16,11 +16,12 @@ public class MainController implements ActionListener, MouseListener {
     private ImageResizer imageResizer;
 
     public MainController() {
-        aboutPage = new AboutPage();
+        JFrame mainFrame = new JFrame();
+
+        aboutPage = new AboutPage(mainFrame);
         defaultPage = new DefaultPage();
         imageResizer = new ImageResizer();
     }
-
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
