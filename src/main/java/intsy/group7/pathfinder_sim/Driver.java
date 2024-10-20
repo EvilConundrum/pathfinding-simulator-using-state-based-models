@@ -11,8 +11,9 @@ public class Driver{
         System.out.println("Test Print");
         
         ViewAlgorithmPage view = new ViewAlgorithmPage();
+        DefaultPage dp = new DefaultPage();
 
-        new MainController(view);
+        new MainController(view, dp);
 
     }
 }

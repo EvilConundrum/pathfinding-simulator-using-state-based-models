@@ -13,18 +13,19 @@ import intsy.group7.pathfinder_sim.view.*;
 public class MainController implements ActionListener, MouseListener {
 
     private ViewAlgorithmPage view;
-
+    private DefaultPage dp;
     private AboutPage aboutPage;
-    private DefaultPage defaultPage;
     private ImageResizer imageResizer;
 
-    public MainController(ViewAlgorithmPage view) {
+    public MainController(ViewAlgorithmPage view, DefaultPage dp) {
         JFrame mainFrame = new JFrame();
 
         String text = "     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
         this.view = view;
-        view.launchViewAlgorithmPage(mainFrame, text);
+        this.dp = dp;
+
+        // view.launchViewAlgorithmPage(mainFrame, text);
 
         // ManageMapPage view = new ManageMapPage();
         // view.launchManageMapPage(mainFrame, locations, nodes);
@@ -33,8 +34,11 @@ public class MainController implements ActionListener, MouseListener {
         // aboutPage = new AboutPage(mainFrame, text);
         // defaultPage = new DefaultPage();
         // imageResizer = new ImageResizer();
+        
+        dp.launchDefaultPage(mainFrame);
 
         this.view.addClickListener(this);
+        this.dp.addClickListener(this);
 
     }
 
@@ -53,7 +57,23 @@ public class MainController implements ActionListener, MouseListener {
             System.out.println("About Button Clicked");
         } else if (source == view.getExitButton()) {
             System.exit(0);    
-        } else {
+        } 
+        
+        else if (source == dp.getPathFinderButton()) {
+            System.out.println("Path Finder Button Clicked");
+        } else if (source == dp.getManageMapButton()) {
+            System.out.println("Manage Map Button Clicked");
+        } else if (source == dp.getViewAlgosButton()) {
+            System.out.println("View Algos Button Clicked");
+        } else if (source == dp.getAboutButton()) {
+            System.out.println("About Button Clicked");
+        } else if (source == dp.getExitButton()) {
+            System.exit(0);
+        }
+        
+        
+
+        else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }
 
