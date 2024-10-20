@@ -6,12 +6,12 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 
 public class ViewAlgorithmPage {
-    ImageIcon pathFinderImg = new ImageIcon("images/PathFinder.png");
-    ImageIcon manageMapImg = new ImageIcon("images/ManageMap.png");
-    ImageIcon viewAlgosImg = new ImageIcon("images/ViewAlgos.png");
-    ImageIcon aboutImg = new ImageIcon("images/About.png");
-    ImageIcon exitImg = new ImageIcon("images/Exit.png");
-    ImageIcon logoImg = new ImageIcon("images/LogoTHA.png"); 
+    ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
+    ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
+    ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
+    ImageIcon aboutImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
+    ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
+    ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
 
     JLabel pathFinderLbl;
     JLabel manageMapLbl;
