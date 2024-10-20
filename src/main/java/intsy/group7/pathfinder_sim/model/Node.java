@@ -4,36 +4,52 @@ import java.util.LinkedList;
 public class Node {
     private String id;
     private LinkedList<Edge> edges;
-    private int heuristic;
-
-public Node(String id, int heuristic){
-    this.id = id;
-    this.heuristic = heuristic;
-    this.edges = new LinkedList<>();
-}
-
-    public String getId(){
-        return this.id;
+    private float heuristic;
+    private int x_coord;
+    private int y_coord;
+ 
+    public Node(String var1, float var2, int var3, int var4) {
+       this.id = var1;
+       this.heuristic = var2;
+       this.x_coord = var3;
+       this.y_coord = var4;
+       this.edges = new LinkedList();
     }
-
-public int getHeuristic(){
-    return this.heuristic;
-}
-
-public void setId(String id){
-    this.id = id;
-}
-
-    public void addEdge(Edge edge){
-        edges.add(edge);
+ 
+    public String getId() {
+       return this.id;
     }
-
-    public void removeEdge(Edge edge){
-        edges.remove(edge);
+ 
+    public float getHeuristic() {
+       return this.heuristic;
     }
-
+ 
+    public void setHeuristic(float var1) {
+       this.heuristic = var1;
+    }
+ 
+    public void setId(String var1) {
+       this.id = var1;
+    }
+ 
+    public int getX_coord() {
+       return this.x_coord;
+    }
+ 
+    public int getY_coord() {
+       return this.y_coord;
+    }
+ 
+    public void addEdge(Edge var1) {
+       this.edges.add(var1);
+    }
+ 
+    public void removeEdge(Edge var1) {
+       this.edges.remove(var1);
+    }
+ 
     public LinkedList<Edge> getEdges() {
-        return edges;
+       return this.edges;
     }
-
-}
+ }
+ 
