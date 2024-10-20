@@ -4,11 +4,11 @@ import java.util.LinkedList;
 public class Node {
     private String id;
     private LinkedList<Edge> edges;
-    private float heuristic;
+    private int heuristic;
     private int x_coord;
     private int y_coord;
  
-    public Node(String var1, float var2, int var3, int var4) {
+    public Node(String var1, int var2, int var3, int var4) {
        this.id = var1;
        this.heuristic = var2;
        this.x_coord = var3;
@@ -20,11 +20,11 @@ public class Node {
        return this.id;
     }
  
-    public float getHeuristic() {
+    public int getHeuristic() {
        return this.heuristic;
     }
  
-    public void setHeuristic(float var1) {
+    public void setHeuristic(int var1) {
        this.heuristic = var1;
     }
  
@@ -51,5 +51,7 @@ public class Node {
     public LinkedList<Edge> getEdges() {
        return this.edges;
     }
+    public int countEdges(){
+      return this.edges.size();
+    }
  }
- 

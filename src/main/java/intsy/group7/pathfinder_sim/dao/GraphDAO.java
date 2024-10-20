@@ -15,12 +15,11 @@ public class GraphDAO {
                 String line = scanner.nextLine();
                 String[] columns = line.split(",");
                 String nodeName = columns[0];
-                float heuristic = Float.parseFloat(columns[1]);
-                int xCoord = Integer.parseInt(columns[2]);
-                int yCoord = Integer.parseInt(columns[3]);
+                int xCoord = Integer.parseInt(columns[1]);
+                int yCoord = Integer.parseInt(columns[2]);
                 
                 // Create a new Node object using the variables
-                Node node = new Node(nodeName, heuristic, xCoord, yCoord);
+                Node node = new Node(nodeName, 0, xCoord, yCoord);
                 
                 // If the node does not exist already, create the new node and add it to the graph
                 if (graph.findNode(node) != true) {
@@ -48,10 +47,11 @@ public class GraphDAO {
                 System.out.println("Origin: " + origin.getId());
                 System.out.println("Destination: " + destination.getId());
                 if (graph.findEdge(origin,destination) != true){
-                    double distance = calcDist(origin,destination);
+                    int distance = (int) calcDist(origin,destination);
                     graph.addEdges(origin, destination, distance);
                 }
             }
+            graph.calcHeuristics();
             // System.out.println("All edges created successfully"); check edges created
         } 
         catch (FileNotFoundException e) {
@@ -59,7 +59,7 @@ public class GraphDAO {
         }
     }
     
-    public double calcDist(Node origin,Node destination){
+    private double calcDist(Node origin,Node destination){
         int origin_x = origin.getX_coord();
         int origin_y = origin.getY_coord();
         int destination_x = destination.getX_coord();
@@ -67,6 +67,6 @@ public class GraphDAO {
         double result = Math.sqrt(Math.pow((destination_x - origin_x),2) + Math.pow((destination_y-origin_y),2));
         return result;
     }
-    }
+}
     
     

@@ -48,9 +48,16 @@ public void addNode(Node node) {
     nodes.add(node);
 }
 
-public void addEdges(Node Origin, Node Destination, double Weight) {
+public void addEdges(Node Origin, Node Destination, int Weight) {
     Edge edge = new Edge(Origin, Destination, Weight);
     Origin.addEdge(edge);
     edges.add(edge);
+}
+
+public void calcHeuristics(){
+    for(Node node : nodes) {
+        int value = node.countEdges();
+        node.setHeuristic(value);
+    }
 }
 }
