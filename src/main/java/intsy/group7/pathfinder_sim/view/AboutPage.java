@@ -35,8 +35,8 @@ public class AboutPage {
     Color greenText = new Color(5, 65, 3);
     Color greenTHA2 = new Color(0, 112, 60);
 
-    public AboutPage(JFrame mainFrame) {
-        launchAboutPage(mainFrame, "About Page");
+    public AboutPage(JFrame mainFrame, String text) {
+        launchAboutPage(mainFrame, text);
     }
 
     //@param MainFrame & list of locations

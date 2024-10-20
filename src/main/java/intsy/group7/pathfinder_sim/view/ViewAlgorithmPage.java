@@ -35,7 +35,7 @@ public class ViewAlgorithmPage {
 
 
     //@param MainFrame & list of locations
-    public void launchViewAlgorithmPage(JFrame mainFrame, String text){
+    public void launchViewAlgorithmPage(JFrame mainFrame, String text) {
 
         // Header panel
         JPanel pageHeader = new JPanel();

@@ -10,7 +10,9 @@ public class Driver{
     public static void main(String[] args) {
         System.out.println("Test Print");
         
-        new MainController();
+        ViewAlgorithmPage view = new ViewAlgorithmPage();
+
+        new MainController(view);
 
     }
 }
