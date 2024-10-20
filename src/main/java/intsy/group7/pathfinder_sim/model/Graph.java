@@ -53,11 +53,4 @@ public void addEdges(Node Origin, Node Destination, int Weight) {
     Origin.addEdge(edge);
     edges.add(edge);
 }
-
-public void calcHeuristics(){
-    for(Node node : nodes) {
-        int value = node.countEdges();
-        node.setHeuristic(value);
-    }
-}
 }

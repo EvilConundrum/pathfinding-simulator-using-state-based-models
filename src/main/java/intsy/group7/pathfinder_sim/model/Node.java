@@ -51,7 +51,4 @@ public class Node {
     public LinkedList<Edge> getEdges() {
        return this.edges;
     }
-    public int countEdges(){
-      return this.edges.size();
-    }
  }
