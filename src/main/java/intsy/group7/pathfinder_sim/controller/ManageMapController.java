@@ -68,8 +68,9 @@ public class ManageMapController implements ActionListener {
             int heuristic1 = Integer.parseInt(mmp.getGReview().trim());
             int heuristic2 = Integer.parseInt(mmp.getSCapacityName().trim());
             int heuristic3 = Integer.parseInt(mmp.getFloorPrice().trim());
+            boolean isEatery = true;
 
-            graph.addNode(new Node(name, heuristic1, heuristic2, heuristic3));
+            graph.addNode(new Node(name, heuristic1, heuristic2, heuristic3, isEatery));
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
