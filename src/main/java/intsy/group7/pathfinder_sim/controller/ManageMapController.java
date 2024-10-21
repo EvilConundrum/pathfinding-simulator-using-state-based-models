@@ -16,7 +16,6 @@ public class ManageMapController implements ActionListener {
 
     private Graph graph;
 
-
     private ManageMapPage mmp;
     private JFrame mainFrame;
 
@@ -44,7 +43,14 @@ public class ManageMapController implements ActionListener {
         nodes = nodeList.toArray(new String[0]);
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
+
+        RoundedButton[] buttons = nodeMaker.getVacantButtons(nodeMaker.getAllNodes());
+        for (RoundedButton button : buttons) {
+            mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
+        }
+
         mmp.addClickListener(this);
+        mainFrame.setVisible(true);
     }
 
     @Override

@@ -1,5 +1,3 @@
-package intsy.group7.pathfinder_sim.view;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
@@ -69,10 +67,10 @@ public class NodeMaker {
             y = pointA.y;
 
             vacantButtons[i] = new RoundedButton(keysArray[i]);
-            vacantButtons[i].setFont(new Font("Helvetica", Font.BOLD, 14));
+            vacantButtons[i].setFont(new Font("Helvetica", Font.BOLD, 10));
             vacantButtons[i].setForeground(Color.WHITE);
             vacantButtons[i].setBackground(noRed);
-            vacantButtons[i].setBounds(x, y, 30, 30); 
+            vacantButtons[i].setBounds(x, y, 23, 23); 
             vacantButtons[i].setOpaque(true); 
             vacantButtons[i].setBorder(null);
             vacantButtons[i].setContentAreaFilled(true); 

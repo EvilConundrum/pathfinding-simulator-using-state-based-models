@@ -278,6 +278,10 @@ public class PathFinderPage {
         return this.exitButton;
     }
 
+    public RoundedButton getSubmitButton() {
+        return this.subButton;
+    }
+
      public void addPathCost(int pathCost, String traversal) {
         JLabel pathLbl = new JLabel("Path Cost: " + pathCost);
         pathLbl.setFont(new Font("Futura", Font.BOLD,18));

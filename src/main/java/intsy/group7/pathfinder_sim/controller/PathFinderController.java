@@ -65,7 +65,7 @@ public class PathFinderController implements ActionListener {
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
             String algo = pfp.algoDrop();
-            System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo);
+            System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo); // DEBUGGING
         }  
         
 

@@ -15,7 +15,7 @@ public class Node {
        this.x_coord = var3;
        this.y_coord = var4;
        this.eatery = eatery;
-       this.edges = new LinkedList();
+       this.edges = new LinkedList<Edge>();
     }
  
     public String getId() {
