@@ -70,7 +70,7 @@ public class NodeMaker {
             vacantButtons[i].setFont(new Font("Helvetica", Font.BOLD, 10));
             vacantButtons[i].setForeground(Color.WHITE);
             vacantButtons[i].setBackground(noRed);
-            vacantButtons[i].setBounds(x, y, 23, 23); 
+            vacantButtons[i].setBounds(x, y, 22, 22); 
             vacantButtons[i].setOpaque(true); 
             vacantButtons[i].setBorder(null);
             vacantButtons[i].setContentAreaFilled(true); 
