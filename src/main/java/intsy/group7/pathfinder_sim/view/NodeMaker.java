@@ -58,10 +58,10 @@ public class NodeMaker {
             y = pointA.y;
 
             vacantButtons[i] = new RoundedButton(keysArray[i]);
-            vacantButtons[i].setFont(new Font("Helvetica", Font.BOLD, 14));
+            vacantButtons[i].setFont(new Font("Helvetica", Font.BOLD, 10));
             vacantButtons[i].setForeground(Color.WHITE);
             vacantButtons[i].setBackground(noRed);
-            vacantButtons[i].setBounds(x, y, 30, 30); 
+            vacantButtons[i].setBounds(x, y, 22, 22); 
             vacantButtons[i].setOpaque(true); 
             vacantButtons[i].setBorder(null);
             vacantButtons[i].setContentAreaFilled(true); 
@@ -107,5 +107,3 @@ public class NodeMaker {
 
     
 }
-
-
