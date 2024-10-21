@@ -277,4 +277,13 @@ public class PathFinderPage {
     public IconButton getExitButton(){
         return this.exitButton;
     }
+
+     public void addPathCost(int pathCost) {
+        JLabel pathLbl = new JLabel("Path Cost: " + pathCost);
+        pathLbl.setFont(new Font("Futura", Font.BOLD,18));
+        pathLbl.setBounds(95, 400, 300, 40);
+        pathLbl.setForeground(greenText);
+
+        layeredPane.add(pathLbl, JLayeredPane.PALETTE_LAYER);
+    }
 }
