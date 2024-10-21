@@ -10,6 +10,10 @@ public Graph() {
     this.edges = new LinkedList<>();
 }
 
+public LinkedList<Node> getNodes() {
+    return nodes;
+}
+
 public Node getNode(int index){
     if(index >= 0 && index < nodes.size()) {
         return nodes.get(index);

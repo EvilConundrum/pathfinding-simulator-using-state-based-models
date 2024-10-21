@@ -40,12 +40,16 @@ public class ViewAlgorithmController implements ActionListener {
         AboutPage ap = new AboutPage();
 
         if (source == vap.getPathFinderButton()) {
+            mainFrame.getContentPane().removeAll();
+
             System.out.println("Path Finder Button Clicked");
 
         } 
-        else if (source == vap.getManageMapButton()) {           
+        else if (source == vap.getManageMapButton()) {   
+            mainFrame.getContentPane().removeAll();
+
             new ManageMapController(graph, mmp, this.mainFrame);
-            mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
+            // mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
             
         } 
         else if (source == vap.getViewAlgosButton()) {
@@ -55,8 +59,10 @@ public class ViewAlgorithmController implements ActionListener {
             
         } 
         else if (source == vap.getAboutButton()) {
+            mainFrame.getContentPane().removeAll();
+
             new AboutController(graph, ap, this.mainFrame);
-            mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
+            // mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
         
         } 
         else if (source == vap.getExitButton()) {

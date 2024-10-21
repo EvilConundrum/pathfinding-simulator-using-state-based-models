@@ -37,26 +37,30 @@ public class AboutController implements ActionListener {
 
         ManageMapPage mmp = new ManageMapPage();
         ViewAlgorithmPage vap = new ViewAlgorithmPage();
+        PathFinderPage pfp = new PathFinderPage();
 
         if (source == ap.getPathFinderButton()) {
-            System.out.println("Path Finder Button Clicked");
+            mainFrame.getContentPane().removeAll();
+
+            new PathFinderController(graph, pfp, this.mainFrame);
 
         } 
-        else if (source == ap.getManageMapButton()) {           
+        else if (source == ap.getManageMapButton()) {          
+            mainFrame.getContentPane().removeAll();
+             
             new ManageMapController(graph, mmp, this.mainFrame);
             mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
 
         } 
         else if (source == ap.getViewAlgosButton()) {
+            mainFrame.getContentPane().removeAll();
+
             new ViewAlgorithmController(graph, vap, this.mainFrame); 
             mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
             
         } 
-        else if (source == ap.getAboutButton()) {
-            // new AboutController(graph, ap, this.mainFrame);
-            // mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
-        
-        } 
+        else if (source == ap.getAboutButton()) {}
+
         else if (source == ap.getExitButton()) {
             System.exit(0);    
         } 

@@ -38,22 +38,25 @@ public class ManageMapController implements ActionListener {
         AboutPage ap = new AboutPage();
 
         if (source == mmp.getPathFinderButton()) {
+            mainFrame.getContentPane().removeAll();
+
             System.out.println("Path Finder Button Clicked");
 
         } 
-        else if (source == mmp.getManageMapButton()) {          
-            // new ManageMapController(graph, mmp, this.mainFrame);
-            // mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
-            
-        } 
+        else if (source == mmp.getManageMapButton()) {}
+
         else if (source == mmp.getViewAlgosButton()) {
+            mainFrame.getContentPane().removeAll();
+
             new ViewAlgorithmController(graph, vap, this.mainFrame); 
-            mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
+            // mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
             
         } 
         else if (source == mmp.getAboutButton()) {
+            mainFrame.getContentPane().removeAll();
+
             new AboutController(graph, ap, this.mainFrame);
-            mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
+            // mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
         
         }
         // TODO: Implement all functionalities below  
