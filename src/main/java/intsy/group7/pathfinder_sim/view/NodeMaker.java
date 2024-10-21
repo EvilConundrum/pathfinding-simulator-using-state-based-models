@@ -10,7 +10,7 @@ public class NodeMaker {
     HashMap<String, Point> map;
     Color noRed = new Color(188, 24, 35);
 
-    public NodeMaker(){
+    public NodeMaker() {
         this.map = new HashMap<>();
 
         this.map.put("A", new Point(1252, 446));

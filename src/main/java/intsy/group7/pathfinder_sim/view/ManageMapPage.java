@@ -271,7 +271,7 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(rmvNameLbl, JLayeredPane.POPUP_LAYER);
 
         layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(mapPanel, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(mapPanel, JLayeredPane.DEFAULT_LAYER);
 
         layeredPane.add(startNode, JLayeredPane.POPUP_LAYER);
         layeredPane.add(endNode, JLayeredPane.POPUP_LAYER);
@@ -283,10 +283,11 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(add1Button, JLayeredPane.POPUP_LAYER);
         layeredPane.add(add2Button, JLayeredPane.POPUP_LAYER);
         layeredPane.add(rmvButton, JLayeredPane.POPUP_LAYER);
+        
 
         // JFrame 
         mainFrame.setTitle("The Bow & Bite Map");
-        mainFrame.setSize(1920, 1080);
+        mainFrame.setSize(1275, 700);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
 
@@ -295,7 +296,6 @@ public class ManageMapPage extends JPanel {
         mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 
         mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
-        mainFrame.setVisible(true);
     }
 
 
