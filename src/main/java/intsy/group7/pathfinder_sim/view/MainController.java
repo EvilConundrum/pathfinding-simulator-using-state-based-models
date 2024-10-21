@@ -17,7 +17,6 @@ public class MainController {
         //abt.launchAboutPage(mainFrame, text);
         // DefaultPage dp = new DefaultPage();
         // dp.launchDefaultPage(mainFrame);
-
     }
 }
 
