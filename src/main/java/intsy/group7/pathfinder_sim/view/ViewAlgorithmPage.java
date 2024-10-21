@@ -39,7 +39,7 @@ public class ViewAlgorithmPage extends JPanel {
 
         // Header panel
         JPanel pageHeader = new JPanel();
-        pageHeader.setBounds(0, 0, 1500, 60);
+        pageHeader.setBounds(0, 0, 1275, 60);
         pageHeader.setBackground(greenTHA);
 
         JLabel labelHeader = new JLabel("The Bow & Bite Map");
