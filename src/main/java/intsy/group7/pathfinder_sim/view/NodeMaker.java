@@ -51,6 +51,7 @@ public class NodeMaker {
         return vacantNodes;
     }
 
+    
 
     //returns the vacant nodes as RoundedButton
     public RoundedButton[] getVacantButtons(HashMap<String, Point> vacantNodes){
