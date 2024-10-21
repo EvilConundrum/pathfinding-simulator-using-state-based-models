@@ -35,9 +35,9 @@ public class AboutController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
+        PathFinderPage pfp = new PathFinderPage();
         ManageMapPage mmp = new ManageMapPage();
         ViewAlgorithmPage vap = new ViewAlgorithmPage();
-        PathFinderPage pfp = new PathFinderPage();
 
         if (source == ap.getPathFinderButton()) {
             mainFrame.getContentPane().removeAll();
