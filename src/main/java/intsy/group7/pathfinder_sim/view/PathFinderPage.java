@@ -278,8 +278,18 @@ public class PathFinderPage {
         return this.exitButton;
     }
 
-    //returns submit button
-    public RoundedButton getSubmitButton(){
-        return this.subButton;
+     public void addPathCost(int pathCost, String traversal) {
+        JLabel pathLbl = new JLabel("Path Cost: " + pathCost);
+        pathLbl.setFont(new Font("Futura", Font.BOLD,18));
+        pathLbl.setBounds(95, 400, 300, 40);
+        pathLbl.setForeground(greenText);
+
+        JLabel traversalLbl = new JLabel("Traversal: " + traversal);
+        traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
+        traversalLbl.setBounds(95, 440, 300, 40);
+        traversalLbl.setForeground(greenText);
+
+        layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);
     }
 }
