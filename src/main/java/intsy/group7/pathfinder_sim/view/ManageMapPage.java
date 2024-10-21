@@ -34,11 +34,7 @@ public class ManageMapPage extends JPanel {
     JPanel mapPanel;
 
     JTextField addName;
-    JTextField gReview;
-    JTextField sCapacity;
-    JTextField floorPrice;
-    JTextField ceilingPrice;
-    JTextField weight;
+    JTextField fTraf;
 
     JComboBox<String> startNode;
     JComboBox<String> endNode;
@@ -52,11 +48,11 @@ public class ManageMapPage extends JPanel {
 
 
     //@param MainFrame & list of locations
-    public void launchManageMapPage(JFrame mainFrame, String[] locations, String[] nodes) {
+    public void launchManageMapPage(JFrame mainFrame, String[] locations, String[] nodes){
 
         // Header panel
         JPanel pageHeader = new JPanel();
-        pageHeader.setBounds(0, 0, 1275, 60);
+        pageHeader.setBounds(0, 0, 1500, 60);
         pageHeader.setBackground(greenTHA);
 
         JLabel labelHeader = new JLabel("The Bow & Bite Map");
@@ -118,7 +114,7 @@ public class ManageMapPage extends JPanel {
         add1Button.setFont(new Font("Helvetica", Font.BOLD, 14));
         add1Button.setForeground(Color.WHITE);
         add1Button.setBackground(greenTHA2);
-        add1Button.setBounds(170, 275, 100, 30); 
+        add1Button.setBounds(170, 225, 100, 30); 
         add1Button.setOpaque(true); 
         add1Button.setBorder(null);
         add1Button.setContentAreaFilled(true); 
@@ -129,7 +125,7 @@ public class ManageMapPage extends JPanel {
         add2Button.setFont(new Font("Helvetica", Font.BOLD, 14));
         add2Button.setForeground(Color.WHITE);
         add2Button.setBackground(greenTHA2);
-        add2Button.setBounds(170, 450, 100, 30); 
+        add2Button.setBounds(170, 425, 100, 30); 
         add2Button.setOpaque(true); 
         add2Button.setBorder(null);
         add2Button.setContentAreaFilled(true); 
@@ -140,7 +136,7 @@ public class ManageMapPage extends JPanel {
         rmvButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         rmvButton.setForeground(Color.WHITE);
         rmvButton.setBackground(noRed);
-        rmvButton.setBounds(170, 565, 100, 30); 
+        rmvButton.setBounds(170, 590, 100, 30); 
         rmvButton.setOpaque(true); 
         rmvButton.setBorder(null);
         rmvButton.setContentAreaFilled(true); 
@@ -195,45 +191,25 @@ public class ManageMapPage extends JPanel {
         addNameLbl.setBounds(100, 140, 300, 40);
         addNameLbl.setForeground(greenText);
 
-        JLabel ratingsLbl = new JLabel("Google Review:");
-        ratingsLbl.setFont(new Font("Futura", Font.BOLD,12));
-        ratingsLbl.setBounds(100, 170, 300, 40);
-        ratingsLbl.setForeground(greenText);
-
-        JLabel capLbl = new JLabel("Seating Capacity:");
-        capLbl.setFont(new Font("Futura", Font.BOLD,12));
-        capLbl.setBounds(100, 200, 300, 40);
-        capLbl.setForeground(greenText);
-
-        JLabel rangeLbl = new JLabel("Price Range:");
-        rangeLbl.setFont(new Font("Futura", Font.BOLD,12));
-        rangeLbl.setBounds(100, 230, 300, 40);
-        rangeLbl.setForeground(greenText);
-
-        JLabel hypen = new JLabel("-");
-        hypen.setFont(new Font("Futura", Font.BOLD,15));
-        hypen.setBounds(270, 230, 300, 40);
-        hypen.setForeground(greenText);
+        JLabel ftTrafbl = new JLabel("Foot Traffic:");
+        ftTrafbl.setFont(new Font("Futura", Font.BOLD,12));
+        ftTrafbl.setBounds(100, 170, 300, 40);
+        ftTrafbl.setForeground(greenText);
 
         JLabel edgesLbl = new JLabel("Edges");
         edgesLbl.setFont(new Font("Futura", Font.BOLD,16));
-        edgesLbl.setBounds(190, 315, 300, 40);
+        edgesLbl.setBounds(190, 295, 300, 40);
         edgesLbl.setForeground(greenText);
 
         JLabel sNodeLbl = new JLabel("Start Node:");
         sNodeLbl.setFont(new Font("Futura", Font.BOLD,12));
-        sNodeLbl.setBounds(100, 345, 300, 40);
+        sNodeLbl.setBounds(100, 335, 300, 40);
         sNodeLbl.setForeground(greenText);
 
         JLabel eNodeLbl = new JLabel("End Node:");
         eNodeLbl.setFont(new Font("Futura", Font.BOLD,12));
-        eNodeLbl.setBounds(100, 375, 300, 40);
+        eNodeLbl.setBounds(100, 365, 300, 40);
         eNodeLbl.setForeground(greenText);
-
-        JLabel weightLbl = new JLabel("Weight:");
-        weightLbl.setFont(new Font("Futura", Font.BOLD,12));
-        weightLbl.setBounds(100, 405, 300, 40);
-        weightLbl.setForeground(greenText);
 
         JLabel rmvLbl = new JLabel("Remove a Food Place");
         rmvLbl.setFont(new Font("Futura", Font.BOLD,16));
@@ -242,7 +218,7 @@ public class ManageMapPage extends JPanel {
 
         JLabel rmvNameLbl = new JLabel("Name: ");
         rmvNameLbl.setFont(new Font("Futura", Font.BOLD,12));
-        rmvNameLbl.setBounds(100, 520, 300, 40);
+        rmvNameLbl.setBounds(100, 530, 300, 40);
         rmvNameLbl.setForeground(greenText);
 
         //text fields
@@ -250,38 +226,22 @@ public class ManageMapPage extends JPanel {
         addName.setColumns(15);
         addName.setBounds(145, 150, 220, 25);
 
-        gReview = new JTextField();
-        gReview.setColumns(15);
-        gReview.setBounds(200, 180, 165, 25);
-
-        sCapacity = new JTextField();
-        sCapacity.setColumns(15);
-        sCapacity.setBounds(210, 210, 155, 25);
-
-        floorPrice = new JTextField();
-        floorPrice.setColumns(15);
-        floorPrice.setBounds(185, 240, 75, 25);
-
-        ceilingPrice = new JTextField();
-        ceilingPrice.setColumns(15);
-        ceilingPrice.setBounds(290, 240, 75, 25);
-
-        weight = new JTextField();
-        weight.setColumns(15);
-        weight.setBounds(150, 415, 220, 25);
+        fTraf = new JTextField();
+        fTraf.setColumns(15);
+        fTraf.setBounds(180, 180, 185, 25);
 
         //Dropdown Menu
         startNode = new JComboBox<String>(nodes);
         startNode.setVisible(true);
-        startNode.setBounds(170,355,200,25);
+        startNode.setBounds(170,345,200,25);
 
         endNode = new JComboBox<String>(nodes);
         endNode.setVisible(true);
-        endNode.setBounds(170,385,200,25);
+        endNode.setBounds(170,375,200,25);
 
         rmvPlace = new JComboBox<String>(locations);
         rmvPlace.setVisible(true);
-        rmvPlace.setBounds(145,530,220,25);
+        rmvPlace.setBounds(145,540,220,25);
 
 
         // LayeredPane Components
@@ -303,14 +263,10 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(addFpLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(insLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(addNameLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(ratingsLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(capLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(rangeLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(hypen, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(ftTrafbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(edgesLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(sNodeLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(eNodeLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(weightLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(rmvLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(rmvNameLbl, JLayeredPane.POPUP_LAYER);
 
@@ -322,12 +278,8 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(rmvPlace, JLayeredPane.POPUP_LAYER);
 
         layeredPane.add(addName, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(gReview, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(sCapacity, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(floorPrice, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(ceilingPrice, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(weight, JLayeredPane.POPUP_LAYER);
-
+        layeredPane.add(fTraf, JLayeredPane.POPUP_LAYER);
+       
         layeredPane.add(add1Button, JLayeredPane.POPUP_LAYER);
         layeredPane.add(add2Button, JLayeredPane.POPUP_LAYER);
         layeredPane.add(rmvButton, JLayeredPane.POPUP_LAYER);
@@ -340,11 +292,12 @@ public class ManageMapPage extends JPanel {
 
         // backgroundPanel and layeredPane on JFrame
         mainFrame.getContentPane().setLayout(new BorderLayout());
-        mainFrame.getContentPane().add(this.layeredPane, BorderLayout.CENTER);
+        mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 
         mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
         mainFrame.setVisible(true);
     }
+
 
     //actionListener
     public void addClickListener(ActionListener listener) {
@@ -356,7 +309,6 @@ public class ManageMapPage extends JPanel {
         this.add1Button.addActionListener(listener);
         this.add2Button.addActionListener(listener);
         this.rmvButton.addActionListener(listener);
-        this.rmvPlace.addActionListener(listener);
     }
 
     //returns the layeredPane
@@ -374,20 +326,8 @@ public class ManageMapPage extends JPanel {
         return this.addName.getText();
     }
 
-    public String getGReview(){
-        return this.gReview.getText();
-    }
-
-    public String getSCapacityName(){
-        return this.sCapacity.getText();
-    }
-
-    public String getFloorPrice(){
-        return this.floorPrice.getText();
-    }
-
-    public String getCeilingPrice(){
-        return this.ceilingPrice.getText();
+    public String getfTraf(){
+        return this.fTraf.getText();
     }
 
 
@@ -423,15 +363,5 @@ public class ManageMapPage extends JPanel {
 
     public IconButton getExitButton(){
         return this.exitButton;
-    }
-
-    public RoundedButton getAdd1Button(){
-        return this.add1Button;
-    }
-    public RoundedButton getAdd2Button(){
-        return this.add2Button;
-    }
-    public RoundedButton getRmvButton(){
-        return this.rmvButton;
     }
 }
