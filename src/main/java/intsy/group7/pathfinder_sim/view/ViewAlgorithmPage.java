@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 
-public class ViewAlgorithmPage {
+public class ViewAlgorithmPage extends JPanel {
     ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
     ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
     ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
@@ -179,7 +179,6 @@ public class ViewAlgorithmPage {
         mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
         mainFrame.setVisible(true);
     }
-
 
     //actionListener
     public void addClickListener(ActionListener listener) {

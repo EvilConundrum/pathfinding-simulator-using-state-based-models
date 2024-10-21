@@ -8,7 +8,8 @@ import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
 
-public class AboutPage {
+public class AboutPage extends JPanel {
+
     ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
     ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
     ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
@@ -34,10 +35,6 @@ public class AboutPage {
     Color greenTHA = new Color(0, 105, 55);
     Color greenText = new Color(5, 65, 3);
     Color greenTHA2 = new Color(0, 112, 60);
-
-    public AboutPage(JFrame mainFrame, String text) {
-        launchAboutPage(mainFrame, text);
-    }
 
     //@param MainFrame & list of locations
     public void launchAboutPage(JFrame mainFrame, String text) {
