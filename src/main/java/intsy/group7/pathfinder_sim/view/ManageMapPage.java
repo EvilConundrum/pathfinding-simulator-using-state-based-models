@@ -330,7 +330,6 @@ public class ManageMapPage extends JPanel {
         return this.fTraf.getText();
     }
 
-
     //returns dropdown menu value
     public String getStartNode(){
         return (String) this.startNode.getSelectedItem();
@@ -364,7 +363,6 @@ public class ManageMapPage extends JPanel {
     public IconButton getExitButton(){
         return this.exitButton;
     }
-<<<<<<< HEAD
 
     // returns submit buttons
     public RoundedButton getAdd1Button(){
@@ -376,6 +374,4 @@ public class ManageMapPage extends JPanel {
     public RoundedButton getRmvButton(){
         return this.rmvButton;
     }
-=======
->>>>>>> 05da5e4e15e4db392885e55c320826482d808a05
 }

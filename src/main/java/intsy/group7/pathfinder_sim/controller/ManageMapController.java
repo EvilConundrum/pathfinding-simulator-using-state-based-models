@@ -4,6 +4,8 @@ package intsy.group7.pathfinder_sim.controller;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
@@ -24,9 +26,22 @@ public class ManageMapController implements ActionListener {
 
         this.mmp = mmp;
         this.mainFrame = mainFrame;
+        
+        String[] locations = new String[0];
+        List<String> locationList = new ArrayList<>();
+        for (Node node : graph.getNodes()) {
+            if (node.isEatery()) {
+                locationList.add(node.getId());
+            }
+        }
+        locations = locationList.toArray(new String[0]);
 
-        String[] locations = {"Bloemen", "Br. Andrew Hall", "St. La Salle Hall", "Perico's", "etc."};
-        String[] nodes = {"A", "B", "C", "D", "E", "..."};
+        String[] nodes = new String[0];
+        List<String> nodeList = new ArrayList<>();
+        for (Node node : graph.getNodes()) {
+            nodeList.add(node.getId());
+        }
+        nodes = nodeList.toArray(new String[0]);
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
@@ -64,13 +79,12 @@ public class ManageMapController implements ActionListener {
         else if (source == mmp.getAdd1Button()) { // Add Node Button
             String name = mmp.getAddName().trim();
 
-            // TODO: Change Heuristics based on Vienn :3
-            int heuristic1 = Integer.parseInt(mmp.getGReview().trim());
-            int heuristic2 = Integer.parseInt(mmp.getSCapacityName().trim());
-            int heuristic3 = Integer.parseInt(mmp.getFloorPrice().trim());
+            int heuristic1 = Integer.parseInt(mmp.getfTraf().trim());
+            int xCoord = 0; // TODO: Implement x coord and yCoord
+            int yCoord = 0;
             boolean isEatery = true;
 
-            graph.addNode(new Node(name, heuristic1, heuristic2, heuristic3, isEatery));
+            graph.addNode(new Node(name, heuristic1, xCoord, yCoord, isEatery));
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
