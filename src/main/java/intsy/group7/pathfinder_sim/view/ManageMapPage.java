@@ -56,7 +56,7 @@ public class ManageMapPage extends JPanel {
 
         // Header panel
         JPanel pageHeader = new JPanel();
-        pageHeader.setBounds(0, 0, 1500, 60);
+        pageHeader.setBounds(0, 0, 1275, 60);
         pageHeader.setBackground(greenTHA);
 
         JLabel labelHeader = new JLabel("The Bow & Bite Map");
@@ -356,6 +356,7 @@ public class ManageMapPage extends JPanel {
         this.add1Button.addActionListener(listener);
         this.add2Button.addActionListener(listener);
         this.rmvButton.addActionListener(listener);
+        this.rmvPlace.addActionListener(listener);
     }
 
     //returns the layeredPane
@@ -422,5 +423,15 @@ public class ManageMapPage extends JPanel {
 
     public IconButton getExitButton(){
         return this.exitButton;
+    }
+
+    public RoundedButton getAdd1Button(){
+        return this.add1Button;
+    }
+    public RoundedButton getAdd2Button(){
+        return this.add2Button;
+    }
+    public RoundedButton getRmvButton(){
+        return this.rmvButton;
     }
 }

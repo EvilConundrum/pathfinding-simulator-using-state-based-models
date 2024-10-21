@@ -12,43 +12,50 @@ public class DefaultPageController implements ActionListener {
     
     private JFrame mainFrame;
     private DefaultPage dp;
+    private Graph graph;
 
-    public DefaultPageController() {
+
+
+    public DefaultPageController(Graph graph) {
+
+        this.graph = graph;
 
         this.mainFrame = new JFrame();
-
         this.dp = new DefaultPage();
 
         dp.launchDefaultPage(mainFrame);
-        dp.addClickListener(this);   
+        dp.addClickListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
+        PathFinderPage pfp = new PathFinderPage();
         ManageMapPage mmp = new ManageMapPage();
         ViewAlgorithmPage vap = new ViewAlgorithmPage();
         AboutPage ap = new AboutPage();
 
         if (source == dp.getPathFinderButton()) {
-            System.out.println("Path Finder Button Clicked");
+            mainFrame.getContentPane().removeAll();
+
+            new PathFinderController(graph, pfp, this.mainFrame);
 
         } 
-        else if (source == dp.getManageMapButton()) {           
-            new ManageMapController(mmp, this.mainFrame);
-            mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
-
+        else if (source == dp.getManageMapButton()) {
+            mainFrame.getContentPane().removeAll();
+            
+            new ManageMapController(graph, mmp, this.mainFrame);
         } 
         else if (source == dp.getViewAlgosButton()) {
-            new ViewAlgorithmController(vap, this.mainFrame); 
-            mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
-            
+            mainFrame.getContentPane().removeAll();
+
+            new ViewAlgorithmController(graph, vap, this.mainFrame); 
         } 
         else if (source == dp.getAboutButton()) {
-            new AboutController(ap, this.mainFrame);
-            mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
-        
+            mainFrame.getContentPane().removeAll();
+
+            new AboutController(graph, ap, this.mainFrame);        
         } 
         else if (source == dp.getExitButton()) {
             System.exit(0);    
@@ -58,7 +65,4 @@ public class DefaultPageController implements ActionListener {
         }
 
     }
-
-    
-    
 }
