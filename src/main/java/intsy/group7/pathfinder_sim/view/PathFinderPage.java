@@ -277,4 +277,9 @@ public class PathFinderPage {
     public IconButton getExitButton(){
         return this.exitButton;
     }
+
+    //returns submit button
+    public RoundedButton getSubmitButton(){
+        return this.subButton;
+    }
 }

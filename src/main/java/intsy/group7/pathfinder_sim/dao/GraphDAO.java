@@ -28,7 +28,7 @@ public class GraphDAO {
                 }
                 //System.out.println("Node: " + node.getId() + " created!"); check nodes created
             }
-            System.out.println("All nodes created successfully");
+            System.out.println("All nodes created successfully"); // DEBUGGING
         } 
         catch (FileNotFoundException e) {
         System.out.println("File not found: " + filepath);

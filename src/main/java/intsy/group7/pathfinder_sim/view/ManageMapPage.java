@@ -425,6 +425,7 @@ public class ManageMapPage extends JPanel {
         return this.exitButton;
     }
 
+    // returns submit buttons
     public RoundedButton getAdd1Button(){
         return this.add1Button;
     }

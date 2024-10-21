@@ -8,10 +8,12 @@ import java.awt.event.*;
 import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
+import javafx.scene.shape.Path;
 
 public class ManageMapController implements ActionListener {
 
     private Graph graph;
+
 
     private ManageMapPage mmp;
     private JFrame mainFrame;
@@ -36,12 +38,12 @@ public class ManageMapController implements ActionListener {
 
         ViewAlgorithmPage vap = new ViewAlgorithmPage();
         AboutPage ap = new AboutPage();
+        PathFinderPage pfp = new PathFinderPage();
 
         if (source == mmp.getPathFinderButton()) {
             mainFrame.getContentPane().removeAll();
 
-            System.out.println("Path Finder Button Clicked");
-
+            new PathFinderController(graph, pfp, this.mainFrame);
         } 
         else if (source == mmp.getManageMapButton()) {}
 
@@ -49,21 +51,16 @@ public class ManageMapController implements ActionListener {
             mainFrame.getContentPane().removeAll();
 
             new ViewAlgorithmController(graph, vap, this.mainFrame); 
-            // mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
-            
         } 
         else if (source == mmp.getAboutButton()) {
             mainFrame.getContentPane().removeAll();
 
-            new AboutController(graph, ap, this.mainFrame);
-            // mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
-        
+            new AboutController(graph, ap, this.mainFrame);        
         }
-        // TODO: Implement all functionalities below  
         else if (source == mmp.getExitButton()) {
             System.exit(0);    
         } 
-
+        // TODO: Implement all functionalities below  
         else if (source == mmp.getAdd1Button()) { // Add Node Button
             String name = mmp.getAddName().trim();
 
@@ -76,10 +73,12 @@ public class ManageMapController implements ActionListener {
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
-            System.out.println("Add 2 Button Clicked");
+           // TODO: Add Edge adder here
         }
         else if (source == mmp.getRmvButton()) { // Remove Eatery Button
-            
+            String eateryToRemove = mmp.getRmvPlace().trim();
+
+            // graph.removeNode(eateryToRemove);
         }
 
         else {
