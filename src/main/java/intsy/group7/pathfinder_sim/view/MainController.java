@@ -15,8 +15,9 @@ public class MainController {
         //view.launchManageMapPage(mainFrame, locations, nodes);
         //AboutPage abt = new AboutPage();
         //abt.launchAboutPage(mainFrame, text);
-        DefaultPage dp = new DefaultPage();
-        dp.launchDefaultPage(mainFrame);
+        // DefaultPage dp = new DefaultPage();
+        // dp.launchDefaultPage(mainFrame);
+
     }
 }
 

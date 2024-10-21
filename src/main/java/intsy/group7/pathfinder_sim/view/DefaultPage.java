@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class DefaultPage {
+public class DefaultPage extends JPanel {
+    
     ImageIcon map = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
     ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
     ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
@@ -12,6 +13,8 @@ public class DefaultPage {
     ImageIcon aboutImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
     ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
     ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
+
+    JLayeredPane layeredPane;
 
     JLabel pathFinderLbl;
     JLabel manageMapLbl;
@@ -31,7 +34,7 @@ public class DefaultPage {
     String welcomeMessage = "Welcome to The Bow & Bite Map! Ready to explore the different food spots around campus? This map uses different algorithms to help you find the best paths to satisfy your cravings—whether you’re in the mood for a quick bite or a nice meal. Grab your friends, start exploring, and let the algorithms guide you to your next favorite meal! Happy munching! :)";
 
     //@param MainFrame
-    public void launchDefaultPage(JFrame mainFrame){
+    public void launchDefaultPage(JFrame mainFrame) {
 
         // Header panel
         JPanel pageHeader = new JPanel();
@@ -67,7 +70,7 @@ public class DefaultPage {
         mapPanel.setBounds(385, 60, 890, 630);
 
         // LayeredPane for positioning
-        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1920, 1080));
         layeredPane.setBackground(Color.WHITE);
 
@@ -188,6 +191,10 @@ public class DefaultPage {
         this.viewAlgosButton.addActionListener(listener);
         this.aboutButton.addActionListener(listener);
         this.exitButton.addActionListener(listener);
+    }
+
+    public JLayeredPane getLayeredPane(){
+        return this.layeredPane;
     }
 
     //returns IconButton buttons (jic needed)

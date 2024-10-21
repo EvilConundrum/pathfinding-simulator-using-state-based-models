@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class ManageMapPage {
+public class ManageMapPage extends JPanel {
     ImageIcon map = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
     ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
     ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
@@ -52,7 +52,7 @@ public class ManageMapPage {
 
 
     //@param MainFrame & list of locations
-    public void launchManageMapPage(JFrame mainFrame, String[] locations, String[] nodes){
+    public void launchManageMapPage(JFrame mainFrame, String[] locations, String[] nodes) {
 
         // Header panel
         JPanel pageHeader = new JPanel();
@@ -340,12 +340,11 @@ public class ManageMapPage {
 
         // backgroundPanel and layeredPane on JFrame
         mainFrame.getContentPane().setLayout(new BorderLayout());
-        mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
+        mainFrame.getContentPane().add(this.layeredPane, BorderLayout.CENTER);
 
         mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
         mainFrame.setVisible(true);
     }
-
 
     //actionListener
     public void addClickListener(ActionListener listener) {
