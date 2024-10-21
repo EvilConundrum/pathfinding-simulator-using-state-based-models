@@ -11,7 +11,9 @@ public class Driver{
         System.out.println("Test Print");
         
         // new MainController();
-        new DefaultPageController();
+        Graph graph = new Graph();
+        new DefaultPageController(graph);
+
 
 
     }

@@ -12,15 +12,22 @@ public class DefaultPageController implements ActionListener {
     
     private JFrame mainFrame;
     private DefaultPage dp;
+    private Graph graph;
 
-    public DefaultPageController() {
+    public DefaultPageController(Graph graph) {
+
+        this.graph = graph;
 
         this.mainFrame = new JFrame();
-
         this.dp = new DefaultPage();
 
         dp.launchDefaultPage(mainFrame);
-        dp.addClickListener(this);   
+        dp.addClickListener(this);
+
+        // DEBUGGING
+        // ManageMapPage mmp = new ManageMapPage();
+        // new ManageMapController(graph, mmp, this.mainFrame);
+        // mmp.addClickListener(this);
     }
 
     @Override
@@ -36,18 +43,21 @@ public class DefaultPageController implements ActionListener {
 
         } 
         else if (source == dp.getManageMapButton()) {           
-            new ManageMapController(mmp, this.mainFrame);
+            new ManageMapController(graph, mmp, this.mainFrame);
             mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
+            mainFrame.getLayeredPane().moveToFront(mmp);
 
         } 
         else if (source == dp.getViewAlgosButton()) {
-            new ViewAlgorithmController(vap, this.mainFrame); 
+            new ViewAlgorithmController(graph, vap, this.mainFrame); 
             mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
+            mainFrame.getLayeredPane().moveToFront(vap.getLayeredPane());
             
         } 
         else if (source == dp.getAboutButton()) {
-            new AboutController(ap, this.mainFrame);
+            new AboutController(graph, ap, this.mainFrame);
             mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
+            mainFrame.getLayeredPane().moveToFront(ap.getLayeredPane());
         
         } 
         else if (source == dp.getExitButton()) {
