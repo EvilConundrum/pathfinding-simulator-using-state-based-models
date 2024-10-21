@@ -43,13 +43,13 @@ public class ManageMapController implements ActionListener {
         nodes = nodeList.toArray(new String[0]);
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
+        mmp.addClickListener(this);
 
-        RoundedButton[] buttons = nodeMaker.getVacantButtons(nodeMaker.getAllNodes());
+        RoundedButton[] buttons = NodeMaker.getVacantButtons(NodeMaker.getEateryNodes());
         for (RoundedButton button : buttons) {
             mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
         }
 
-        mmp.addClickListener(this);
         mainFrame.setVisible(true);
     }
 

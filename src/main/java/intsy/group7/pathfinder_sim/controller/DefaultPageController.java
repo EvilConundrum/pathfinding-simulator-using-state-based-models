@@ -14,15 +14,12 @@ public class DefaultPageController implements ActionListener {
     private DefaultPage dp;
     private Graph graph;
 
-    private NodeMaker nodeMaker;
-
     public DefaultPageController(Graph graph) {
 
         this.graph = graph;
 
         this.mainFrame = new JFrame();
         this.dp = new DefaultPage();
-        this.nodeMaker = new NodeMaker();
 
         
 
@@ -48,7 +45,7 @@ public class DefaultPageController implements ActionListener {
         else if (source == dp.getManageMapButton()) {
             mainFrame.getContentPane().removeAll();
             
-            new ManageMapController(graph, nodeMaker, mmp, this.mainFrame);
+            new ManageMapController(graph, mmp, this.mainFrame);
         } 
         else if (source == dp.getViewAlgosButton()) {
             mainFrame.getContentPane().removeAll();
