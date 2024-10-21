@@ -18,9 +18,10 @@ public class GraphDAO {
                 int heuristic = Integer.parseInt(columns[1]);
                 int xCoord = Integer.parseInt(columns[2]);
                 int yCoord = Integer.parseInt(columns[3]);
+                Boolean eatery = Boolean.parseBoolean(columns[4]);
                 
                 // Create a new Node object using the variables
-                Node node = new Node(nodeName, heuristic, xCoord, yCoord);
+                Node node = new Node(nodeName, heuristic, xCoord, yCoord, eatery);
                 
                 // If the node does not exist already, create the new node and add it to the graph
                 if (graph.findNode(node) != true) {
