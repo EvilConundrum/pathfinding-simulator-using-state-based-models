@@ -21,5 +21,20 @@ public class Result {
         return traversal;
     }
 
-    
+    public String getStringPath() {
+        StringBuilder sb = new StringBuilder();
+        for (Node node : path) {
+            sb.append(node.getId()).append(" -> ");
+        }
+        return sb.toString();
+    }
+
+    public String getStringTraversal() {
+        StringBuilder sb = new StringBuilder();
+        for (Node node : traversal) {
+            sb.append(node.getId()).append(" -> ");
+        }
+        return sb.toString();
+    }
+
 }
