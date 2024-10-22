@@ -26,10 +26,11 @@ public class ManageMapController implements ActionListener {
         this.mmp = mmp;
         this.mainFrame = mainFrame;
         
+        // Set current locations as all eatery nodes
         String[] locations = new String[0];
         List<String> locationList = new ArrayList<>();
         for (Node node : graph.getNodes()) {
-            if (node.isEatery()) {
+            if (node.getState().equalsIgnoreCase("eatery")) {
                 locationList.add(node.getId());
             }
         }
@@ -45,7 +46,7 @@ public class ManageMapController implements ActionListener {
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
 
-        RoundedButton[] buttons = NodeMaker.getVacantButtons(NodeMaker.getEateryNodes());
+        RoundedButton[] buttons = NodeMaker.getButtons(graph, "EateryAndVacant");
         for (RoundedButton button : buttons) {
             mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
         }
@@ -90,7 +91,7 @@ public class ManageMapController implements ActionListener {
             int yCoord = 0;
             boolean isEatery = true;
 
-            graph.addNode(new Node(name, heuristic1, xCoord, yCoord, isEatery));
+            graph.addNode(new Node(name, heuristic1, xCoord, yCoord, "eatery"));
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
@@ -99,13 +100,26 @@ public class ManageMapController implements ActionListener {
         else if (source == mmp.getRmvButton()) { // Remove Eatery Button
             String eateryToRemove = mmp.getRmvPlace().trim();
 
-            // graph.removeNode(eateryToRemove);
+            for (Node node : graph.getNodes()) {
+                if (node.getId().equals(eateryToRemove)) {
+                    node.setState("vacant");
+                }
+            }
         }
 
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }
 
-    }    
+    }
+    
+    class ButtonClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            RoundedButton sourceButton = (RoundedButton) e.getSource();
+            System.out.println("Button " + sourceButton.getText() + " clicked.");
+            // Add your custom logic here
+        }
+    }
 
 }

@@ -59,10 +59,6 @@ public class ViewAlgorithmController implements ActionListener {
         else if (source == vap.getExitButton()) {
             System.exit(0);    
         }
-        
-        // TODO: Implement Algorithms here
-
-
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }

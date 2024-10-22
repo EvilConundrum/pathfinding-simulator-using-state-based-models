@@ -11,99 +11,64 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.Set;
 
+import intsy.group7.pathfinder_sim.model.Graph;
+
 //use: manage map (location picker)
 public class NodeMaker {
     //HashMap to store the label as the key and Point (X, Y)
     private static LinkedHashMap<String, Point> map;
     private static Color noRed = new Color(188, 24, 35);
+    private static Color noGreen = new Color(0, 255, 0);
+    private static Color noBlue = new Color(0, 0, 255);
+    private static Color noYellow = new Color(255, 255, 0);
+    private static Color noLightGray = new Color(74, 71, 71);
+    private static Color noBlack = new Color(0, 0, 0);
     private static ArrayList<Boolean> eateryNodes = new ArrayList<>();
 
-    static {
-        map = new LinkedHashMap<String, Point>();
-
-        try (Scanner scanner = new Scanner(new File("src/main/java/intsy/group7/pathfinder_sim/dao/nodes.csv"))) {   
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] columns = line.split(",");
-                String nodeName = columns[0];
-                int xCoord = Integer.parseInt(columns[2]);
-                int yCoord = Integer.parseInt(columns[3]);
-                boolean isEatery = Boolean.parseBoolean(columns[4]);
-                
-                map.put(nodeName, new Point(xCoord,yCoord));
-                eateryNodes.add(isEatery);
-
-                //System.out.println("Node: " + node.getId() + " created!"); check nodes created
-            }
-            //System.out.println("All nodes created successfully"); // DEBUGGING
-        } 
-        catch (FileNotFoundException e) {
-            System.out.println("File not found: " + "src/main/java/intsy/group7/pathfinder_sim/dao/nodes.csv");
-        }
-    }
-
     //returns the vacant nodes as RoundedButton
-    public static RoundedButton[] getVacantButtons(HashMap<String, Point> vacantNodes) {
-        RoundedButton[] vacantButtons = new RoundedButton[86];
-        Set<String> keySet = vacantNodes.keySet();
-        String[] keysArray = keySet.toArray(new String[0]);
+    public static RoundedButton[] getButtons(Graph graph, String mode) {
         Point pointA;
-        int x;
-        int y;
-
-        for(int i = 0; i < vacantNodes.size(); i++) {
-            pointA = vacantNodes.get(keysArray[i]);
+        int x, y, i;
+        RoundedButton[] roundButtons = new RoundedButton[86];
+         
+        for(i=0; i<roundButtons.length; i++) {
+            
+            pointA = new Point(graph.getNodes().get(i).getX_coord(), graph.getNodes().get(i).getY_coord());
 
             x = pointA.x;
             y = pointA.y;
 
-            vacantButtons[i] = new RoundedButton(keysArray[i]);
-            vacantButtons[i].setFont(new Font("Helvetica", Font.BOLD, 10));
-            vacantButtons[i].setForeground(Color.WHITE);
-            vacantButtons[i].setBackground(noRed);
-            vacantButtons[i].setBounds(x, y, 22, 22); 
-            vacantButtons[i].setOpaque(true); 
-            vacantButtons[i].setBorder(null);
-            vacantButtons[i].setContentAreaFilled(true); 
-            vacantButtons[i].setCustomBorderColor(Color.WHITE); 
-            vacantButtons[i].setCustomBorderThickness(2);
-        }
+            roundButtons[i] = new RoundedButton(graph.getNodes().get(i).getId());
+            roundButtons[i].setFont(new Font("Helvetica", Font.BOLD, 10));
+            roundButtons[i].setForeground(Color.WHITE);
+            roundButtons[i].setBounds(x, y, 22, 22); 
+            roundButtons[i].setOpaque(true); 
+            roundButtons[i].setBorder(null);
+            roundButtons[i].setContentAreaFilled(true); 
+            roundButtons[i].setCustomBorderColor(Color.WHITE); 
+            roundButtons[i].setCustomBorderThickness(2);
 
-        return vacantButtons;
-    }
-
-    //returns the HashMap map
-    public static LinkedHashMap<String, Point> getAllNodes() {
-        return map;
-    }
-
-    //returns a Hashmap of vacant nodes
-    public static LinkedHashMap<String, Point> getVacantNodes(HashMap<String, Point> occupiedNodes){
-        LinkedHashMap<String, Point> vacantNodes  = new LinkedHashMap<>();
-
-        for (String label : map.keySet()) {
-            if (!occupiedNodes.containsKey(label)) {
-                vacantNodes.put(label, map.get(label));
+                
+            if (mode.equalsIgnoreCase("EateryAndVacant")) {
+                if (graph.getNodes().get(i).getState().equalsIgnoreCase("road")) {
+                    roundButtons[i].setEnabled(false);
+                    roundButtons[i].setVisible(false);
+                }
+                if (graph.getNodes().get(i).getState().equalsIgnoreCase("eatery")) {
+                    roundButtons[i].setBackground(noYellow);
+                    roundButtons[i].setEnabled(false);
+                }
+                if (graph.getNodes().get(i).getState().equalsIgnoreCase("vacant")) {
+                    roundButtons[i].setBackground(noLightGray);
+                }
             }
-        }
-
-        return vacantNodes;
-    }  
-
-
-    // Make me a method that returns the hashmap of all eatery nodes
-    public static LinkedHashMap<String, Point> getEateryNodes() {
-        LinkedHashMap<String, Point> eateryNodesMap = new LinkedHashMap<>();
-
-        for (int i = 0; i < eateryNodes.size(); i++) {
-            if (eateryNodes.get(i) == true) {
-                String label = (String) map.keySet().toArray()[i];
-                eateryNodesMap.put(label, map.get(label));
+            else {            
+                roundButtons[i].setBackground(noLightGray);
             }
+            
+            roundButtons[i].addActionListener(new ButtonClickListener());
         }
 
-        return eateryNodesMap;
+        return roundButtons;
     }
-
-    
 }
