@@ -21,13 +21,15 @@ public class GreedyBFS {
      * @author Jaztin Jimenez
      * @return the path of the GBFS algorithm or null if path is not found
      */
-    public static List<Node> greedyBFS(Graph graph, Node start, Node goal) {
+    public static Result greedyBFS(Graph graph, Node start, Node goal) {
         // Using PriorityQueue for nodes to be sorted ascendingly
         PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingInt(Node::getHeuristic));
         // Using HashSet for visited nodes to avoid revisiting them
         Set<Node> visited = new HashSet<>();
         // Using HashMap for storing parent node of each node in the path
         Map<Node, Node> parent = new HashMap<>();
+        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
+        
 
         openSet.add(start);
         parent.put(start, null);
@@ -36,10 +38,12 @@ public class GreedyBFS {
         while (!openSet.isEmpty()) {
             // Get the node with the lowest cost from the openSet
             Node current = openSet.poll();
+            traversal.add(current); // Add the current node to the traversal list
 
             // If goal node is found, construct the path for the GBFS path output
             if (current.equals(goal)) {
-                return reconstructPath(parent, goal);
+                List<Node> path = reconstructPath(parent, goal);
+                return new Result(path, traversal);  // Return both path and traversal
             }
 
             // Mark the current node as visited
@@ -56,7 +60,7 @@ public class GreedyBFS {
                 }
             }
         }
-        return null; // Path not found
+        return new Result(null, traversal); // Path not found
     }
 
     /**
