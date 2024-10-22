@@ -11,6 +11,7 @@ import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
+import javafx.scene.shape.Line;
 
 public class PathFinderController implements ActionListener {
 
@@ -78,7 +79,8 @@ public class PathFinderController implements ActionListener {
         // TODO: Implement all functionalities below
         else if (source == pfp.getSubmitButton()) {
 
-            
+            LineDrawer.removeLines(pfp.getLayeredPane());
+
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
             String algo = pfp.algoDrop();
@@ -101,30 +103,26 @@ public class PathFinderController implements ActionListener {
             }
 
             if (algo.equalsIgnoreCase("A*")) {
-                // LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, AStarAlgorithm.AStar(graph, start, goal).getPath());
                 LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), AStarAlgorithm.AStar(graph, start, goal).getPath());
-            }
-
-            
-            // else if (algo.equalsIgnoreCase("BFS")) {
-            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, BFSAlgorithm.bfs(graph, start, goal));
-            // } 
-            // else if (algo.equalsIgnoreCase("DFS")) {
-            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, DFSAlgorithm.dfs(graph, start, goal));
-            // } 
-            // else if (algo.equalsIgnoreCase("Greedy BFS")) {
-            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, GreedyBFS.greedyBFS(graph, start, goal));
-            // } 
-            // else if (algo.equalsIgnoreCase("UCS")) {
-            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, UCSAlgorithm.UCS(graph, start, goal));
-            // } 
+            }            
+            else if (algo.equalsIgnoreCase("BFS")) {
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), BFSAlgorithm.bfs(graph, start, goal).getPath());
+            } 
+            else if (algo.equalsIgnoreCase("DFS")) {
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), DFSAlgorithm.dfs(graph, start, goal).getPath());
+            } 
+            else if (algo.equalsIgnoreCase("Greedy BFS")) {
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), GreedyBFS.greedyBFS(graph, start, goal).getPath());
+            } 
+            else if (algo.equalsIgnoreCase("UCS")) {
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), UCSAlgorithm.UCS(graph, start, goal).getPath());
+            } 
             else {
                 throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
             }
 
             System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo); // DEBUGGING
         }  
-        
 
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
