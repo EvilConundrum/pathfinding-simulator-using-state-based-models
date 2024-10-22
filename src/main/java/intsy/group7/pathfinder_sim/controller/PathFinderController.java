@@ -80,6 +80,7 @@ public class PathFinderController implements ActionListener {
         else if (source == pfp.getSubmitButton()) {
 
             LineDrawer.removeLines(pfp.getLayeredPane());
+            pfp.removePathCost();
 
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
@@ -104,7 +105,6 @@ public class PathFinderController implements ActionListener {
 
             Result result = null;
 
-            
             if (algo.equalsIgnoreCase("A*")) {
                 result = AStarAlgorithm.AStar(graph, start, goal);
                 LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
@@ -129,7 +129,9 @@ public class PathFinderController implements ActionListener {
                 throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
             }
 
-            pfp.addPathCost();
+            // result.getPathCost();
+
+            pfp.addPathCost(200, result.getStringTraversal(), result.getStringPath());
         }  
 
         else {

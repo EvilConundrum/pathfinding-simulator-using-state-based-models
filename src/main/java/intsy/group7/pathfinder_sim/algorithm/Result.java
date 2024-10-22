@@ -23,16 +23,24 @@ public class Result {
 
     public String getStringPath() {
         StringBuilder sb = new StringBuilder();
-        for (Node node : path) {
-            sb.append(node.getId()).append(" -> ");
+        for (int i = 0; i < path.size(); i++) {
+            Node node = path.get(i);
+            sb.append(node.getId());
+            if (i < path.size() - 1) {
+                sb.append(" -> ");
+            }
         }
         return sb.toString();
     }
-
+    
     public String getStringTraversal() {
         StringBuilder sb = new StringBuilder();
-        for (Node node : traversal) {
-            sb.append(node.getId()).append(" -> ");
+        for (int i = 0; i < traversal.size(); i++) {
+            Node node = traversal.get(i);
+            sb.append(node.getId());
+            if (i < traversal.size() - 1) {
+                sb.append(" -> ");
+            }
         }
         return sb.toString();
     }

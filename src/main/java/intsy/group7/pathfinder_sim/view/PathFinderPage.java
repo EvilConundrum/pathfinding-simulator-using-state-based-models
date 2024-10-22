@@ -288,18 +288,37 @@ public class PathFinderPage {
         return this.subButton;
     }
 
-    public void addPathCost(int pathCost, String traversal) {
-        JLabel pathLbl = new JLabel("Path Cost: " + pathCost);
-        pathLbl.setFont(new Font("Futura", Font.BOLD,18));
-        pathLbl.setBounds(400, 90, 300, 40);
-        pathLbl.setForeground(Color.WHITE);
-
+    public void addPathCost(int pathCost, String traversal, String path) {
         JLabel traversalLbl = new JLabel("Traversal: " + traversal);
         traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
-        traversalLbl.setBounds(400, 130, 300, 40);
+        traversalLbl.setBounds(400, 90, 800, 40);
         traversalLbl.setForeground(Color.WHITE);
 
-        layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
+        JLabel pathCostLbl = new JLabel("Path Cost: " + pathCost);
+        pathCostLbl.setFont(new Font("Futura", Font.BOLD,18));
+        pathCostLbl.setBounds(400, 150, 300, 40);
+        pathCostLbl.setForeground(Color.WHITE);
+
+        JLabel pathLbl = new JLabel("Path: " + path);
+        pathLbl.setFont(new Font("Futura", Font.BOLD,18));
+        pathLbl.setBounds(400, 170, 800, 40);
+        pathLbl.setForeground(Color.WHITE);
+
         layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(pathCostLbl, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
+    }
+
+    public void removePathCost() {
+        Component[] components = layeredPane.getComponents();
+        for (Component component : components) {
+            if (component instanceof JLabel) {
+                JLabel label = (JLabel) component;
+                if (label.getText().contains("Traversal:") || label.getText().contains("Path Cost:")
+                    || label.getText().contains("Path:")) {
+                    layeredPane.remove(label);
+                }
+            }
+        }
     }
 }
