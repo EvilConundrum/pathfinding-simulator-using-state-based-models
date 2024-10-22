@@ -57,4 +57,14 @@ public void addEdges(Node Origin, Node Destination, int Weight) {
     Origin.addEdge(edge);
     edges.add(edge);
 }
+public void removeNode(Node node){
+    for (Edge edge : node.getEdges()){
+        this.removeEdge(edge);
+    }
+    this.nodes.remove(node);
+}
+
+public void removeEdge(Edge edge){
+    this.edges.remove(edge);
+}
 }

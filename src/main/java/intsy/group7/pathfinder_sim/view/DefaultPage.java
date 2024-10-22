@@ -171,7 +171,7 @@ public class DefaultPage extends JPanel {
 
         // JFrame 
         mainFrame.setTitle("The Bow & Bite Map");
-        mainFrame.setSize(1920, 1080);
+        mainFrame.setSize(1275, 700);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
 

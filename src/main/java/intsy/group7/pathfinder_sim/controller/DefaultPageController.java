@@ -14,14 +14,14 @@ public class DefaultPageController implements ActionListener {
     private DefaultPage dp;
     private Graph graph;
 
-
-
     public DefaultPageController(Graph graph) {
 
         this.graph = graph;
 
         this.mainFrame = new JFrame();
         this.dp = new DefaultPage();
+
+        
 
         dp.launchDefaultPage(mainFrame);
         dp.addClickListener(this);

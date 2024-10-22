@@ -35,43 +35,30 @@ public class ViewAlgorithmController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
-
+        PathFinderPage pfp = new PathFinderPage();
         ManageMapPage mmp = new ManageMapPage();
         AboutPage ap = new AboutPage();
 
         if (source == vap.getPathFinderButton()) {
             mainFrame.getContentPane().removeAll();
 
-            System.out.println("Path Finder Button Clicked");
-
+            new PathFinderController(graph, pfp, this.mainFrame);
         } 
         else if (source == vap.getManageMapButton()) {   
             mainFrame.getContentPane().removeAll();
 
-            new ManageMapController(graph, mmp, this.mainFrame);
-            // mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
-            
+            new ManageMapController(graph, mmp, this.mainFrame);            
         } 
-        else if (source == vap.getViewAlgosButton()) {
-            // new ViewAlgorithmController(graph, vap, this.mainFrame); 
-            // mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
+        else if (source == vap.getViewAlgosButton()) {}
 
-            
-        } 
         else if (source == vap.getAboutButton()) {
             mainFrame.getContentPane().removeAll();
 
-            new AboutController(graph, ap, this.mainFrame);
-            // mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
-        
+            new AboutController(graph, ap, this.mainFrame);        
         } 
         else if (source == vap.getExitButton()) {
             System.exit(0);    
         }
-        
-        // TODO: Implement Algorithms here
-
-
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }

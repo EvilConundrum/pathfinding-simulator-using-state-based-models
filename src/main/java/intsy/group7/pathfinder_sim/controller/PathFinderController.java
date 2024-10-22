@@ -39,32 +39,41 @@ public class PathFinderController implements ActionListener {
         ViewAlgorithmPage vap = new ViewAlgorithmPage();
         AboutPage ap = new AboutPage();
 
-        if (source == ap.getPathFinderButton()) {}
+        if (source == pfp.getPathFinderButton()) {}
 
-        else if (source == ap.getManageMapButton()) {      
+        else if (source == pfp.getManageMapButton()) {      
             mainFrame.getContentPane().removeAll();
             
             new ManageMapController(graph, mmp, this.mainFrame);
         } 
-        else if (source == ap.getViewAlgosButton()) {
+        else if (source == pfp.getViewAlgosButton()) {
             mainFrame.getContentPane().removeAll();
 
             new ViewAlgorithmController(graph, vap, this.mainFrame);           
         } 
-        else if (source == ap.getAboutButton()) {
+        else if (source == pfp.getAboutButton()) {
             mainFrame.getContentPane().removeAll();
 
             new AboutController(graph, ap, this.mainFrame);        
         } 
-        else if (source == ap.getExitButton()) {
+        else if (source == pfp.getExitButton()) {
             System.exit(0);    
         }
         
+        // TODO: Implement all functionalities below
+        else if (source == pfp.getSubmitButton()) {
+            String from = pfp.fromDrop();
+            String to = pfp.toDrop();
+            String algo = pfp.algoDrop();
+            System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo); // DEBUGGING
+        }  
         
 
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }
-    }    
+    }
+    
+    public void sample() {}
     
 }

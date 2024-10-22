@@ -7,13 +7,15 @@ public class Node {
     private int heuristic;
     private int x_coord;
     private int y_coord;
+    private String state;
  
-    public Node(String var1, int var2, int var3, int var4) {
+    public Node(String var1, int var2, int var3, int var4, String state) {
        this.id = var1;
        this.heuristic = var2;
        this.x_coord = var3;
        this.y_coord = var4;
-       this.edges = new LinkedList();
+       this.state = state;
+       this.edges = new LinkedList<Edge>();
     }
  
     public String getId() {
@@ -23,11 +25,16 @@ public class Node {
     public int getHeuristic() {
        return this.heuristic;
     }
- 
+
     public void setHeuristic(int var1) {
        this.heuristic = var1;
     }
- 
+    public String getState() {
+      return this.state;
+    }
+    public void setState(String state) {
+      this.state = state;
+    }
     public void setId(String var1) {
        this.id = var1;
     }

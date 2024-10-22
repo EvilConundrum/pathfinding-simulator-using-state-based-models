@@ -18,9 +18,10 @@ public class GraphDAO {
                 int heuristic = Integer.parseInt(columns[1]);
                 int xCoord = Integer.parseInt(columns[2]);
                 int yCoord = Integer.parseInt(columns[3]);
+                String nodeState = columns[4];
                 
                 // Create a new Node object using the variables
-                Node node = new Node(nodeName, heuristic, xCoord, yCoord);
+                Node node = new Node(nodeName, heuristic*5, xCoord, yCoord, nodeState);
                 
                 // If the node does not exist already, create the new node and add it to the graph
                 if (graph.findNode(node) != true) {
@@ -28,7 +29,7 @@ public class GraphDAO {
                 }
                 //System.out.println("Node: " + node.getId() + " created!"); check nodes created
             }
-            System.out.println("All nodes created successfully");
+            System.out.println("All nodes created successfully"); // DEBUGGING
         } 
         catch (FileNotFoundException e) {
         System.out.println("File not found: " + filepath);

@@ -4,10 +4,13 @@ package intsy.group7.pathfinder_sim.controller;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
+import javafx.scene.shape.Path;
 
 public class ManageMapController implements ActionListener {
 
@@ -22,12 +25,33 @@ public class ManageMapController implements ActionListener {
 
         this.mmp = mmp;
         this.mainFrame = mainFrame;
+        
+        // Set current locations as all eatery nodes
+        String[] locations = new String[0];
+        List<String> locationList = new ArrayList<>();
+        for (Node node : graph.getNodes()) {
+            if (node.getState().equalsIgnoreCase("eatery")) {
+                locationList.add(node.getId());
+            }
+        }
+        locations = locationList.toArray(new String[0]);
 
-        String[] locations = {"Bloemen", "Br. Andrew Hall", "St. La Salle Hall", "Perico's", "etc."};
-        String[] nodes = {"A", "B", "C", "D", "E", "..."};
+        String[] nodes = new String[0];
+        List<String> nodeList = new ArrayList<>();
+        for (Node node : graph.getNodes()) {
+            nodeList.add(node.getId());
+        }
+        nodes = nodeList.toArray(new String[0]);
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
+
+        RoundedButton[] buttons = NodeMaker.getButtons(graph, "EateryAndVacant");
+        for (RoundedButton button : buttons) {
+            mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
+        }
+
+        mainFrame.setVisible(true);
     }
 
     @Override
@@ -36,12 +60,12 @@ public class ManageMapController implements ActionListener {
 
         ViewAlgorithmPage vap = new ViewAlgorithmPage();
         AboutPage ap = new AboutPage();
+        PathFinderPage pfp = new PathFinderPage();
 
         if (source == mmp.getPathFinderButton()) {
             mainFrame.getContentPane().removeAll();
 
-            System.out.println("Path Finder Button Clicked");
-
+            new PathFinderController(graph, pfp, this.mainFrame);
         } 
         else if (source == mmp.getManageMapButton()) {}
 
@@ -49,43 +73,53 @@ public class ManageMapController implements ActionListener {
             mainFrame.getContentPane().removeAll();
 
             new ViewAlgorithmController(graph, vap, this.mainFrame); 
-            // mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
-            
         } 
         else if (source == mmp.getAboutButton()) {
             mainFrame.getContentPane().removeAll();
 
-            new AboutController(graph, ap, this.mainFrame);
-            // mainFrame.getLayeredPane().add(ap, JLayeredPane.DEFAULT_LAYER);
-        
+            new AboutController(graph, ap, this.mainFrame);        
         }
-        // TODO: Implement all functionalities below  
         else if (source == mmp.getExitButton()) {
             System.exit(0);    
         } 
-
+        // TODO: Implement all functionalities below  
         else if (source == mmp.getAdd1Button()) { // Add Node Button
             String name = mmp.getAddName().trim();
 
-            // TODO: Change Heuristics based on Vienn :3
-            int heuristic1 = Integer.parseInt(mmp.getGReview().trim());
-            int heuristic2 = Integer.parseInt(mmp.getSCapacityName().trim());
-            int heuristic3 = Integer.parseInt(mmp.getFloorPrice().trim());
+            int heuristic1 = Integer.parseInt(mmp.getfTraf().trim());
+            int xCoord = 0; // TODO: Implement x coord and yCoord
+            int yCoord = 0;
+            boolean isEatery = true;
 
-            graph.addNode(new Node(name, heuristic1, heuristic2, heuristic3));
+            graph.addNode(new Node(name, heuristic1, xCoord, yCoord, "eatery"));
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
-            System.out.println("Add 2 Button Clicked");
+           // TODO: Add Edge adder here
         }
         else if (source == mmp.getRmvButton()) { // Remove Eatery Button
-            
+            String eateryToRemove = mmp.getRmvPlace().trim();
+
+            for (Node node : graph.getNodes()) {
+                if (node.getId().equals(eateryToRemove)) {
+                    node.setState("vacant");
+                }
+            }
         }
 
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }
 
-    }    
+    }
+    
+    class ButtonClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            RoundedButton sourceButton = (RoundedButton) e.getSource();
+            System.out.println("Button " + sourceButton.getText() + " clicked.");
+            // Add your custom logic here
+        }
+    }
 
 }
