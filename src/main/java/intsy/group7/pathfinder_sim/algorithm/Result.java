@@ -20,4 +20,6 @@ public class Result {
     public List<Node> getTraversal() {
         return traversal;
     }
+
+    
 }

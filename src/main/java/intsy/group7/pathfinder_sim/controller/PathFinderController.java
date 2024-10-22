@@ -102,26 +102,34 @@ public class PathFinderController implements ActionListener {
                     
             }
 
+            Result result = null;
+
+            
             if (algo.equalsIgnoreCase("A*")) {
-                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), AStarAlgorithm.AStar(graph, start, goal).getPath());
+                result = AStarAlgorithm.AStar(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
             }            
             else if (algo.equalsIgnoreCase("BFS")) {
-                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), BFSAlgorithm.bfs(graph, start, goal).getPath());
+                result = BFSAlgorithm.bfs(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
             } 
             else if (algo.equalsIgnoreCase("DFS")) {
-                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), DFSAlgorithm.dfs(graph, start, goal).getPath());
+                result = DFSAlgorithm.dfs(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath()); 
             } 
             else if (algo.equalsIgnoreCase("Greedy BFS")) {
-                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), GreedyBFS.greedyBFS(graph, start, goal).getPath());
+                result = GreedyBFS.greedyBFS(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
             } 
             else if (algo.equalsIgnoreCase("UCS")) {
-                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), UCSAlgorithm.UCS(graph, start, goal).getPath());
+                result = UCSAlgorithm.UCS(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath()); 
             } 
             else {
                 throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
             }
 
-            System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo); // DEBUGGING
+            pfp.addPathCost();
         }  
 
         else {

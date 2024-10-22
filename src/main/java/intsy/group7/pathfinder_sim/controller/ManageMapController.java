@@ -174,7 +174,6 @@ public class ManageMapController implements ActionListener {
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
-           // TODO: Add Edge adder here
             String startNode = mmp.getStartNode();
             String endNode = mmp.getEndNode();
 
@@ -194,6 +193,9 @@ public class ManageMapController implements ActionListener {
                     }
                 }
             }
+
+            JOptionPane.showMessageDialog(mainFrame, startNode + " to " + endNode + " connected", 
+                                        "Success", JOptionPane.INFORMATION_MESSAGE);
 
 
         }
