@@ -5,7 +5,7 @@ import java.util.List;
 import intsy.group7.pathfinder_sim.model.Edge;
 import intsy.group7.pathfinder_sim.model.Node;
 
-public class PathCost {
+public class PathCostCalculator {
 
     /**
      * This method is called to calculate the total path cost of a path

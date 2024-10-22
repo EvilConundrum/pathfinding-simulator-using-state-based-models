@@ -20,10 +20,11 @@ public class DFSAlgorithm {
      * @author Jaztin Jimenez
      * @return the path of the DFS algorithm or null if path is not found
      */
-    public static List<Node> dfs (Graph graph, Node start, Node goal) {
+    public static Result dfs (Graph graph, Node start, Node goal) {
         Stack<Node> stack = new Stack<>(); // Stack implementation for DFS Traversal
         Set<Node> visited = new HashSet<>();
         Map<Node, Node> parent = new HashMap<>();
+        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
 
         stack.push(start);
         visited.add(start);
@@ -31,9 +32,11 @@ public class DFSAlgorithm {
 
         while (!stack.isEmpty()) {
             Node node = stack.pop();
+            traversal.add(node);  // Track traversal
 
             if (node.equals(goal)) { // if goal node is found, construct the path for the DFS path output
-                return reconstructPath(parent, goal);
+                List<Node> path = reconstructPath(parent, goal);
+                return new Result(path, traversal);  // Return both path and traversal
             }
 
             for (Edge edge : node.getEdges()) {  // Goes through every child node of the parent node
@@ -46,7 +49,7 @@ public class DFSAlgorithm {
             }
         }
         
-        return null; // No path found
+        return new Result(null, traversal); // No path found
     }
 
     /**

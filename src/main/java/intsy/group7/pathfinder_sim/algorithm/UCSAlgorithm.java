@@ -19,13 +19,14 @@ public class UCSAlgorithm {
      * @author Jaztin Jimenez
      * @return the path of the UCS algorithm or null if path is not found
      */
-    public static List<Node> UCS(Graph graph, Node start, Node goal) {
+    public static Result UCS(Graph graph, Node start, Node goal) {
         // Using PriorityQueue for nodes to be sorted ascendingly
         PriorityQueue<UCS_NodeHelper> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
         // Stores the cost from the start node to each node
         Map<Node, Integer> costSoFar = new HashMap<>(); 
         // Stores the parent node of each node
         Map<Node, Node> parent = new HashMap<>();
+        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
 
 
         // Initialize the costs
@@ -37,10 +38,12 @@ public class UCSAlgorithm {
         while (!priorityQueue.isEmpty()) {
             // Get the node with the lowest cost from the openSet
             UCS_NodeHelper current = priorityQueue.poll();
+            traversal.add(current.node);  // Add the node to the traversal list
 
             // If goal node is found, construct the path for the AStar path output
             if (current.node.equals(goal)) {
-                return reconstructPath(parent, goal);
+                List<Node> path = reconstructPath(parent, goal);
+                return new Result(path, traversal);  // Return both path and traversal
             }
 
             // Go through every edge of the current node
@@ -57,7 +60,7 @@ public class UCSAlgorithm {
                 }
             }
         }
-        return null; // Path not found
+        return new Result(null, traversal); // Path not found
     }
 
     /**

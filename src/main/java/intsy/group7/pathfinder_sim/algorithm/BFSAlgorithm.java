@@ -20,10 +20,11 @@ public class BFSAlgorithm {
      * @author Jaztin Jimenez
      * @return the path of the BFS algorithm or null if path is not found
      */
-    public static List<Node> bfs (Graph graph, Node start, Node goal) {
+    public static Result bfs (Graph graph, Node start, Node goal) {
         Queue<Node> queue = new LinkedList<>(); // Queue implementation for BFS Traversal
         Set<Node> visited = new HashSet<>();
         Map<Node, Node> parent = new HashMap<>();
+        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
 
         queue.add(start);
         visited.add(start);
@@ -31,9 +32,11 @@ public class BFSAlgorithm {
 
         while (!queue.isEmpty()) {
             Node node = queue.poll();
+            traversal.add(node);  // Track traversal
 
             if (node.equals(goal)) { // If goal node is found, construct the path for the BFS path output
-                return reconstructPath(parent, goal);
+                List<Node> path = reconstructPath(parent, goal);
+                return new Result(path, traversal);  // Return both path and traversal
             }
 
             for (Edge edge : node.getEdges()) { // Goes through every child node of the parent node
@@ -46,7 +49,7 @@ public class BFSAlgorithm {
             }
         }
     
-    return null; // No path found
+        return new Result(null, traversal);  // Return both path and traversal
     
 }
 
