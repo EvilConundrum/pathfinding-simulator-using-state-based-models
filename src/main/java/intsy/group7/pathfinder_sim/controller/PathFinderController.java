@@ -77,6 +77,8 @@ public class PathFinderController implements ActionListener {
         
         // TODO: Implement all functionalities below
         else if (source == pfp.getSubmitButton()) {
+
+            
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
             String algo = pfp.algoDrop();
@@ -99,7 +101,8 @@ public class PathFinderController implements ActionListener {
             }
 
             if (algo.equalsIgnoreCase("A*")) {
-                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, AStarAlgorithm.AStar(graph, start, goal).getPath());
+                // LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, AStarAlgorithm.AStar(graph, start, goal).getPath());
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), AStarAlgorithm.AStar(graph, start, goal).getPath());
             }
 
             
