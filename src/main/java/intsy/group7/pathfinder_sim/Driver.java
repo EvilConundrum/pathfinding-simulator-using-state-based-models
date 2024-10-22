@@ -11,8 +11,8 @@ public class Driver{
         
         Graph graph = new Graph();
         GraphDAO graphDAO = new GraphDAO();
-        graphDAO.loadGraphNodes("src/main/java/intsy/group7/pathfinder_sim/dao/nodes.csv", graph);
-        graphDAO.loadGraphEdges("src/main/java/intsy/group7/pathfinder_sim/dao/edges.csv", graph);
+        graphDAO.loadGraphNodes("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/dao/nodes.csv", graph);
+        graphDAO.loadGraphEdges("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/dao/edges.csv", graph);
         new DefaultPageController(graph);
 
     }
