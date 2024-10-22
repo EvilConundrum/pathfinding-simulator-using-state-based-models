@@ -2,13 +2,16 @@ package intsy.group7.pathfinder_sim.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
+import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
+import javafx.scene.shape.Line;
 
 public class PathFinderController implements ActionListener {
 
@@ -16,6 +19,9 @@ public class PathFinderController implements ActionListener {
 
     private PathFinderPage pfp;
     private JFrame mainFrame;
+
+    private String[] locations, nodes;
+    private HashMap<Node, RoundedButton> nodeButtonMap;
     
     public PathFinderController(Graph graph, PathFinderPage pfp, JFrame mainFrame)  {
         
@@ -24,11 +30,21 @@ public class PathFinderController implements ActionListener {
         this.pfp = pfp;
         this.mainFrame = mainFrame;
         
-        String[] locations = {"Bloemen", "Br. Andrew Hall", "St. La Salle Hall", "Perico's", "etc."}; // DEBUGGING
+        this.locations = graph.getEateryNodes();
+        this.nodes = graph.getAllNodes();
+        
         String[] algorithms = {"A*", "BFS", "DFS", "Greedy BFS", "UCS"};
         pfp.launchPathFinderPage(mainFrame, locations, algorithms);
         pfp.addClickListener(this);
 
+        RoundedButton[] buttons = NodeMaker.getButtons(graph, "PathFinder");
+        for (RoundedButton button : buttons) {
+            pfp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
+        }
+
+        mainFrame.setVisible(true);
+        nodeButtonMap = new HashMap<>();
+        Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
     }
 
 
@@ -62,12 +78,59 @@ public class PathFinderController implements ActionListener {
         
         // TODO: Implement all functionalities below
         else if (source == pfp.getSubmitButton()) {
+
+            LineDrawer.removeLines(pfp.getLayeredPane());
+
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
             String algo = pfp.algoDrop();
-            System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo); // DEBUGGING
+
+            Node start = null, 
+                 goal = null;
+
+            for (Node node : graph.getNodes()) {
+
+                if (node.getId().equalsIgnoreCase(from)) {
+                        start = node;
+                    }
+                if (node.getId().equalsIgnoreCase(to)) {
+                        goal = node;
+                    }
+                if (start != null && goal != null) {
+                    break;
+                }
+                    
+            }
+
+            Result result = null;
+
+            
+            if (algo.equalsIgnoreCase("A*")) {
+                result = AStarAlgorithm.AStar(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
+            }            
+            else if (algo.equalsIgnoreCase("BFS")) {
+                result = BFSAlgorithm.bfs(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
+            } 
+            else if (algo.equalsIgnoreCase("DFS")) {
+                result = DFSAlgorithm.dfs(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath()); 
+            } 
+            else if (algo.equalsIgnoreCase("Greedy BFS")) {
+                result = GreedyBFS.greedyBFS(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
+            } 
+            else if (algo.equalsIgnoreCase("UCS")) {
+                result = UCSAlgorithm.UCS(graph, start, goal);
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath()); 
+            } 
+            else {
+                throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
+            }
+
+            pfp.addPathCost();
         }  
-        
 
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);

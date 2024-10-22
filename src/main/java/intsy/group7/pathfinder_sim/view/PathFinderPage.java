@@ -207,7 +207,7 @@ public class PathFinderPage {
         layeredPane.add(algoMenu, JLayeredPane.POPUP_LAYER);
 
         layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(mapPanel, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(mapPanel, JLayeredPane.DEFAULT_LAYER);
 
         // JFrame 
         mainFrame.setTitle("The Bow & Bite Map");
@@ -220,7 +220,6 @@ public class PathFinderPage {
         mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 
         mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
-        mainFrame.setVisible(true);
     }
 
 
@@ -257,6 +256,13 @@ public class PathFinderPage {
         return (String) this.algoMenu.getSelectedItem();
     }
 
+    public void updateAllComboBoxes(String[] locations){
+        this.fromMenu.setModel(new DefaultComboBoxModel<String>(locations));
+        this.toMenu.setModel(new DefaultComboBoxModel<String>(locations));
+
+
+    }
+
     //returns IconButton buttons (jic needed)
     public IconButton getPathFinderButton(){
         return this.pathFinderButton;
@@ -282,16 +288,16 @@ public class PathFinderPage {
         return this.subButton;
     }
 
-     public void addPathCost(int pathCost, String traversal) {
+    public void addPathCost(int pathCost, String traversal) {
         JLabel pathLbl = new JLabel("Path Cost: " + pathCost);
         pathLbl.setFont(new Font("Futura", Font.BOLD,18));
-        pathLbl.setBounds(95, 400, 300, 40);
-        pathLbl.setForeground(greenText);
+        pathLbl.setBounds(400, 90, 300, 40);
+        pathLbl.setForeground(Color.WHITE);
 
         JLabel traversalLbl = new JLabel("Traversal: " + traversal);
         traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
-        traversalLbl.setBounds(95, 440, 300, 40);
-        traversalLbl.setForeground(greenText);
+        traversalLbl.setBounds(400, 130, 300, 40);
+        traversalLbl.setForeground(Color.WHITE);
 
         layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);

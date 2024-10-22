@@ -62,6 +62,8 @@ public class AStarAlgorithm {
                     // Adds the node with the updated gScore and fScore
                     openSet.add(new AStar_NodeHelper(neighbor, tempGScore, fScore));
                     parent.put(neighbor, current.node);
+
+                    System.out.println(fScore);
                 }
             }
         }
