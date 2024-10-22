@@ -2,11 +2,13 @@ package intsy.group7.pathfinder_sim.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
+import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
 
@@ -18,6 +20,7 @@ public class PathFinderController implements ActionListener {
     private JFrame mainFrame;
 
     private String[] locations, nodes;
+    private HashMap<Node, RoundedButton> nodeButtonMap;
     
     public PathFinderController(Graph graph, PathFinderPage pfp, JFrame mainFrame)  {
         
@@ -33,6 +36,14 @@ public class PathFinderController implements ActionListener {
         pfp.launchPathFinderPage(mainFrame, locations, algorithms);
         pfp.addClickListener(this);
 
+        RoundedButton[] buttons = NodeMaker.getButtons(graph, "PathFinder");
+        for (RoundedButton button : buttons) {
+            pfp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
+        }
+
+        mainFrame.setVisible(true);
+        nodeButtonMap = new HashMap<>();
+        Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
     }
 
 
@@ -69,6 +80,43 @@ public class PathFinderController implements ActionListener {
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
             String algo = pfp.algoDrop();
+
+            Node start = null, 
+                 goal = null;
+
+            for (Node node : graph.getNodes()) {
+
+                if (node.getId().equalsIgnoreCase(from)) {
+                        start = node;
+                    }
+                if (node.getId().equalsIgnoreCase(to)) {
+                        goal = node;
+                    }
+                if (start != null && goal != null) {
+                    break;
+                }
+                    
+            }
+
+            if (algo.equalsIgnoreCase("A*")) {
+                LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, AStarAlgorithm.AStar(graph, start, goal).getPath());
+            } 
+            // else if (algo.equalsIgnoreCase("BFS")) {
+            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, BFSAlgorithm.bfs(graph, start, goal));
+            // } 
+            // else if (algo.equalsIgnoreCase("DFS")) {
+            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, DFSAlgorithm.dfs(graph, start, goal));
+            // } 
+            // else if (algo.equalsIgnoreCase("Greedy BFS")) {
+            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, GreedyBFS.greedyBFS(graph, start, goal));
+            // } 
+            // else if (algo.equalsIgnoreCase("UCS")) {
+            //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, UCSAlgorithm.UCS(graph, start, goal));
+            // } 
+            else {
+                throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
+            }
+
             System.out.println("From: " + from + "\nTo: " + to + "\nAlgo: " + algo); // DEBUGGING
         }  
         

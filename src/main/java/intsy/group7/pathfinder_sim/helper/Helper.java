@@ -2,10 +2,14 @@ package intsy.group7.pathfinder_sim.helper;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.HashMap;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
+
+import intsy.group7.pathfinder_sim.model.*;
+import intsy.group7.pathfinder_sim.view.RoundedButton;
 
 import java.awt.Color;
 
@@ -42,5 +46,18 @@ public class Helper {
         numberFormatter.setAllowsInvalid(false); // Don't allow invalid values
 
         return numberFormatter;
+    }
+
+    public static void setNodeButtonMap(RoundedButton[] buttons, Graph graph, HashMap<Node, RoundedButton> map) {
+        // Populate the HashMap with nodes and their corresponding buttons
+        for (Node node : graph.getNodes()) {
+            for (RoundedButton button : buttons) {
+                if (button.getText().equals(node.getId())) {
+                    map.put(node, button);
+                    System.out.println("Node: " + node.getId() + " Button: " + button.getText());
+                    break;
+                }
+            }
+        }
     }
 }

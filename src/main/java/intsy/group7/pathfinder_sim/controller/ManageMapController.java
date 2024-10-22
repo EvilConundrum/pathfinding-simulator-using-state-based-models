@@ -6,10 +6,10 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
+import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
 
@@ -19,6 +19,8 @@ public class ManageMapController implements ActionListener {
 
     private ManageMapPage mmp;
     private JFrame mainFrame;
+    private RoundedButton[] buttons;
+    private HashMap<Node, RoundedButton> nodeButtonMap;
 
     private String[] locations, nodes;
 
@@ -37,12 +39,15 @@ public class ManageMapController implements ActionListener {
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
 
-        RoundedButton[] buttons = NodeMaker.getButtons(graph, "ManageMap");
+        this.buttons = NodeMaker.getButtons(graph, "ManageMap");
         for (RoundedButton button : buttons) {
             mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
         }
 
         mainFrame.setVisible(true);
+
+        this.nodeButtonMap = new HashMap<>();
+        Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
     }
 
     @Override
@@ -180,12 +185,18 @@ public class ManageMapController implements ActionListener {
             for (Node node : graph.getNodes()) {
                 if (node.getId().equals(eateryToRemove)) {
                     node.setState("vacant");
+                    RoundedButton button = nodeButtonMap.get(node);
+                    if (button != null) {
+                        button.setBackground(Helper.noGray);
+                        button.setEnabled(true);
+                    }
+                    mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
                 }
             }
         }
 
         else {
-            throw new UnsupportedOperationException("Unsupported action: " + source);
+            throw new UnsupportedOperationException("UNSUPPORTED ACTION: " + source);
         }
 
     }
