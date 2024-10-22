@@ -160,9 +160,7 @@ public class ManageMapController implements ActionListener {
 
             // Assign vacant node to eatery
             for (Node node : graph.getNodes()) {
-
                 if (node.getId().equals(NodeMaker.getClickedButton().getText())) {
-                    
                     node.setId(name);
                     node.setState("eatery");
                     node.setHeuristic(heuristic1*5);
@@ -170,12 +168,32 @@ public class ManageMapController implements ActionListener {
                     NodeMaker.getClickedButton().setText(name);
                     NodeMaker.getClickedButton().setEnabled(false);
                     mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
+                    pfp.updateAllComboBoxes(graph.getAllNodes());
                 }
             }
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
            // TODO: Add Edge adder here
+            String startNode = mmp.getStartNode();
+            String endNode = mmp.getEndNode();
+
+            if (startNode.equals(endNode)) {
+                JOptionPane.showMessageDialog(mainFrame, "Start and End nodes cannot be the same", 
+                                             "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }            
+
+            for (Node node : graph.getNodes()) {
+                if (node.getId().equals(startNode)) {
+                    for (Node node2 : graph.getNodes()) {
+                        if (node2.getId().equals(endNode)) {
+                            int distance = (int) Helper.calcDist(node, node2);
+                            graph.addEdges(node, node2, distance);
+                        }
+                    }
+                }
+            }
 
 
         }

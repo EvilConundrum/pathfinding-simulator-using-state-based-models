@@ -256,6 +256,13 @@ public class PathFinderPage {
         return (String) this.algoMenu.getSelectedItem();
     }
 
+    public void updateAllComboBoxes(String[] locations){
+        this.fromMenu.setModel(new DefaultComboBoxModel<String>(locations));
+        this.toMenu.setModel(new DefaultComboBoxModel<String>(locations));
+
+
+    }
+
     //returns IconButton buttons (jic needed)
     public IconButton getPathFinderButton(){
         return this.pathFinderButton;
