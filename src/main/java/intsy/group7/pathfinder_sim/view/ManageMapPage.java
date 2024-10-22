@@ -2,6 +2,11 @@ package intsy.group7.pathfinder_sim.view;
 
 import java.awt.*;
 import javax.swing.*;
+
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+
+import intsy.group7.pathfinder_sim.helper.Helper;
+
 import java.awt.event.ActionListener;
 
 public class ManageMapPage extends JPanel {
@@ -34,11 +39,13 @@ public class ManageMapPage extends JPanel {
     JPanel mapPanel;
 
     JTextField addName;
-    JTextField fTraf;
+    JFormattedTextField fTraf;
 
     JComboBox<String> startNode;
     JComboBox<String> endNode;
     JComboBox<String> rmvPlace;
+
+    DefaultComboBoxModel<String> rmvPlaceModel;
 
     Color greenTHA = new Color(0, 105, 55);
     Color greenText = new Color(5, 65, 3);
@@ -226,7 +233,8 @@ public class ManageMapPage extends JPanel {
         addName.setColumns(15);
         addName.setBounds(145, 150, 220, 25);
 
-        fTraf = new JTextField();
+        fTraf = new JFormattedTextField();
+        Helper.updateNumberFieldFormatter(fTraf, 1, 20, Integer.class);
         fTraf.setColumns(15);
         fTraf.setBounds(180, 180, 185, 25);
 
@@ -341,6 +349,12 @@ public class ManageMapPage extends JPanel {
 
     public String getRmvPlace(){
         return (String) this.rmvPlace.getSelectedItem();
+    }
+
+    public void updateAllComboBoxes(String[] locations, String[] nodes){
+        this.startNode.setModel(new DefaultComboBoxModel<String>(nodes));
+        this.endNode.setModel(new DefaultComboBoxModel<String>(nodes));
+        this.rmvPlace.setModel(new DefaultComboBoxModel<String>(locations));
     }
 
     //returns IconButton buttons (jic needed)

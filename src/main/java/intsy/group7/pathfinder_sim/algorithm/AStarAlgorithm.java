@@ -20,13 +20,14 @@ public class AStarAlgorithm {
      * @author Jaztin Jimenez
      * @return the path of the AStar algorithm or null if path is not found
      */
-    public static List<Node> AStar(Graph graph, Node start, Node goal) {
+    public static Result AStar(Graph graph, Node start, Node goal) {
         // Using PriorityQueue for nodes to be sorted ascendingly
         PriorityQueue<AStar_NodeHelper> openSet = new PriorityQueue<>(Comparator.comparingInt(n -> n.fCost));
         // Stores the cost from the start node to each node
         Map<Node, Integer> gScore = new HashMap<>(); 
         // Stores the parent node of each node
         Map<Node, Node> parent = new HashMap<>();
+        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
 
         // Initialize gScore for start node
         gScore.put(start, 0);
@@ -39,10 +40,12 @@ public class AStarAlgorithm {
         while (!openSet.isEmpty()) {
             // Get the node with the lowest cost from the openSet
             AStar_NodeHelper current = openSet.poll();
+            traversal.add(current.node);  // Track traversal
 
             // If goal node is found, construct the path for the AStar path output
             if (current.node.equals(goal)) {
-                return reconstructPath(parent, goal);
+                List<Node> path = reconstructPath(parent, goal);
+                return new Result(path, traversal);  // Return both path and traversal
             }
 
             // Go through every edge of the current node
@@ -62,7 +65,7 @@ public class AStarAlgorithm {
                 }
             }
         }
-        return null;  // No path found
+        return new Result(null, traversal);  // No path found
     }
 
     /**
