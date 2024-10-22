@@ -1,6 +1,5 @@
 package intsy.group7.pathfinder_sim;
 
-
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.dao.*;
 

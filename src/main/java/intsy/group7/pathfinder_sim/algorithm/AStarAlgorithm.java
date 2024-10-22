@@ -44,7 +44,7 @@ public class AStarAlgorithm {
 
             // If goal node is found, construct the path for the AStar path output
             if (current.node.equals(goal)) {
-                List<Node> path = reconstructPath(parent, goal);
+                LinkedList<Node> path = reconstructPath(parent, goal);
                 return new Result(path, traversal);  // Return both path and traversal
             }
 
@@ -74,8 +74,8 @@ public class AStarAlgorithm {
      * @author Jaztin Jimenez
      * @return list of nodes that shows the path of the BFS algorithm
      */
-    private static List<Node> reconstructPath(Map<Node, Node> parent, Node goal) {
-        List<Node> path = new LinkedList<>();
+    private static LinkedList<Node> reconstructPath(Map<Node, Node> parent, Node goal) {
+        LinkedList<Node> path = new LinkedList<>();
         for (Node node = goal; node != null; node = parent.get(node)) {
             path.add(0, node);
         }

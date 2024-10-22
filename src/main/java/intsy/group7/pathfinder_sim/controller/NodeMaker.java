@@ -57,6 +57,21 @@ public class NodeMaker {
             else {            
                 roundButtons[i].setBackground(Helper.noGray);
             }
+
+            if (mode.equalsIgnoreCase("PathFinder")) {
+                if (graph.getNodes().get(i).getState().equalsIgnoreCase("road")) {
+                    roundButtons[i].setBackground(Color.BLACK);
+                    roundButtons[i].setEnabled(false);
+                }
+                if (graph.getNodes().get(i).getState().equalsIgnoreCase("eatery")) {
+                    roundButtons[i].setBackground(Color.YELLOW);
+                    roundButtons[i].setEnabled(false);
+                }
+                if (graph.getNodes().get(i).getState().equalsIgnoreCase("vacant")) {
+                    roundButtons[i].setBackground(Color.BLUE);
+                    roundButtons[i].setEnabled(false);
+                }
+            }
             
             roundButtons[i].addActionListener(new ButtonClickListener());
         }
