@@ -1,3 +1,5 @@
+package intsy.group7.pathfinder_sim.view;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;

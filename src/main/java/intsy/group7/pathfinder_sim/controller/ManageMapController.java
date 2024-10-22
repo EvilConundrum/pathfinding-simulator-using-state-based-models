@@ -3,6 +3,8 @@ package intsy.group7.pathfinder_sim.controller;
 
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,6 @@ import java.util.List;
 import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
-import javafx.scene.shape.Path;
 
 public class ManageMapController implements ActionListener {
 
@@ -18,6 +19,8 @@ public class ManageMapController implements ActionListener {
 
     private ManageMapPage mmp;
     private JFrame mainFrame;
+
+    private String[] locations, nodes;
 
     public ManageMapController(Graph graph, ManageMapPage mmp, JFrame mainFrame) {
 
@@ -27,26 +30,14 @@ public class ManageMapController implements ActionListener {
         this.mainFrame = mainFrame;
         
         // Set current locations as all eatery nodes
-        String[] locations = new String[0];
-        List<String> locationList = new ArrayList<>();
-        for (Node node : graph.getNodes()) {
-            if (node.getState().equalsIgnoreCase("eatery")) {
-                locationList.add(node.getId());
-            }
-        }
-        locations = locationList.toArray(new String[0]);
+        this.locations = graph.getEateryNodes();
 
-        String[] nodes = new String[0];
-        List<String> nodeList = new ArrayList<>();
-        for (Node node : graph.getNodes()) {
-            nodeList.add(node.getId());
-        }
-        nodes = nodeList.toArray(new String[0]);
+        this.nodes = graph.getAllNodes();
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
 
-        RoundedButton[] buttons = NodeMaker.getButtons(graph, "EateryAndVacant");
+        RoundedButton[] buttons = NodeMaker.getButtons(graph, "ManageMap");
         for (RoundedButton button : buttons) {
             mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
         }
@@ -84,18 +75,104 @@ public class ManageMapController implements ActionListener {
         } 
         // TODO: Implement all functionalities below  
         else if (source == mmp.getAdd1Button()) { // Add Node Button
-            String name = mmp.getAddName().trim();
+            String name;
+            int heuristic1;
+            boolean isDefault;
+            
+            name = mmp.getAddName().trim();
+            isDefault = false;
+            
+            if (NodeMaker.getClickedButton() == null) {
+                JOptionPane.showMessageDialog(mainFrame, "Please select a node", 
+                                             "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            int heuristic1 = Integer.parseInt(mmp.getfTraf().trim());
-            int xCoord = 0; // TODO: Implement x coord and yCoord
-            int yCoord = 0;
-            boolean isEatery = true;
+            if (mmp.getfTraf().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(mainFrame, "Please enter a heuristic", 
+                                             "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            graph.addNode(new Node(name, heuristic1, xCoord, yCoord, "eatery"));
+            if (name.isEmpty()) {
+                heuristic1 = Integer.parseInt(mmp.getfTraf().trim());
+        
+                if (heuristic1 > 0) { // Check if heuristic is available
+                    int response = JOptionPane.showConfirmDialog(mainFrame, 
+                        "Do you want to keep the existing name: \"" + NodeMaker.getClickedButton().getText() + 
+                        "\" and set Foot Traffic to " + heuristic1 + "?", 
+                        "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+                    if (response == JOptionPane.YES_OPTION) {
+                        name = NodeMaker.getClickedButton().getText();
+                        isDefault = true;
+                    } 
+                    else {
+                        JOptionPane.showMessageDialog(mainFrame, "Please enter a name", 
+                                                     "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(mainFrame, "Please enter a name", 
+                                                 "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+        
+            if (name.length() > 3) {
+                JOptionPane.showMessageDialog(mainFrame, "Max char for name is 3", 
+                                             "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Add confirmation pane if name and heuristics are valid
+            if (!name.isEmpty()) {
+                if (name.startsWith("R") || name.startsWith("S")) {
+                    JOptionPane.showMessageDialog(mainFrame, "Name cannot start with 'R' or 'S'", 
+                                                "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                int response = JOptionPane.showConfirmDialog(mainFrame, 
+                    "Name and heuristics are valid. Do you want to proceed?", 
+                    "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                if (response != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }
+
+            heuristic1 = Integer.parseInt(mmp.getfTraf().trim());
+
+            if (isDefault == false) {
+                for (Node node : graph.getNodes()) {
+                    if (node.getId().equals(name)) {
+                        JOptionPane.showMessageDialog(mainFrame, "Node already exists");
+                        return;
+                    }
+                }
+            }
+
+            // Assign vacant node to eatery
+            for (Node node : graph.getNodes()) {
+
+                if (node.getId().equals(NodeMaker.getClickedButton().getText())) {
+                    
+                    node.setId(name);
+                    node.setState("eatery");
+                    node.setHeuristic(heuristic1*5);
+                    NodeMaker.getClickedButton().setBackground(Color.YELLOW);
+                    NodeMaker.getClickedButton().setText(name);
+                    NodeMaker.getClickedButton().setEnabled(false);
+                    mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
+                }
+            }
         
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
            // TODO: Add Edge adder here
+
+
         }
         else if (source == mmp.getRmvButton()) { // Remove Eatery Button
             String eateryToRemove = mmp.getRmvPlace().trim();
@@ -111,15 +188,6 @@ public class ManageMapController implements ActionListener {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }
 
-    }
-    
-    class ButtonClickListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            RoundedButton sourceButton = (RoundedButton) e.getSource();
-            System.out.println("Button " + sourceButton.getText() + " clicked.");
-            // Add your custom logic here
-        }
     }
 
 }

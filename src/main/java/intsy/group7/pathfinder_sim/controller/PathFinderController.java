@@ -16,6 +16,8 @@ public class PathFinderController implements ActionListener {
 
     private PathFinderPage pfp;
     private JFrame mainFrame;
+
+    private String[] locations, nodes;
     
     public PathFinderController(Graph graph, PathFinderPage pfp, JFrame mainFrame)  {
         
@@ -24,7 +26,9 @@ public class PathFinderController implements ActionListener {
         this.pfp = pfp;
         this.mainFrame = mainFrame;
         
-        String[] locations = {"Bloemen", "Br. Andrew Hall", "St. La Salle Hall", "Perico's", "etc."}; // DEBUGGING
+        this.locations = graph.getEateryNodes();
+        this.nodes = graph.getAllNodes();
+        
         String[] algorithms = {"A*", "BFS", "DFS", "Greedy BFS", "UCS"};
         pfp.launchPathFinderPage(mainFrame, locations, algorithms);
         pfp.addClickListener(this);

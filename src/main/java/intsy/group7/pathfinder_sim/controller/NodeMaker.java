@@ -1,29 +1,21 @@
-package intsy.group7.pathfinder_sim.view;
+package intsy.group7.pathfinder_sim.controller;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Scanner;
-import java.util.Set;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import intsy.group7.pathfinder_sim.model.Graph;
+import intsy.group7.pathfinder_sim.view.RoundedButton;
+import intsy.group7.pathfinder_sim.helper.Helper;
 
-//use: manage map (location picker)
 public class NodeMaker {
-    //HashMap to store the label as the key and Point (X, Y)
-    private static LinkedHashMap<String, Point> map;
-    private static Color noRed = new Color(188, 24, 35);
-    private static Color noGreen = new Color(0, 255, 0);
-    private static Color noBlue = new Color(0, 0, 255);
-    private static Color noYellow = new Color(255, 255, 0);
-    private static Color noLightGray = new Color(74, 71, 71);
-    private static Color noBlack = new Color(0, 0, 0);
-    private static ArrayList<Boolean> eateryNodes = new ArrayList<>();
+
+
+    private static RoundedButton currentClickedButton = null;
+    private static RoundedButton lastClickedButton = null;
 
     //returns the vacant nodes as RoundedButton
     public static RoundedButton[] getButtons(Graph graph, String mode) {
@@ -49,21 +41,21 @@ public class NodeMaker {
             roundButtons[i].setCustomBorderThickness(2);
 
                 
-            if (mode.equalsIgnoreCase("EateryAndVacant")) {
+            if (mode.equalsIgnoreCase("ManageMap")) {
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("road")) {
                     roundButtons[i].setEnabled(false);
                     roundButtons[i].setVisible(false);
                 }
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("eatery")) {
-                    roundButtons[i].setBackground(noYellow);
+                    roundButtons[i].setBackground(Color.YELLOW);
                     roundButtons[i].setEnabled(false);
                 }
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("vacant")) {
-                    roundButtons[i].setBackground(noLightGray);
+                    roundButtons[i].setBackground(Helper.noGray);
                 }
             }
             else {            
-                roundButtons[i].setBackground(noLightGray);
+                roundButtons[i].setBackground(Helper.noGray);
             }
             
             roundButtons[i].addActionListener(new ButtonClickListener());
@@ -71,4 +63,33 @@ public class NodeMaker {
 
         return roundButtons;
     }
+
+    public static RoundedButton getClickedButton() {
+        return currentClickedButton;
+    }
+    
+    public static void changeButtonColor() {
+        if (currentClickedButton != null) {
+            currentClickedButton.setBackground(Helper.noGray);
+        }
+    }
+
+    static class ButtonClickListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            currentClickedButton = (RoundedButton) e.getSource();
+
+            // Reset the color of the last clicked button
+            if (lastClickedButton != null && lastClickedButton.getBackground() != Color.YELLOW) {
+                lastClickedButton.setBackground(Helper.noGray);
+            }            
+            currentClickedButton.setBackground(Color.GREEN); // Set the color of the currently clicked button to green
+            lastClickedButton = currentClickedButton; // Update the last clicked button reference            
+
+
+            System.out.println("Button " + currentClickedButton.getText() + " clicked."); // DEBUGGING
+
+        }
+    }
+
 }
