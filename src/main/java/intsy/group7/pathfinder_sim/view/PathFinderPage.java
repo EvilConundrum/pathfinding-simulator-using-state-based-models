@@ -5,13 +5,13 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class PathFinderPage {
-    ImageIcon map = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
-    ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
-    ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
-    ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
-    ImageIcon aboutImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
-    ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
-    ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
+    ImageIcon map = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
+    ImageIcon pathFinderImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
+    ImageIcon manageMapImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
+    ImageIcon viewAlgosImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
+    ImageIcon aboutImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
+    ImageIcon exitImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
+    ImageIcon logoImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
 
     JLabel pathFinderLbl;
     JLabel manageMapLbl;
@@ -288,16 +288,16 @@ public class PathFinderPage {
         return this.subButton;
     }
 
-     public void addPathCost(int pathCost, String traversal) {
+    public void addPathCost(int pathCost, String traversal) {
         JLabel pathLbl = new JLabel("Path Cost: " + pathCost);
         pathLbl.setFont(new Font("Futura", Font.BOLD,18));
-        pathLbl.setBounds(95, 400, 300, 40);
-        pathLbl.setForeground(greenText);
+        pathLbl.setBounds(400, 90, 300, 40);
+        pathLbl.setForeground(Color.WHITE);
 
         JLabel traversalLbl = new JLabel("Traversal: " + traversal);
         traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
-        traversalLbl.setBounds(95, 440, 300, 40);
-        traversalLbl.setForeground(greenText);
+        traversalLbl.setBounds(400, 130, 300, 40);
+        traversalLbl.setForeground(Color.WHITE);
 
         layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);
