@@ -3,7 +3,6 @@ package intsy.group7.pathfinder_sim.view;
 import javax.swing.*;
 import java.awt.*;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import intsy.group7.pathfinder_sim.model.*;
@@ -32,7 +31,7 @@ public class LineDrawer {
 
     public static void drawLines(JFrame frame, JLayeredPane pane, Graph graph, LinkedList<Node> path) {
 
-        for (int i = 0; i < path.size(); i++) {
+        for (int i = 0; i < path.size()-1; i++) {
             // String currentNode = String.valueOf(nodePath.charAt(i));
             // String nextNode = String.valueOf(nodePath.charAt(i + 1));
             
@@ -43,7 +42,7 @@ public class LineDrawer {
                 LineComponent line = new LineComponent(path.get(i).getX_coord(), path.get(i).getY_coord(), 
                                                        path.get(i + 1).getX_coord(), path.get(i + 1).getY_coord());
                 line.setForeground(Color.RED); 
-                pane.add(line, JLayeredPane.POPUP_LAYER);
+                pane.add(line, JLayeredPane.DRAG_LAYER);
             // }
         }
 

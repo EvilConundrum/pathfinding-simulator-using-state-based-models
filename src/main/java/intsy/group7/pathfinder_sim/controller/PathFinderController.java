@@ -100,7 +100,9 @@ public class PathFinderController implements ActionListener {
 
             if (algo.equalsIgnoreCase("A*")) {
                 LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, AStarAlgorithm.AStar(graph, start, goal).getPath());
-            } 
+            }
+
+            
             // else if (algo.equalsIgnoreCase("BFS")) {
             //     LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), graph, BFSAlgorithm.bfs(graph, start, goal));
             // } 

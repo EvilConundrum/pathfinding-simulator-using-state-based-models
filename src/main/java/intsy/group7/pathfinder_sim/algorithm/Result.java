@@ -12,6 +12,11 @@ public class Result {
     public Result(LinkedList<Node> path, List<Node> traversal) {
         this.path = path;
         this.traversal = traversal;
+
+        // DEBUGGING 
+        for (int i=0; i < path.size(); i++) {
+            System.out.print(path.get(i).getId() + " ");
+        }
     }
 
     public LinkedList<Node> getPath() {
