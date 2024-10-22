@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 
 public class DefaultPage extends JPanel {
     
-    ImageIcon map = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
-    ImageIcon pathFinderImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
-    ImageIcon manageMapImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
-    ImageIcon viewAlgosImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
-    ImageIcon aboutImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
-    ImageIcon exitImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
-    ImageIcon logoImg = new ImageIcon("pathfinding-simulator-using-state-based-models/src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
+    ImageIcon map = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
+    ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
+    ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
+    ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
+    ImageIcon aboutImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
+    ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
+    ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
 
     JLayeredPane layeredPane;
 
