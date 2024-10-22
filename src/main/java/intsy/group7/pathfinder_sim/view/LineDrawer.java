@@ -46,15 +46,14 @@ public class LineDrawer {
                 pane.add(line, JLayeredPane.POPUP_LAYER);
             // }
         }
-        
+
         frame.repaint();
     }
 
 
-
     static class LineComponent extends JComponent {
         private final int x1, y1, x2, y2;
-        
+
         public LineComponent(int x1, int y1, int x2, int y2) {
             this.x1 = x1;
             this.y1 = y1;
@@ -65,13 +64,14 @@ public class LineDrawer {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.setColor(Color.BLACK);
-            g.drawLine(x1, y1, x2, y2);
-        }
+            int thickness = 2; 
 
-        @Override
-        public Dimension getPreferredSize() {
-            return new Dimension(Math.abs(x2 - x1), Math.abs(y2 - y1));
+            g.setColor(Color.RED);
+
+            for (int i = 0; i < thickness; i++) {
+                g.drawLine(x1 - getX() - i, y1 - getY() - i, x2 - getX() - i, y2 - getY() - i);
+                g.drawLine(x1 - getX() + i, y1 - getY() + i, x2 - getX() + i, y2 - getY() + i);
+            }        
         }
     }
 }
