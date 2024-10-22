@@ -207,7 +207,7 @@ public class PathFinderPage {
         layeredPane.add(algoMenu, JLayeredPane.POPUP_LAYER);
 
         layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(mapPanel, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(mapPanel, JLayeredPane.DEFAULT_LAYER);
 
         // JFrame 
         mainFrame.setTitle("The Bow & Bite Map");
@@ -220,7 +220,6 @@ public class PathFinderPage {
         mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
 
         mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
-        mainFrame.setVisible(true);
     }
 
 
