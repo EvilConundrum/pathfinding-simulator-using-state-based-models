@@ -48,10 +48,8 @@ public class GraphDAO {
                 //If the edge does not exist already, create the the new edge
                 System.out.println("Origin: " + origin.getId());
                 System.out.println("Destination: " + destination.getId());
-                if (graph.findEdge(origin,destination) != true){
-                    int distance = (int) calcDist(origin,destination);
-                    graph.addEdges(origin, destination, distance);
-                }
+                int distance = (int) calcDist(origin,destination);
+                graph.addEdges(origin, destination, distance);
             }
             // System.out.println("All edges created successfully"); check edges created
         } 

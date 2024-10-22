@@ -55,9 +55,12 @@ public class Graph {
     }
 
     public void addEdges(Node Origin, Node Destination, int Weight) {
-        Edge edge = new Edge(Origin, Destination, Weight);
-        Origin.addEdge(edge);
-        edges.add(edge);
+        Edge originEdge = new Edge(Origin, Destination, Weight);
+        Edge destinationEdge = new Edge(Destination, Origin, Weight);
+        Origin.addEdge(originEdge);
+        Destination.addEdge(destinationEdge);
+        edges.add(originEdge);
+        edges.add(destinationEdge);
     }
     public void removeNode(Node node){
         for (Edge edge : node.getEdges()){
