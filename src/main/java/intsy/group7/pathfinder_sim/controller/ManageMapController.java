@@ -124,8 +124,8 @@ public class ManageMapController implements ActionListener {
                 }
             }
         
-            if (name.length() > 3) {
-                JOptionPane.showMessageDialog(mainFrame, "Max char for name is 3", 
+            if (name.length() > 2) {
+                JOptionPane.showMessageDialog(mainFrame, "Max char for name is 2", 
                                              "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }

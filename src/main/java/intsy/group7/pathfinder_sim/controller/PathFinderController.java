@@ -80,7 +80,12 @@ public class PathFinderController implements ActionListener {
         else if (source == pfp.getSubmitButton()) {
 
             LineDrawer.removeLines(pfp.getLayeredPane());
-            pfp.removePathCost();
+
+            if (pfp.getPathText() != null) { // The display for traversal, path, and path cost
+                pfp.getLayeredPane().remove(pfp.getPathCostLbl());
+                pfp.getLayeredPane().remove(pfp.getTraversalText());
+                pfp.getLayeredPane().remove(pfp.getPathText());
+            }
 
             String from = pfp.fromDrop();
             String to = pfp.toDrop();
@@ -104,6 +109,7 @@ public class PathFinderController implements ActionListener {
             }
 
             Result result = null;
+            
 
             if (algo.equalsIgnoreCase("A*")) {
                 result = AStarAlgorithm.AStar(graph, start, goal);
@@ -129,9 +135,7 @@ public class PathFinderController implements ActionListener {
                 throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
             }
 
-            // result.getPathCost();
-
-            pfp.addPathCost(200, result.getStringTraversal(), result.getStringPath());
+            pfp.addPathCost(result.getPathCost(), result.getStringTraversal(), result.getStringPath());
         }  
 
         else {

@@ -34,7 +34,10 @@ public class Result {
             Node node = path.get(i);
             sb.append(node.getId());
             if (i < path.size() - 1) {
-                sb.append(" -> ");
+                sb.append(" > ");
+            }
+            if (i > 0 && i % 10 == 0) {
+                sb.append("\n");
             }
         }
         return sb.toString();
@@ -46,7 +49,10 @@ public class Result {
             Node node = traversal.get(i);
             sb.append(node.getId());
             if (i < traversal.size() - 1) {
-                sb.append(" -> ");
+                sb.append(" > ");
+            }
+            if (i > 0 && i % 16 == 0) {
+                sb.append("\n");
             }
         }
         return sb.toString();

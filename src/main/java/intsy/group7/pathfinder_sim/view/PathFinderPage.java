@@ -18,6 +18,11 @@ public class PathFinderPage {
     JLabel viewAlgosLbl;
     JLabel aboutLbl;
     JLabel exitLbl;
+    JLabel traversalLbl;
+    JLabel pathCostLbl;
+    JLabel pathLbl;
+
+    JTextArea pathText, traversalText;
 
     IconButton pathFinderButton;
     IconButton manageMapButton;
@@ -180,6 +185,17 @@ public class PathFinderPage {
         algoMenu.setVisible(true);
         algoMenu.setBounds(95,260,275,25);
 
+        // Label display
+        traversalLbl = new JLabel("Traversal: ");
+        traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
+        traversalLbl.setBounds(400, 42, 800, 80);
+        traversalLbl.setForeground(Color.WHITE);
+
+        pathLbl = new JLabel("Path: ");
+        pathLbl.setFont(new Font("Futura", Font.BOLD,18));  
+        pathLbl.setBounds(400, 184, 800, 40);
+        pathLbl.setForeground(Color.WHITE);
+
         // LayeredPane Components
         layeredPane.add(pageHeader, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(logoHeader, JLayeredPane.POPUP_LAYER);
@@ -208,6 +224,9 @@ public class PathFinderPage {
 
         layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(mapPanel, JLayeredPane.DEFAULT_LAYER);
+
+        layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
 
         // JFrame 
         mainFrame.setTitle("The Bow & Bite Map");
@@ -289,36 +308,48 @@ public class PathFinderPage {
     }
 
     public void addPathCost(int pathCost, String traversal, String path) {
-        JLabel traversalLbl = new JLabel("Traversal: " + traversal);
-        traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
-        traversalLbl.setBounds(400, 90, 800, 40);
-        traversalLbl.setForeground(Color.WHITE);
+        traversalText = new JTextArea();
+        traversalText.setText(traversal);
+        traversalText.setEditable(false);
+        traversalText.setFont(new Font("Futura", Font.BOLD,15));
+        traversalText.setBounds(494, 72, 800, 150);
+        traversalText.setOpaque(false);
+        traversalText.setForeground(Color.WHITE);
 
-        JLabel pathCostLbl = new JLabel("Path Cost: " + pathCost);
-        pathCostLbl.setFont(new Font("Futura", Font.BOLD,18));
-        pathCostLbl.setBounds(400, 150, 300, 40);
-        pathCostLbl.setForeground(Color.WHITE);
+        pathCostLbl = new JLabel("Path Cost: " + pathCost);
+        pathCostLbl.setFont(new Font("Futura", Font.BOLD, 16));
+        pathCostLbl.setBounds(400, 160, 300, 40);
+        pathCostLbl.setForeground(Color.RED);
 
-        JLabel pathLbl = new JLabel("Path: " + path);
-        pathLbl.setFont(new Font("Futura", Font.BOLD,18));
-        pathLbl.setBounds(400, 170, 800, 40);
-        pathLbl.setForeground(Color.WHITE);
 
-        layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);
+        pathText = new JTextArea();
+        pathText.setText(path);
+        pathText.setEditable(false);
+        pathText.setFont(new Font("Futura", Font.BOLD,15));
+        pathText.setBounds(453, 194, 800, 100);
+        pathText.setOpaque(false);
+        pathText.setForeground(Color.WHITE);
+
+        layeredPane.add(traversalText, JLayeredPane.POPUP_LAYER);
         layeredPane.add(pathCostLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(pathText, JLayeredPane.POPUP_LAYER);
     }
 
-    public void removePathCost() {
-        Component[] components = layeredPane.getComponents();
-        for (Component component : components) {
-            if (component instanceof JLabel) {
-                JLabel label = (JLabel) component;
-                if (label.getText().contains("Traversal:") || label.getText().contains("Path Cost:")
-                    || label.getText().contains("Path:")) {
-                    layeredPane.remove(label);
-                }
-            }
-        }
+    public JLabel getTraversalLbl() {
+        return traversalLbl;
     }
+    public JLabel getPathCostLbl() {
+        return pathCostLbl;
+    }
+    public JLabel getPathLbl() {
+        return pathLbl;
+    }
+
+    public JTextArea getPathText() {
+        return pathText;
+    }
+    public JTextArea getTraversalText() {
+        return traversalText;
+    }
+
 }
