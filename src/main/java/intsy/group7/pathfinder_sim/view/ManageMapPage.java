@@ -3,8 +3,6 @@ package intsy.group7.pathfinder_sim.view;
 import java.awt.*;
 import javax.swing.*;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
-
 import intsy.group7.pathfinder_sim.helper.Helper;
 
 import java.awt.event.ActionListener;

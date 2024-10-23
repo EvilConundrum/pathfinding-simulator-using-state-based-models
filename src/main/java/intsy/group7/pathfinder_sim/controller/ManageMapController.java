@@ -1,14 +1,11 @@
 package intsy.group7.pathfinder_sim.controller;
 
-
-
 import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.event.*;
 import java.util.HashMap;
 
-import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
@@ -77,8 +74,7 @@ public class ManageMapController implements ActionListener {
         }
         else if (source == mmp.getExitButton()) {
             System.exit(0);    
-        } 
-        // TODO: Implement all functionalities below  
+        }  
         else if (source == mmp.getAdd1Button()) { // Add Node Button
             String name;
             int heuristic1;

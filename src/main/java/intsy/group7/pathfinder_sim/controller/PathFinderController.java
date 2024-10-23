@@ -11,7 +11,6 @@ import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
-import javafx.scene.shape.Line;
 
 public class PathFinderController implements ActionListener {
 
@@ -20,7 +19,7 @@ public class PathFinderController implements ActionListener {
     private PathFinderPage pfp;
     private JFrame mainFrame;
 
-    private String[] locations, nodes;
+    private String[] locations;
     private HashMap<Node, RoundedButton> nodeButtonMap;
     
     public PathFinderController(Graph graph, PathFinderPage pfp, JFrame mainFrame)  {
@@ -31,7 +30,6 @@ public class PathFinderController implements ActionListener {
         this.mainFrame = mainFrame;
         
         this.locations = graph.getEateryNodes();
-        this.nodes = graph.getAllNodes();
         
         String[] algorithms = {"A*", "BFS", "DFS", "Greedy BFS", "UCS"};
         pfp.launchPathFinderPage(mainFrame, locations, algorithms);
@@ -76,7 +74,6 @@ public class PathFinderController implements ActionListener {
             System.exit(0);    
         }
         
-        // TODO: Implement all functionalities below
         else if (source == pfp.getSubmitButton()) {
 
             LineDrawer.removeLines(pfp.getLayeredPane());
