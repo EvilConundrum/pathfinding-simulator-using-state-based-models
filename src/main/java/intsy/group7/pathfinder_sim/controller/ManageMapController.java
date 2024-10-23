@@ -30,7 +30,6 @@ public class ManageMapController implements ActionListener {
         
         // Set current locations as all eatery nodes
         this.locations = graph.getEateryNodes();
-
         this.nodes = graph.getAllNodes();
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
@@ -180,10 +179,14 @@ public class ManageMapController implements ActionListener {
                 JOptionPane.showMessageDialog(mainFrame, "Start and End nodes cannot be the same", 
                                              "Error", JOptionPane.ERROR_MESSAGE);
                 return;
-            }
-            
-            
-
+            } 
+            else {
+                int response = JOptionPane.showConfirmDialog(mainFrame, "Do you want to proceed with the selected nodes?", 
+                                                             "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }            
 
             for (Node node : graph.getNodes()) {
                 if (node.getId().equals(startNode)) {
@@ -191,15 +194,12 @@ public class ManageMapController implements ActionListener {
                         if (node2.getId().equals(endNode)) {
                             int distance = (int) Helper.calcDist(node, node2);
                             graph.addEdges(node, node2, distance);
+                            mmp.setAddedEdges("Eatery \"" + startNode + "\" to " + "Eatery \"" + endNode + "\" connected");
+                            break;
                         }
                     }
                 }
             }
-
-            JOptionPane.showMessageDialog(mainFrame, startNode + " to " + endNode + " connected", 
-                                        "Success", JOptionPane.INFORMATION_MESSAGE);
-
-
         }
         else if (source == mmp.getRmvButton()) { // Remove Eatery Button
             String eateryToRemove = mmp.getRmvPlace().trim();

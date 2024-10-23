@@ -23,7 +23,7 @@ public class ManageMapPage extends JPanel {
     JLabel aboutLbl;
     JLabel exitLbl;
 
-    JTextArea addedEatery, removedEatery;
+    JTextArea addedEatery, removedEatery, addedEdges;
 
     IconButton pathFinderButton;
     IconButton manageMapButton;
@@ -157,6 +157,12 @@ public class ManageMapPage extends JPanel {
         addedEatery.setBounds(185, 270, 300, 50);
         addedEatery.setForeground(Helper.noBlue);
         addedEatery.setOpaque(false);
+
+        addedEdges = new JTextArea();
+        addedEdges.setFont(new Font("Futura", Font.BOLD, 15));
+        addedEdges.setBounds(100, 462, 300, 50);
+        addedEdges.setForeground(Helper.noBlue);
+        addedEdges.setOpaque(false);
 
         removedEatery = new JTextArea();
         removedEatery.setFont(new Font("Futura", Font.BOLD, 15));
@@ -305,6 +311,7 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(rmvButton, JLayeredPane.POPUP_LAYER);
 
         layeredPane.add(addedEatery, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(addedEdges, JLayeredPane.POPUP_LAYER);
         layeredPane.add(removedEatery, JLayeredPane.POPUP_LAYER);
         
 
@@ -359,6 +366,9 @@ public class ManageMapPage extends JPanel {
     }
     public void setRemovedEatery(String removedEatery){
         this.removedEatery.setText(removedEatery);
+    }
+    public void setAddedEdges(String addedEdges){
+        this.addedEdges.setText(addedEdges);
     }
 
     //returns dropdown menu value

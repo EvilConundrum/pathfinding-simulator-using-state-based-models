@@ -44,7 +44,11 @@ public class NodeMaker {
             if (mode.equalsIgnoreCase("ManageMap")) {
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("road")) {
                     roundButtons[i].setEnabled(false);
-                    roundButtons[i].setVisible(false);
+                    roundButtons[i].setVisible(true);
+                    roundButtons[i].setOpaque(false);
+                    roundButtons[i].setBackground(new Color(74, 71, 71, 100)); // Example: 50% opacity (128 out of 255)
+                    roundButtons[i].setCustomBorderColor(new Color (255, 255, 255, 100)); // Example: 50% opacity (128 out of 255) 
+                
                 }
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("eatery")) {
                     roundButtons[i].setBackground(Color.YELLOW);

@@ -16,8 +16,8 @@ public class LineDrawer {
         
         for (int i = 0; i < node.size() - 1; i++) {
 
-            Point currentPoint = new Point(node.get(i).getX_coord() + 10, node.get(i).getY_coord() + 10);
-            Point nextPoint = new Point(node.get(i+1).getX_coord() + 10, node.get(i+1).getY_coord() + 10);
+            Point currentPoint = new Point(node.get(i).getX_coord() + 10, node.get(i).getY_coord() + 8);
+            Point nextPoint = new Point(node.get(i+1).getX_coord() + 10, node.get(i+1).getY_coord() + 8);
 
 
             if (currentPoint != null && nextPoint != null) {
@@ -28,7 +28,7 @@ public class LineDrawer {
                 int width = Math.abs(nextPoint.x - currentPoint.x);
                 int height = Math.abs(nextPoint.y - currentPoint.y);
 
-                line.setBounds(minX, minY, width + 1, height + 1);
+                line.setBounds(minX, minY, width + 10, height + 10);
                 pane.add(line, JLayeredPane.POPUP_LAYER);
                 lines.add(line);
             }
@@ -64,11 +64,15 @@ public class LineDrawer {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
-            int thickness = 5; // Set the desired thickness here
+            int thickness = 8; // Set the desired thickness here
     
+            // Enable anti-aliasing
+            g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, 
+                                 java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
             g2d.setColor(Color.RED);
-            g2d.setStroke(new BasicStroke(thickness));
-    
+            g2d.setStroke(new BasicStroke(thickness, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
+        
             g2d.drawLine(x1 - getX(), y1 - getY(), x2 - getX(), y2 - getY());
         }
     }

@@ -316,7 +316,7 @@ public class PathFinderPage {
         traversalText.setOpaque(false);
         traversalText.setForeground(Color.WHITE);
 
-        pathCostLbl = new JLabel("Path Cost: " + pathCost);
+        pathCostLbl = new JLabel("Cost: " + pathCost);
         pathCostLbl.setFont(new Font("Futura", Font.BOLD, 16));
         pathCostLbl.setBounds(400, 160, 300, 40);
         pathCostLbl.setForeground(Color.RED);
