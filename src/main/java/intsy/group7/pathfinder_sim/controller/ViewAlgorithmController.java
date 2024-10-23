@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 
-import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
 

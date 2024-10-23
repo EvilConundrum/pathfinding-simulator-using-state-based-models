@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import java.awt.event.*;
 
-import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
 

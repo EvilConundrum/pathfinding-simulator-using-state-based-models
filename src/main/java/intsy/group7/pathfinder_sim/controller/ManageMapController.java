@@ -1,14 +1,11 @@
 package intsy.group7.pathfinder_sim.controller;
 
-
-
 import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.event.*;
 import java.util.HashMap;
 
-import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
@@ -77,8 +74,7 @@ public class ManageMapController implements ActionListener {
         }
         else if (source == mmp.getExitButton()) {
             System.exit(0);    
-        } 
-        // TODO: Implement all functionalities below  
+        }  
         else if (source == mmp.getAdd1Button()) { // Add Node Button
             String name;
             int heuristic1;
@@ -131,7 +127,7 @@ public class ManageMapController implements ActionListener {
             }
 
             // Add confirmation pane if name and heuristics are valid
-            if (!name.isEmpty()) {
+            if (!mmp.getAddName().trim().isEmpty()) {
                 if (name.startsWith("R") || name.startsWith("S")) {
                     JOptionPane.showMessageDialog(mainFrame, "Name cannot start with 'R' or 'S'", 
                                                 "Error", JOptionPane.ERROR_MESSAGE);
@@ -168,7 +164,10 @@ public class ManageMapController implements ActionListener {
                     NodeMaker.getClickedButton().setText(name);
                     NodeMaker.getClickedButton().setEnabled(false);
                     mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
-                    pfp.updateAllComboBoxes(graph.getAllNodes());
+                    if (pfp.getLayeredPane() != null)
+                        pfp.updateAllComboBoxes(graph.getAllNodes());
+
+                    mmp.setAddedEatery("\"" + name + "\"" + " added");
                 }
             }
         
@@ -181,7 +180,10 @@ public class ManageMapController implements ActionListener {
                 JOptionPane.showMessageDialog(mainFrame, "Start and End nodes cannot be the same", 
                                              "Error", JOptionPane.ERROR_MESSAGE);
                 return;
-            }            
+            }
+            
+            
+
 
             for (Node node : graph.getNodes()) {
                 if (node.getId().equals(startNode)) {
@@ -202,6 +204,14 @@ public class ManageMapController implements ActionListener {
         else if (source == mmp.getRmvButton()) { // Remove Eatery Button
             String eateryToRemove = mmp.getRmvPlace().trim();
 
+            int response = JOptionPane.showConfirmDialog(mainFrame, 
+            "Are you sure you want to remove " + eateryToRemove + "?", 
+            "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        
+            if (response != JOptionPane.YES_OPTION) {
+                return;
+            }
+
             for (Node node : graph.getNodes()) {
                 if (node.getId().equals(eateryToRemove)) {
                     node.setState("vacant");
@@ -209,8 +219,11 @@ public class ManageMapController implements ActionListener {
                     if (button != null) {
                         button.setBackground(Helper.noGray);
                         button.setEnabled(true);
+                        
+                        mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
+                        mmp.setRemovedEatery("\"" + node.getId() + "\"" + " removed");
+                        break;
                     }
-                    mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
                 }
             }
         }
