@@ -271,16 +271,6 @@ public class ManageMapPage extends JPanel {
         rmvPlace.setBounds(145,540,220,25);
 
         // LayeredPane Components
-        layeredPane.add(pageHeader, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(logoHeader, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(labelHeader, JLayeredPane.POPUP_LAYER);
-
-        layeredPane.add(pathFinderButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(manageMapButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(viewAlgosButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(aboutButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(exitButton, JLayeredPane.POPUP_LAYER);
-
         layeredPane.add(pathFinderLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(manageMapLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(viewAlgosLbl, JLayeredPane.POPUP_LAYER);
@@ -296,7 +286,6 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(rmvLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(rmvNameLbl, JLayeredPane.POPUP_LAYER);
 
-        layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(mapPanel, JLayeredPane.DEFAULT_LAYER);
 
         layeredPane.add(startNode, JLayeredPane.POPUP_LAYER);
@@ -313,19 +302,8 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(addedEatery, JLayeredPane.POPUP_LAYER);
         layeredPane.add(addedEdges, JLayeredPane.POPUP_LAYER);
         layeredPane.add(removedEatery, JLayeredPane.POPUP_LAYER);
-        
 
-        // JFrame 
-        mainFrame.setTitle("The Bow & Bite Map");
-        mainFrame.setSize(1275, 700);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setResizable(false);
-
-        // backgroundPanel and layeredPane on JFrame
-        mainFrame.getContentPane().setLayout(new BorderLayout());
-        mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
-
-        mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
+        layeredPane.setVisible(false);
     }
 
 

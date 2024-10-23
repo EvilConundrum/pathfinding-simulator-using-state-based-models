@@ -197,22 +197,8 @@ public class PathFinderPage {
         pathLbl.setForeground(Color.WHITE);
 
         // LayeredPane Components
-        layeredPane.add(pageHeader, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(logoHeader, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(labelHeader, JLayeredPane.POPUP_LAYER);
-
-        layeredPane.add(pathFinderButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(manageMapButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(viewAlgosButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(aboutButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(exitButton, JLayeredPane.POPUP_LAYER);
         layeredPane.add(subButton, JLayeredPane.POPUP_LAYER);
 
-        layeredPane.add(pathFinderLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(manageMapLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(viewAlgosLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(aboutLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(exitLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(locLbl, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(fromLbl, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(toLbl, JLayeredPane.PALETTE_LAYER);
@@ -222,23 +208,12 @@ public class PathFinderPage {
         layeredPane.add(toMenu, JLayeredPane.POPUP_LAYER);
         layeredPane.add(algoMenu, JLayeredPane.POPUP_LAYER);
 
-        layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(mapPanel, JLayeredPane.DEFAULT_LAYER);
 
         layeredPane.add(traversalLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(pathLbl, JLayeredPane.POPUP_LAYER);
 
-        // JFrame 
-        mainFrame.setTitle("The Bow & Bite Map");
-        mainFrame.setSize(1275, 700);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setResizable(false);
-
-        // backgroundPanel and layeredPane on JFrame
-        mainFrame.getContentPane().setLayout(new BorderLayout());
-        mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
-
-        mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
+        layeredPane.setVisible(false);
     }
 
 

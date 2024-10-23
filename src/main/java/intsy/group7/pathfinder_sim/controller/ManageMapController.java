@@ -15,18 +15,21 @@ public class ManageMapController implements ActionListener {
     private Graph graph;
 
     private ManageMapPage mmp;
+    private PathFinderPage pfp;
     private JFrame mainFrame;
     private RoundedButton[] buttons;
     private HashMap<Node, RoundedButton> nodeButtonMap;
 
     private String[] locations, nodes;
 
-    public ManageMapController(Graph graph, ManageMapPage mmp, JFrame mainFrame) {
+    public ManageMapController(Graph graph, ManageMapPage mmp, PathFinderPage pfp, JFrame mainFrame) {
 
         this.graph = graph;
 
         this.mmp = mmp;
         this.mainFrame = mainFrame;
+
+        this.pfp = pfp;
         
         // Set current locations as all eatery nodes
         this.locations = graph.getEateryNodes();
@@ -40,8 +43,6 @@ public class ManageMapController implements ActionListener {
             mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
         }
 
-        mainFrame.setVisible(true);
-
         this.nodeButtonMap = new HashMap<>();
         Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
     }
@@ -50,31 +51,7 @@ public class ManageMapController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
-        ViewAlgorithmPage vap = new ViewAlgorithmPage();
-        AboutPage ap = new AboutPage();
-        PathFinderPage pfp = new PathFinderPage();
-
-        if (source == mmp.getPathFinderButton()) {
-            mainFrame.getContentPane().removeAll();
-
-            new PathFinderController(graph, pfp, this.mainFrame);
-        } 
-        else if (source == mmp.getManageMapButton()) {}
-
-        else if (source == mmp.getViewAlgosButton()) {
-            mainFrame.getContentPane().removeAll();
-
-            new ViewAlgorithmController(graph, vap, this.mainFrame); 
-        } 
-        else if (source == mmp.getAboutButton()) {
-            mainFrame.getContentPane().removeAll();
-
-            new AboutController(graph, ap, this.mainFrame);        
-        }
-        else if (source == mmp.getExitButton()) {
-            System.exit(0);    
-        }  
-        else if (source == mmp.getAdd1Button()) { // Add Node Button
+        if (source == mmp.getAdd1Button()) { // Add Node Button
             String name;
             int heuristic1;
             boolean isDefault;
@@ -163,8 +140,7 @@ public class ManageMapController implements ActionListener {
                     NodeMaker.getClickedButton().setText(name);
                     NodeMaker.getClickedButton().setEnabled(false);
                     mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
-                    if (pfp.getLayeredPane() != null)
-                        pfp.updateAllComboBoxes(graph.getAllNodes());
+                    pfp.updateAllComboBoxes(graph.getAllNodes());   
 
                     mmp.setAddedEatery("\"" + name + "\"" + " added");
                 }

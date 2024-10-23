@@ -14,7 +14,7 @@ public class DefaultPage extends JPanel {
     ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
     ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
 
-    JLayeredPane layeredPane;
+    JLayeredPane layeredPane, layeredPane2;
 
     JLabel pathFinderLbl;
     JLabel manageMapLbl;
@@ -71,8 +71,12 @@ public class DefaultPage extends JPanel {
 
         // LayeredPane for positioning
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1920, 1080));
+        layeredPane.setPreferredSize(new Dimension(1280, 720));
         layeredPane.setBackground(Color.WHITE);
+
+        layeredPane2 = new JLayeredPane();
+        layeredPane2.setPreferredSize(new Dimension(1280, 720));
+        layeredPane2.setOpaque(false);
 
         // buttons
         pathFinderButton = new IconButton(scaledPathFinderImg);
@@ -165,24 +169,17 @@ public class DefaultPage extends JPanel {
         layeredPane.add(exitLbl, JLayeredPane.POPUP_LAYER);
 
         layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(mapPanel, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(welcome1, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(welcome2, JLayeredPane.POPUP_LAYER);
+
+        layeredPane2.add(mapPanel, JLayeredPane.POPUP_LAYER);
+        layeredPane2.add(welcome1, JLayeredPane.PALETTE_LAYER);
+        layeredPane2.add(welcome2, JLayeredPane.POPUP_LAYER);
 
         // JFrame 
         mainFrame.setTitle("The Bow & Bite Map");
-        mainFrame.setSize(1275, 700);
+        mainFrame.setSize(1280, 720);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setResizable(false);
-
-        // backgroundPanel and layeredPane on JFrame
-        mainFrame.getContentPane().setLayout(new BorderLayout());
-        mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
-
-        mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
-        mainFrame.setVisible(true);
+        mainFrame.setResizable(false);        
     }
-
 
     //actionListener
     public void addClickListener(ActionListener listener) {
@@ -193,8 +190,11 @@ public class DefaultPage extends JPanel {
         this.exitButton.addActionListener(listener);
     }
 
-    public JLayeredPane getLayeredPane(){
+    public JLayeredPane getSecondaryLayer(){
         return this.layeredPane;
+    }
+    public JLayeredPane getMainLayer() {
+        return this.layeredPane2;
     }
 
     //returns IconButton buttons (jic needed)

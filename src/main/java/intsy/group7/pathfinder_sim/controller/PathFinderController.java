@@ -40,7 +40,6 @@ public class PathFinderController implements ActionListener {
             pfp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
         }
 
-        mainFrame.setVisible(true);
         nodeButtonMap = new HashMap<>();
         Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
     }
@@ -49,32 +48,7 @@ public class PathFinderController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
-        ManageMapPage mmp = new ManageMapPage();
-        ViewAlgorithmPage vap = new ViewAlgorithmPage();
-        AboutPage ap = new AboutPage();
-
-        if (source == pfp.getPathFinderButton()) {}
-
-        else if (source == pfp.getManageMapButton()) {      
-            mainFrame.getContentPane().removeAll();
-            
-            new ManageMapController(graph, mmp, this.mainFrame);
-        } 
-        else if (source == pfp.getViewAlgosButton()) {
-            mainFrame.getContentPane().removeAll();
-
-            new ViewAlgorithmController(graph, vap, this.mainFrame);           
-        } 
-        else if (source == pfp.getAboutButton()) {
-            mainFrame.getContentPane().removeAll();
-
-            new AboutController(graph, ap, this.mainFrame);        
-        } 
-        else if (source == pfp.getExitButton()) {
-            System.exit(0);    
-        }
-        
-        else if (source == pfp.getSubmitButton()) {
+        if (source == pfp.getSubmitButton()) {
 
             LineDrawer.removeLines(pfp.getLayeredPane());
 

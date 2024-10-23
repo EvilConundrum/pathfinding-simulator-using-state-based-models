@@ -30,7 +30,7 @@ public class AboutPage extends JPanel {
     IconButton aboutButton;
     IconButton exitButton;
 
-    JLayeredPane layeredPane;
+    JLayeredPane layeredPane, layeredPane2;
 
     Color greenTHA = new Color(0, 105, 55);
     Color greenText = new Color(5, 65, 3);
@@ -64,7 +64,7 @@ public class AboutPage extends JPanel {
 
         // LayeredPane for positioning
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1920, 1080));
+        layeredPane.setPreferredSize(new Dimension(1280, 720));
         layeredPane.setBackground(Color.WHITE);
 
         // buttons
@@ -137,45 +137,15 @@ public class AboutPage extends JPanel {
 
         //JScrollPane
         JScrollPane scrollPane = new JScrollPane(aboutProg);
-        scrollPane.setBounds(100, 155, 1175, 500); // Set bounds for the JScrollPane
+        scrollPane.setBounds(93, 155, 1175, 500); // Set bounds for the JScrollPane
         scrollPane.setBorder(new LineBorder(new Color(238, 238, 238), 2));
 
         // LayeredPane Components
-        layeredPane.add(pageHeader, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(logoHeader, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(labelHeader, JLayeredPane.POPUP_LAYER);
-
-        layeredPane.add(pathFinderButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(manageMapButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(viewAlgosButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(aboutButton, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(exitButton, JLayeredPane.POPUP_LAYER);
-
-        layeredPane.add(pathFinderLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(manageMapLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(viewAlgosLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(aboutLbl, JLayeredPane.POPUP_LAYER);
-        layeredPane.add(exitLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(abtLbl, JLayeredPane.POPUP_LAYER);
-
         layeredPane.add(scrollPane, JLayeredPane.PALETTE_LAYER);
 
-        layeredPane.add(verticalLine, JLayeredPane.PALETTE_LAYER);
-
-        // JFrame 
-        mainFrame.setTitle("The Bow & Bite Map");
-        mainFrame.setSize(1275, 700);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setResizable(false);
-
-        // backgroundPanel and layeredPane on JFrame
-        mainFrame.getContentPane().setLayout(new BorderLayout());
-        mainFrame.getContentPane().add(layeredPane, BorderLayout.CENTER);
-
-        mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
-        mainFrame.setVisible(true);
+        layeredPane.setVisible(false);
     }
-
 
     //actionListener
     public void addClickListener(ActionListener listener) {
