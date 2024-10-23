@@ -23,6 +23,8 @@ public class ManageMapPage extends JPanel {
     JLabel aboutLbl;
     JLabel exitLbl;
 
+    JTextArea addedEatery, removedEatery;
+
     IconButton pathFinderButton;
     IconButton manageMapButton;
     IconButton viewAlgosButton;
@@ -120,7 +122,7 @@ public class ManageMapPage extends JPanel {
         add1Button.setFont(new Font("Helvetica", Font.BOLD, 14));
         add1Button.setForeground(Color.WHITE);
         add1Button.setBackground(greenTHA2);
-        add1Button.setBounds(170, 225, 100, 30); 
+        add1Button.setBounds(185, 225, 100, 30); 
         add1Button.setOpaque(true); 
         add1Button.setBorder(null);
         add1Button.setContentAreaFilled(true); 
@@ -131,7 +133,7 @@ public class ManageMapPage extends JPanel {
         add2Button.setFont(new Font("Helvetica", Font.BOLD, 14));
         add2Button.setForeground(Color.WHITE);
         add2Button.setBackground(greenTHA2);
-        add2Button.setBounds(170, 425, 100, 30); 
+        add2Button.setBounds(185, 425, 100, 30); 
         add2Button.setOpaque(true); 
         add2Button.setBorder(null);
         add2Button.setContentAreaFilled(true); 
@@ -142,13 +144,25 @@ public class ManageMapPage extends JPanel {
         rmvButton.setFont(new Font("Helvetica", Font.BOLD, 14));
         rmvButton.setForeground(Color.WHITE);
         rmvButton.setBackground(noRed);
-        rmvButton.setBounds(170, 590, 100, 30); 
+        rmvButton.setBounds(185, 590, 100, 30); 
         rmvButton.setOpaque(true); 
         rmvButton.setBorder(null);
         rmvButton.setContentAreaFilled(true); 
         rmvButton.setCustomBorderColor(Color.WHITE); 
         rmvButton.setCustomBorderThickness(2);
 
+        // Resulting Text
+        addedEatery = new JTextArea();
+        addedEatery.setFont(new Font("Futura", Font.BOLD, 15));
+        addedEatery.setBounds(185, 270, 300, 50);
+        addedEatery.setForeground(Helper.noBlue);
+        addedEatery.setOpaque(false);
+
+        removedEatery = new JTextArea();
+        removedEatery.setFont(new Font("Futura", Font.BOLD, 15));
+        removedEatery.setBounds(185, 627, 300, 50);
+        removedEatery.setForeground(Helper.noRed);
+        removedEatery.setOpaque(false);
 
         //button label
         pathFinderLbl = new JLabel("Path Finder");
@@ -204,7 +218,7 @@ public class ManageMapPage extends JPanel {
 
         JLabel edgesLbl = new JLabel("Edges");
         edgesLbl.setFont(new Font("Futura", Font.BOLD,16));
-        edgesLbl.setBounds(190, 295, 300, 40);
+        edgesLbl.setBounds(215, 300, 300, 40);
         edgesLbl.setForeground(greenText);
 
         JLabel sNodeLbl = new JLabel("Start Node:");
@@ -219,7 +233,7 @@ public class ManageMapPage extends JPanel {
 
         JLabel rmvLbl = new JLabel("Remove a Food Place");
         rmvLbl.setFont(new Font("Futura", Font.BOLD,16));
-        rmvLbl.setBounds(145, 490, 300, 40);
+        rmvLbl.setBounds(145, 500, 300, 40);
         rmvLbl.setForeground(greenText);
 
         JLabel rmvNameLbl = new JLabel("Name: ");
@@ -249,7 +263,6 @@ public class ManageMapPage extends JPanel {
         rmvPlace = new JComboBox<String>(locations);
         rmvPlace.setVisible(true);
         rmvPlace.setBounds(145,540,220,25);
-
 
         // LayeredPane Components
         layeredPane.add(pageHeader, JLayeredPane.PALETTE_LAYER);
@@ -290,6 +303,9 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(add1Button, JLayeredPane.POPUP_LAYER);
         layeredPane.add(add2Button, JLayeredPane.POPUP_LAYER);
         layeredPane.add(rmvButton, JLayeredPane.POPUP_LAYER);
+
+        layeredPane.add(addedEatery, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(removedEatery, JLayeredPane.POPUP_LAYER);
         
 
         // JFrame 
@@ -335,6 +351,14 @@ public class ManageMapPage extends JPanel {
 
     public String getfTraf(){
         return this.fTraf.getText();
+    }
+
+    //returns textArea values
+    public void setAddedEatery(String addedEatery){
+        this.addedEatery.setText(addedEatery);
+    }
+    public void setRemovedEatery(String removedEatery){
+        this.removedEatery.setText(removedEatery);
     }
 
     //returns dropdown menu value
