@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
@@ -48,15 +47,11 @@ public class AboutController implements ActionListener {
             mainFrame.getContentPane().removeAll();
              
             new ManageMapController(graph, mmp, this.mainFrame);
-            mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
-
         } 
         else if (source == ap.getViewAlgosButton()) {
             mainFrame.getContentPane().removeAll();
 
-            new ViewAlgorithmController(graph, vap, this.mainFrame); 
-            mainFrame.getLayeredPane().add(vap.getLayeredPane(), JLayeredPane.DEFAULT_LAYER);
-            
+            new ViewAlgorithmController(graph, vap, this.mainFrame);             
         } 
         else if (source == ap.getAboutButton()) {}
 

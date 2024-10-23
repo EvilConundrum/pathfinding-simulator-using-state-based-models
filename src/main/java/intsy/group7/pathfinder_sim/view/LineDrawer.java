@@ -16,8 +16,8 @@ public class LineDrawer {
         
         for (int i = 0; i < node.size() - 1; i++) {
 
-            Point currentPoint = new Point(node.get(i).getX_coord(), node.get(i).getY_coord());
-            Point nextPoint = new Point(node.get(i+1).getX_coord(), node.get(i+1).getY_coord());
+            Point currentPoint = new Point(node.get(i).getX_coord() + 10, node.get(i).getY_coord() + 10);
+            Point nextPoint = new Point(node.get(i+1).getX_coord() + 10, node.get(i+1).getY_coord() + 10);
 
 
             if (currentPoint != null && nextPoint != null) {
