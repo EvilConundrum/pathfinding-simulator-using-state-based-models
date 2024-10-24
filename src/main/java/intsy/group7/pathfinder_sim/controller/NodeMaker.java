@@ -58,12 +58,8 @@ public class NodeMaker {
                     roundButtons[i].setOpaque(false);
                 }
             }
-            else {
-                roundButtons[i].setBackground(Helper.cGray);
-                roundButtons[i].setOpaque(false);            
-            }
 
-            if (mode.equalsIgnoreCase("PathFinder")) {
+            else if (mode.equalsIgnoreCase("PathFinder")) {
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("road")) {
                     roundButtons[i].setBackground(Helper.cBlack);
                     roundButtons[i].setOpaque(false);
@@ -77,13 +73,11 @@ public class NodeMaker {
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("vacant")) {
                     roundButtons[i].setBackground(Helper.cRed);
                     roundButtons[i].setOpaque(false);
-                    roundButtons[i].setEnabled(false);
-                }
+                    roundButtons[i].setDisabledTextColor(Helper.cRed); // Set the disabled text color to the same as the background color
+                }   
             }
-
             roundButtons[i].addActionListener(new ButtonClickListener());
         }
-
         return roundButtons;
     }
 

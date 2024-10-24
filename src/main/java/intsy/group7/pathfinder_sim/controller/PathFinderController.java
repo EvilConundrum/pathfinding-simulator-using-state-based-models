@@ -85,7 +85,6 @@ public class PathFinderController implements ActionListener {
 
             Result result = null;
             
-
             if (algo.equalsIgnoreCase("A*")) {
                 result = AStarAlgorithm.AStar(graph, start, goal);
                 LineDrawer.drawLines(mainFrame, pfp.getLayeredPane(), result.getPath());
@@ -109,6 +108,18 @@ public class PathFinderController implements ActionListener {
             else {
                 throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
             }
+
+            // TODO EDIT
+            // Change the background color of the start and goal buttons
+            if (nodeButtonMap.containsKey(start)) {
+                RoundedButton startButton = nodeButtonMap.get(start);
+                startButton.setBackground(Helper.cBlue); // Set the desired color for the start button
+            }
+
+            if (nodeButtonMap.containsKey(goal)) {
+                RoundedButton goalButton = nodeButtonMap.get(goal);
+                goalButton.setBackground(Helper.cBlue); // Set the desired color for the goal button
+            }            
 
             pfp.addPathCost(result.getPathCost(), result.getStringTraversal(), result.getStringPath());
         }  

@@ -47,8 +47,7 @@ public class GraphDAO {
                 Node origin = graph.findNode(originID);
                 Node destination = graph.findNode(destinationID);
                 //If the edge does not exist already, create the the new edge
-                System.out.println("Origin: " + origin.getId());
-                System.out.println("Destination: " + destination.getId());
+                System.out.println("Origin: " + origin.getId() + " Destination: " + destination.getId());
                 int distance = (int) Helper.calcDist(origin,destination);
                 graph.addEdges(origin, destination, distance);
             }

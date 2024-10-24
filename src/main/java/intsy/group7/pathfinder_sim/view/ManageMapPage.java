@@ -20,9 +20,10 @@ public class ManageMapPage extends JPanel {
 
     private JLayeredPane layeredPane;
     
-    private JPanel mapPanel, redSquare, greenSquare, blueSquare;
+    private JPanel mapPanel, redSquare, yellowSquare, blackSquare;
     
-    private JTextArea addedEatery, removedEatery, addedEdges;
+    private JTextArea addedEatery, removedEatery, addedEdges, redIndicateText, 
+                      yellowIndicateText, blackIndicateText;
 
     private RoundedButton add1Button, add2Button, rmvButton;
 
@@ -171,6 +172,43 @@ public class ManageMapPage extends JPanel {
         rmvPlace.setVisible(true);
         rmvPlace.setBounds(145,540,220,25);
 
+        redSquare = new SquarePanel(Helper.cRed, 20);
+        redSquare.setVisible(true);
+        redSquare.setBounds(410, 85, 20, 20);
+
+        yellowSquare = new SquarePanel(Helper.cYellow, 20);
+        yellowSquare.setVisible(true);
+        yellowSquare.setBounds(410, 115, 20, 20);
+
+        blackSquare = new SquarePanel(Helper.cBlackLess, 20);
+        blackSquare.setVisible(true);
+        blackSquare.setBounds(410, 145, 20, 20);
+
+        redIndicateText = new JTextArea();
+        redIndicateText.setText("- Vacant Eateries (Selection)");
+        redIndicateText.setEditable(false);
+        redIndicateText.setFont(new Font("Futura", Font.BOLD, 18));
+        redIndicateText.setBounds(438, 82, 300, 150);
+        redIndicateText.setOpaque(false);
+        redIndicateText.setForeground(Helper.cWhite);
+
+        yellowIndicateText = new JTextArea();
+        yellowIndicateText.setText("- Current Eateries");
+        yellowIndicateText.setEditable(false);
+        yellowIndicateText.setFont(new Font("Futura", Font.BOLD, 18));
+        yellowIndicateText.setBounds(438, 112, 300, 150);
+        yellowIndicateText.setOpaque(false);
+        yellowIndicateText.setForeground(Helper.cWhite);
+
+        blackIndicateText = new JTextArea();
+        blackIndicateText.setText("- Roads");
+        blackIndicateText.setEditable(false);
+        blackIndicateText.setFont(new Font("Futura", Font.BOLD, 18));
+        blackIndicateText.setBounds(438, 142, 300, 150);
+        blackIndicateText.setOpaque(false);
+        blackIndicateText.setForeground(Helper.cWhite);
+
+
         // LayeredPane Components
         layeredPane.add(addFpLbl, JLayeredPane.POPUP_LAYER);
         layeredPane.add(insLbl, JLayeredPane.POPUP_LAYER);
@@ -198,6 +236,14 @@ public class ManageMapPage extends JPanel {
         layeredPane.add(addedEatery, JLayeredPane.POPUP_LAYER);
         layeredPane.add(addedEdges, JLayeredPane.POPUP_LAYER);
         layeredPane.add(removedEatery, JLayeredPane.POPUP_LAYER);
+
+        layeredPane.add(redSquare, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(yellowSquare, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(blackSquare, JLayeredPane.POPUP_LAYER);
+
+        layeredPane.add(redIndicateText, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(yellowIndicateText, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(blackIndicateText, JLayeredPane.POPUP_LAYER);
 
         layeredPane.setVisible(false);
     }

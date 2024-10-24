@@ -14,6 +14,7 @@ public class RoundedButton extends JButton {
     Color cGreenTHA = new Color(0, 112, 60);
     private Color customBorderColor;
     private int customBorderThickness;
+    private Color disabledTextColor;
 
     /**
      * Constructor to initialize a RoundedButton with specified text.
@@ -46,6 +47,17 @@ public class RoundedButton extends JButton {
     public void setCustomBorderThickness(int thickness) {
         this.customBorderThickness = thickness;
     }
+
+    /**
+     * Sets the disabled text color for the button.
+     *
+     * @param color The disabled text color to set.
+     */
+    public void setDisabledTextColor(Color color) {
+        this.disabledTextColor = color;
+    }
+
+
 
      /**
      * Paints the component, filling the rounded rectangle background.

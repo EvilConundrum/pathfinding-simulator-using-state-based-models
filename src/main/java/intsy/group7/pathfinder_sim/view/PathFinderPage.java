@@ -186,7 +186,6 @@ public class PathFinderPage {
         pathCostLbl.setBounds(400, 160, 300, 40);
         pathCostLbl.setForeground(Helper.cPureRed);
 
-
         pathText = new JTextArea();
         pathText.setText(path);
         pathText.setEditable(false);

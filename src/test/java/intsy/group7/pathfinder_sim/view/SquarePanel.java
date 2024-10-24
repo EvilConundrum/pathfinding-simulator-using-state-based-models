@@ -18,6 +18,14 @@ public class SquarePanel extends JPanel {
         super.paintComponent(g);
         // Set the color for the square
         g.setColor(color);
-        g.fillRect(0, 0, size, size);
+        g.fillRect(size, size, size, size);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.add(new SquarePanel(Color.RED, 50));
+        frame.setVisible(true);
     }
 }
