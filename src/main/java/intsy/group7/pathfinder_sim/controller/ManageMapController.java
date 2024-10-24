@@ -193,7 +193,7 @@ public class ManageMapController implements ActionListener {
                     node.setState("vacant");
                     RoundedButton button = nodeButtonMap.get(node);
                     if (button != null) {
-                        button.setBackground(Helper.noGray);
+                        button.setBackground(Helper.cGray);
                         button.setEnabled(true);
                         
                         mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());

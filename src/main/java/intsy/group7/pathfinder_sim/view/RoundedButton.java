@@ -1,12 +1,17 @@
 package intsy.group7.pathfinder_sim.view;
-import java.awt.*;
-import javax.swing.*;
 
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
+
+import intsy.group7.pathfinder_sim.helper.Helper;
 /**
  * Custom JButton with rounded corners and customizable border.
  */
 public class RoundedButton extends JButton {
-    Color greenTHA = new Color(0, 112, 60);
+    Color cGreenTHA = new Color(0, 112, 60);
     private Color customBorderColor;
     private int customBorderThickness;
 
@@ -20,7 +25,7 @@ public class RoundedButton extends JButton {
         setContentAreaFilled(false); // Remove default fill
         setFocusPainted(false); // Remove default focus painting
         setOpaque(false); // Make sure button is not opaque
-        customBorderColor = Color.WHITE; // Default border color
+        customBorderColor = Helper.cWhite; // Default border color
         customBorderThickness = 2;
     }
 
@@ -50,7 +55,7 @@ public class RoundedButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         if (getModel().isArmed()) {
-            g.setColor(greenTHA); // Set pressed color
+            g.setColor(cGreenTHA); // Set pressed color
         } else {
             g.setColor(getBackground()); // Set default color
         }

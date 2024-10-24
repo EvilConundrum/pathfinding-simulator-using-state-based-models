@@ -4,34 +4,24 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+import intsy.group7.pathfinder_sim.helper.Helper;
+
 public class DefaultPage extends JPanel {
     
-    ImageIcon map = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
-    ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
-    ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
-    ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
-    ImageIcon aboutImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
-    ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
-    ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
+    private ImageIcon pathFinderImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/PathFinder.png");
+    private ImageIcon manageMapImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ManageMap.png");
+    private ImageIcon viewAlgosImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/ViewAlgos.png");
+    private ImageIcon aboutImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/About.png");
+    private ImageIcon exitImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/Exit.png");
+    private ImageIcon logoImg = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/LogoTHA.png"); 
 
-    JLayeredPane layeredPane, layeredPane2;
+    private JLayeredPane layeredPane, layeredPane2;
 
-    JLabel pathFinderLbl;
-    JLabel manageMapLbl;
-    JLabel viewAlgosLbl;
-    JLabel aboutLbl;
-    JLabel exitLbl;
+    private JLabel pathFinderLbl, manageMapLbl, viewAlgosLbl, aboutLbl, exitLbl;
 
-    IconButton pathFinderButton;
-    IconButton manageMapButton;
-    IconButton viewAlgosButton;
-    IconButton aboutButton;
-    IconButton exitButton;
+    private IconButton pathFinderButton, manageMapButton, viewAlgosButton, aboutButton, exitButton;
 
-    Color greenTHA = new Color(0, 105, 55);
-    Color greenText = new Color(5, 65, 3);
-
-    String welcomeMessage = "Welcome to The Bow & Bite Map! Ready to explore the different food spots around campus? This map uses different algorithms to help you find the best paths to satisfy your cravings—whether you’re in the mood for a quick bite or a nice meal. Grab your friends, start exploring, and let the algorithms guide you to your next favorite meal! Happy munching! :)";
+    private String welcomeMessage = "Welcome to The Bow & Bite Map! Ready to explore the different food spots around campus? This map uses different algorithms to help you find the best paths to satisfy your cravings—whether you’re in the mood for a quick bite or a nice meal. Grab your friends, start exploring, and let the algorithms guide you to your next favorite meal! Happy munching! :)";
 
     //@param MainFrame
     public void launchDefaultPage(JFrame mainFrame) {
@@ -39,17 +29,17 @@ public class DefaultPage extends JPanel {
         // Header panel
         JPanel pageHeader = new JPanel();
         pageHeader.setBounds(0, 0, 1275, 60);
-        pageHeader.setBackground(greenTHA);
+        pageHeader.setBackground(Helper.cGreenTHA);
 
         JLabel labelHeader = new JLabel("The Bow & Bite Map");
         labelHeader.setFont(new Font("Tahoma", Font.BOLD, 23));
         labelHeader.setBounds(70, 10, 300, 40);
-        labelHeader.setForeground(Color.WHITE);
+        labelHeader.setForeground(Helper.cWhite);
 
         ImageIcon lgHeader = new ImageIcon(logoImg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 
         JLabel logoHeader = new JLabel(lgHeader);
-        logoHeader.setBackground(greenTHA);
+        logoHeader.setBackground(Helper.cGreenTHA);
         logoHeader.setBounds(1, -5, 70, 70);
 
         //button images
@@ -64,7 +54,7 @@ public class DefaultPage extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(map.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+                g.drawImage(Helper.mapImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
             }
         };
         mapPanel.setBounds(385, 60, 890, 630);
@@ -72,7 +62,7 @@ public class DefaultPage extends JPanel {
         // LayeredPane for positioning
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1280, 720));
-        layeredPane.setBackground(Color.WHITE);
+        layeredPane.setBackground(Helper.cWhite);
 
         layeredPane2 = new JLayeredPane();
         layeredPane2.setPreferredSize(new Dimension(1280, 720));
@@ -103,38 +93,38 @@ public class DefaultPage extends JPanel {
         pathFinderLbl = new JLabel("Path Finder");
         pathFinderLbl.setFont(new Font("Futura", Font.PLAIN, 8));
         pathFinderLbl.setBounds(13, 120, 300, 40);
-        pathFinderLbl.setForeground(greenText);
+        pathFinderLbl.setForeground(Helper.cGreenText);
 
         manageMapLbl = new JLabel("Manage Map");
         manageMapLbl.setFont(new Font("Futura", Font.PLAIN, 8));
         manageMapLbl.setBounds(13, 200, 300, 40);
-        manageMapLbl.setForeground(greenText);
+        manageMapLbl.setForeground(Helper.cGreenText);
 
         viewAlgosLbl = new JLabel("View Algorithms");
         viewAlgosLbl.setFont(new Font("Futura", Font.PLAIN, 8));
         viewAlgosLbl.setBounds(8, 285, 300, 40);
-        viewAlgosLbl.setForeground(greenText);
+        viewAlgosLbl.setForeground(Helper.cGreenText);
 
         aboutLbl = new JLabel("About");
         aboutLbl.setFont(new Font("Futura", Font.PLAIN, 8));
         aboutLbl.setBounds(25, 365, 300, 40);
-        aboutLbl.setForeground(greenText);
+        aboutLbl.setForeground(Helper.cGreenText);
 
         exitLbl = new JLabel("Exit");
         exitLbl.setFont(new Font("Futura", Font.PLAIN, 8));
         exitLbl.setBounds(28, 445, 300, 40);
-        exitLbl.setForeground(greenText);
+        exitLbl.setForeground(Helper.cGreenText);
 
         // Vertical Divider
         JSeparator verticalLine = new JSeparator(SwingConstants.VERTICAL);
         verticalLine.setBounds(75, 20, 10, 700);  
-        verticalLine.setForeground(greenTHA);    
+        verticalLine.setForeground(Helper.cGreenTHA);    
         
         // Welcome Message
         JTextArea welcome1 = new JTextArea(1, 27);
         welcome1.setFont(new Font("Helvetica", Font.BOLD, 18));
-        welcome1.setForeground(greenText);
-        welcome1.setBackground(new Color(238, 238, 238));
+        welcome1.setForeground(Helper.cGreenText);
+        welcome1.setBackground(Helper.cDirtyWhite);
         welcome1.setText("Hey, Archer! 🏹");
         welcome1.setEditable(false);
         welcome1.setWrapStyleWord(true);
@@ -143,8 +133,8 @@ public class DefaultPage extends JPanel {
 
         JTextArea welcome2 = new JTextArea(25, 27);
         welcome2.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        welcome2.setForeground(greenText);
-        welcome2.setBackground(new Color(238, 238, 238));
+        welcome2.setForeground(Helper.cGreenText);
+        welcome2.setBackground(Helper.cDirtyWhite);
         welcome2.setText(welcomeMessage);
         welcome2.setEditable(false);
         welcome2.setWrapStyleWord(true);

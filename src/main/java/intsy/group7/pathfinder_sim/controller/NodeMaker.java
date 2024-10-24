@@ -32,12 +32,12 @@ public class NodeMaker {
 
             roundButtons[i] = new RoundedButton(graph.getNodes().get(i).getId());
             roundButtons[i].setFont(new Font("Helvetica", Font.BOLD, 10));
-            roundButtons[i].setForeground(Color.WHITE);
+            roundButtons[i].setForeground(Helper.cWhite);
             roundButtons[i].setBounds(x, y, 22, 22); 
             roundButtons[i].setOpaque(true); 
             roundButtons[i].setBorder(null);
             roundButtons[i].setContentAreaFilled(true); 
-            roundButtons[i].setCustomBorderColor(Color.WHITE); 
+            roundButtons[i].setCustomBorderColor(Helper.cWhite); 
             roundButtons[i].setCustomBorderThickness(2);
 
                 
@@ -55,11 +55,11 @@ public class NodeMaker {
                     roundButtons[i].setEnabled(false);
                 }
                 if (graph.getNodes().get(i).getState().equalsIgnoreCase("vacant")) {
-                    roundButtons[i].setBackground(Helper.noGray);
+                    roundButtons[i].setBackground(Helper.cGray);
                 }
             }
             else {            
-                roundButtons[i].setBackground(Helper.noGray);
+                roundButtons[i].setBackground(Helper.cGray);
             }
 
             if (mode.equalsIgnoreCase("PathFinder")) {
@@ -89,7 +89,7 @@ public class NodeMaker {
     
     public static void changeButtonColor() {
         if (currentClickedButton != null) {
-            currentClickedButton.setBackground(Helper.noGray);
+            currentClickedButton.setBackground(Helper.cGray);
         }
     }
 
@@ -100,7 +100,7 @@ public class NodeMaker {
 
             // Reset the color of the last clicked button
             if (lastClickedButton != null && lastClickedButton.getBackground() != Color.YELLOW) {
-                lastClickedButton.setBackground(Helper.noGray);
+                lastClickedButton.setBackground(Helper.cGray);
             }            
             currentClickedButton.setBackground(Color.GREEN); // Set the color of the currently clicked button to green
             lastClickedButton = currentClickedButton; // Update the last clicked button reference            

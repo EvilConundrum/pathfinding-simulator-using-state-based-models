@@ -12,14 +12,25 @@ import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.RoundedButton;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
 
 public class Helper {
-    public static Color noRed = new Color(188, 24, 35);
-    public static Color noGreen = new Color(0, 255, 0);
-    public static Color noBlue = new Color(0, 0, 255);
-    public static Color noYellow = new Color(255, 255, 0);
-    public static Color noGray = new Color(74, 71, 71);
-    public static Color noBlack = new Color(0, 0, 0);
+    public static Color cPureRed = new Color(255, 0, 0);
+    public static Color cRed = new Color(188, 24, 35);
+    public static Color cBlue = new Color(0, 0, 255);
+    public static Color cYellow = new Color(255, 255, 0);
+    public static Color cGray = new Color(74, 71, 71);
+    public static Color cBlack = new Color(0, 0, 0);
+    public static Color cWhite = new Color(255, 255, 255);
+    public static Color cDirtyWhite = new Color(238, 238, 238);
+    public static Color cGreenTHA = new Color(0, 105, 55);
+    public static Color cGreenText = new Color(5, 65, 3);
+    public static Color cGreenTHA2 = new Color(0, 112, 60);
+
+    public static Dimension screenSize = new Dimension(1280, 720);
+    public static ImageIcon mapImage = new ImageIcon("src/main/java/intsy/group7/pathfinder_sim/view/images/MapDLSU.png");
+
 
     public static String sampleText = "     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 

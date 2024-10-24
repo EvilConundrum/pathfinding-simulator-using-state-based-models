@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 
-import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
 
@@ -22,10 +21,10 @@ public class MainController implements ActionListener {
 
     public MainController(Graph graph) {
         this.mainFrame = new JFrame();
-        mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
-    
+        
         this.dp = new DefaultPage();        
         dp.launchDefaultPage(mainFrame);
+        mainFrame.setLocationRelativeTo(null); // Center JFrame on screen
         
         this.pfp = new PathFinderPage();
         this.mmp = new ManageMapPage();
@@ -35,8 +34,8 @@ public class MainController implements ActionListener {
         new PathFinderController(graph, pfp, mainFrame); // LaunchPage is inside here        
         new ManageMapController(graph, mmp, pfp, mainFrame); // launchPage is inside here
 
-        vap.launchViewAlgorithmPage(mainFrame, Helper.sampleText);
-        ap.launchAboutPage(mainFrame, Helper.sampleText);
+        vap.launchViewAlgorithmPage(mainFrame);
+        ap.launchAboutPage(mainFrame);
 
         JLayeredPane layeredPaneContainer = new JLayeredPane();
         layeredPaneContainer.setLayout(new OverlayLayout(layeredPaneContainer));
