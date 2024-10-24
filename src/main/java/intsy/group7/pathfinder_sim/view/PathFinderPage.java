@@ -52,9 +52,9 @@ public class PathFinderPage {
         subButton.setForeground(Helper.cWhite);
         subButton.setBackground(Helper.cGreenTHA2);
         subButton.setBounds(175, 320, 100, 35); 
-        subButton.setOpaque(true); 
         subButton.setBorder(null);
         subButton.setContentAreaFilled(true); 
+        subButton.setOpaque(false);
         subButton.setCustomBorderColor(Helper.cWhite); 
         subButton.setCustomBorderThickness(2);
 

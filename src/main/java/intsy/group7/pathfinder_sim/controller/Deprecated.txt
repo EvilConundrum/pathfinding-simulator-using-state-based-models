@@ -1,2 +1,0 @@
-            // mainFrame.getLayeredPane().add(mmp, JLayeredPane.DEFAULT_LAYER); // Add the new page
-            // mainFrame.getLayeredPane().moveToFront(mmp);

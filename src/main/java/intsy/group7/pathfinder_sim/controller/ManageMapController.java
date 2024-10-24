@@ -141,7 +141,6 @@ public class ManageMapController implements ActionListener {
                     NodeMaker.getClickedButton().setEnabled(false);
                     mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
                     pfp.updateAllComboBoxes(graph.getAllNodes());   
-
                     mmp.setAddedEatery("\"" + name + "\"" + " added");
                 }
             }
@@ -197,7 +196,7 @@ public class ManageMapController implements ActionListener {
                         button.setEnabled(true);
                         
                         mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
-                        mmp.setRemovedEatery("\"" + node.getId() + "\"" + " removed");
+                        mmp.setRemovedEatery("\"" + node.getId() + "\"" + " is set to vacant");
                         break;
                     }
                 }

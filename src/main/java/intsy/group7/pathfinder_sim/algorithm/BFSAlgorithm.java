@@ -50,8 +50,7 @@ public class BFSAlgorithm {
         }
     
         return new Result(null, traversal);  // Return both path and traversal
-    
-}
+    }
 
     /**
      * Function to return the list of nodes that shows the path of the BFS algorithm

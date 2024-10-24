@@ -55,9 +55,9 @@ public class ManageMapPage extends JPanel {
         add1Button.setForeground(Helper.cWhite);
         add1Button.setBackground(Helper.cGreenTHA2);
         add1Button.setBounds(185, 225, 100, 30); 
-        add1Button.setOpaque(true); 
         add1Button.setBorder(null);
         add1Button.setContentAreaFilled(true); 
+        add1Button.setOpaque(false);
         add1Button.setCustomBorderColor(Helper.cWhite); 
         add1Button.setCustomBorderThickness(2);
 
@@ -66,9 +66,9 @@ public class ManageMapPage extends JPanel {
         add2Button.setForeground(Helper.cWhite);
         add2Button.setBackground(Helper.cGreenTHA2);
         add2Button.setBounds(185, 425, 100, 30); 
-        add2Button.setOpaque(true); 
         add2Button.setBorder(null);
         add2Button.setContentAreaFilled(true); 
+        add2Button.setOpaque(false);
         add2Button.setCustomBorderColor(Helper.cWhite); 
         add2Button.setCustomBorderThickness(2);
 
@@ -77,9 +77,9 @@ public class ManageMapPage extends JPanel {
         rmvButton.setForeground(Helper.cWhite);
         rmvButton.setBackground(Helper.cRed);
         rmvButton.setBounds(185, 590, 100, 30); 
-        rmvButton.setOpaque(true); 
         rmvButton.setBorder(null);
         rmvButton.setContentAreaFilled(true); 
+        rmvButton.setOpaque(false);
         rmvButton.setCustomBorderColor(Helper.cWhite); 
         rmvButton.setCustomBorderThickness(2);
 

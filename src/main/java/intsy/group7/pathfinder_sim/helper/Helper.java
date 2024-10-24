@@ -19,9 +19,12 @@ public class Helper {
     public static Color cPureRed = new Color(255, 0, 0);
     public static Color cRed = new Color(188, 24, 35);
     public static Color cBlue = new Color(0, 0, 255);
+    public static Color cRoyalBlue = new Color(30,61,151);
     public static Color cYellow = new Color(255, 255, 0);
+    public static Color cGold = new Color(155,147,46);
     public static Color cGray = new Color(74, 71, 71);
     public static Color cBlack = new Color(0, 0, 0);
+    public static Color cBlackLess = new Color(0, 0, 0, 100);    
     public static Color cWhite = new Color(255, 255, 255);
     public static Color cDirtyWhite = new Color(238, 238, 238);
     public static Color cGreenTHA = new Color(0, 105, 55);
