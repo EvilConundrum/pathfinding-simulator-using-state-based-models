@@ -8,10 +8,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
-import java.awt.Component;
-
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 
 import intsy.group7.pathfinder_sim.controller.NodeMaker;
 import intsy.group7.pathfinder_sim.model.*;

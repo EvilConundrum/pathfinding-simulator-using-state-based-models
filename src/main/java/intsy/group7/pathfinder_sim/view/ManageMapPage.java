@@ -20,7 +20,7 @@ public class ManageMapPage extends JPanel {
 
     private JLayeredPane layeredPane;
     
-    private JPanel mapPanel;
+    private JPanel mapPanel, redSquare, greenSquare, blueSquare;
     
     private JTextArea addedEatery, removedEatery, addedEdges;
 

@@ -9,7 +9,6 @@ import java.util.HashMap;
 import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
-import javafx.scene.control.Button;
 
 public class ManageMapController implements ActionListener {
 
@@ -41,13 +40,6 @@ public class ManageMapController implements ActionListener {
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
 
-        // this.buttons = NodeMaker.getButtons(graph, "ManageMap");
-        // for (RoundedButton button : buttons) {
-        //     mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
-        // }
-
-        // this.nodeButtonMap = new HashMap<>();
-        // Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
         this.stringButtonMap = new HashMap<>();
         Helper.assignButtons(buttons, graph, mmp.getLayeredPane(), "ManageMap", 
                              this.nodeButtonMap, stringButtonMap);

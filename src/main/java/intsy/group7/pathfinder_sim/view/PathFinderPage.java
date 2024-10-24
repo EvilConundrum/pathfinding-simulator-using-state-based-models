@@ -176,8 +176,8 @@ public class PathFinderPage {
         traversalText = new JTextArea();
         traversalText.setText(traversal);
         traversalText.setEditable(false);
-        traversalText.setFont(new Font("Futura", Font.BOLD,15));
-        traversalText.setBounds(494, 72, 800, 150);
+        traversalText.setFont(new Font("Futura", Font.BOLD, 12));
+        traversalText.setBounds(494, 75, 800, 150);
         traversalText.setOpaque(false);
         traversalText.setForeground(Helper.cWhite);
 
