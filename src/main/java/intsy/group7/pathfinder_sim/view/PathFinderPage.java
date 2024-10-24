@@ -11,22 +11,24 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import intsy.group7.pathfinder_sim.helper.Helper;
 
 public class PathFinderPage {
 
-    JLabel traversalLbl, pathLbl, pathCostLbl;
+    private JLabel traversalLbl, pathLbl, pathCostLbl;
 
-    JTextArea pathText, traversalText;
+    private JTextArea pathText, traversalText;
 
-    RoundedButton subButton;
+    private HashMap<String, RoundedButton> nodeButtonMap;
+    private RoundedButton subButton;
 
-    JLayeredPane layeredPane;
+    private JLayeredPane layeredPane;
 
-    JPanel mapPanel;
+    private JPanel mapPanel;
 
-    JComboBox<String> fromMenu, toMenu, algoMenu;
+    private JComboBox<String> fromMenu, toMenu, algoMenu;
 
     //@param MainFrame & list of locations
     public void launchPathFinderPage(JFrame mainFrame, String[] locations, String[] algorithms){
@@ -157,6 +159,13 @@ public class PathFinderPage {
         this.toMenu.setModel(new DefaultComboBoxModel<String>(locations));
 
 
+    }
+
+    public HashMap<String, RoundedButton> getStringButtonMap() {
+        return this.nodeButtonMap;
+    }
+    public void setStringButtonMap(HashMap<String, RoundedButton> nodeButtonMap) {
+        this.nodeButtonMap = nodeButtonMap;
     }
 
     public RoundedButton getSubmitButton() {

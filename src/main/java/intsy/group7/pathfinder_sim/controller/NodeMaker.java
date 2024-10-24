@@ -104,7 +104,7 @@ public class NodeMaker {
 
             // Reset the color of the last clicked button
             if (lastClickedButton != null && lastClickedButton.getBackground() != Color.YELLOW) {
-                lastClickedButton.setBackground(Helper.cGray);
+                lastClickedButton.setBackground(Helper.cRed);
             }            
             currentClickedButton.setBackground(Color.GREEN); // Set the color of the currently clicked button to green
             lastClickedButton = currentClickedButton; // Update the last clicked button reference            

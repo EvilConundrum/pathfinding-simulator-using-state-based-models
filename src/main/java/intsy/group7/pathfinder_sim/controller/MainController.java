@@ -1,9 +1,13 @@
 package intsy.group7.pathfinder_sim.controller;
 
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.OverlayLayout;
 import java.awt.BorderLayout;
-import java.awt.event.*;
 
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
@@ -11,13 +15,16 @@ import intsy.group7.pathfinder_sim.view.*;
 public class MainController implements ActionListener {
     
     private JFrame mainFrame;
-    
+    private HashMap<Node, RoundedButton> nodeButtonMap;
+
+
     private DefaultPage dp;
     private PathFinderPage pfp;
 
     private ViewAlgorithmPage vap;
     private AboutPage ap;
     private ManageMapPage mmp;
+    
 
     public MainController(Graph graph) {
         this.mainFrame = new JFrame();
@@ -31,8 +38,9 @@ public class MainController implements ActionListener {
         this.vap = new ViewAlgorithmPage();
         this.ap = new AboutPage();
 
-        new PathFinderController(graph, pfp, mainFrame); // LaunchPage is inside here        
-        new ManageMapController(graph, mmp, pfp, mainFrame); // launchPage is inside here
+        this.nodeButtonMap = new HashMap<>();
+        new PathFinderController(graph, pfp, mainFrame, nodeButtonMap); // LaunchPage is inside here        
+        new ManageMapController(graph, mmp, pfp, mainFrame, nodeButtonMap); // launchPage is inside here
 
         vap.launchViewAlgorithmPage(mainFrame);
         ap.launchAboutPage(mainFrame);

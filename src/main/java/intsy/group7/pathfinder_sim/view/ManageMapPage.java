@@ -98,7 +98,7 @@ public class ManageMapPage extends JPanel {
 
         removedEatery = new JTextArea();
         removedEatery.setFont(new Font("Futura", Font.BOLD, 15));
-        removedEatery.setBounds(185, 627, 300, 50);
+        removedEatery.setBounds(178, 627, 300, 50);
         removedEatery.setForeground(Helper.cRed);
         removedEatery.setOpaque(false); 
         

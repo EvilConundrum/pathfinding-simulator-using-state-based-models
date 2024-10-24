@@ -9,6 +9,7 @@ import java.util.HashMap;
 import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.*;
+import javafx.scene.control.Button;
 
 public class ManageMapController implements ActionListener {
 
@@ -19,32 +20,37 @@ public class ManageMapController implements ActionListener {
     private JFrame mainFrame;
     private RoundedButton[] buttons;
     private HashMap<Node, RoundedButton> nodeButtonMap;
+    private HashMap<String, RoundedButton> stringButtonMap;
 
     private String[] locations, nodes;
 
-    public ManageMapController(Graph graph, ManageMapPage mmp, PathFinderPage pfp, JFrame mainFrame) {
+    public ManageMapController(Graph graph, ManageMapPage mmp, PathFinderPage pfp, 
+                               JFrame mainFrame, HashMap<Node, RoundedButton> nodeButtonMap) {
 
         this.graph = graph;
 
         this.mmp = mmp;
         this.mainFrame = mainFrame;
+        this.nodeButtonMap = nodeButtonMap;
 
         this.pfp = pfp;
         
-        // Set current locations as all eatery nodes
-        this.locations = graph.getEateryNodes();
+        this.locations = graph.getEateryNodes();  // Set current locations as all eatery nodes
         this.nodes = graph.getAllNodes();
 
         mmp.launchManageMapPage(mainFrame, locations, nodes);
         mmp.addClickListener(this);
 
-        this.buttons = NodeMaker.getButtons(graph, "ManageMap");
-        for (RoundedButton button : buttons) {
-            mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
-        }
+        // this.buttons = NodeMaker.getButtons(graph, "ManageMap");
+        // for (RoundedButton button : buttons) {
+        //     mmp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
+        // }
 
-        this.nodeButtonMap = new HashMap<>();
-        Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
+        // this.nodeButtonMap = new HashMap<>();
+        // Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
+        this.stringButtonMap = new HashMap<>();
+        Helper.assignButtons(buttons, graph, mmp.getLayeredPane(), "ManageMap", 
+                             this.nodeButtonMap, stringButtonMap);
     }
 
     @Override
@@ -133,18 +139,35 @@ public class ManageMapController implements ActionListener {
             // Assign vacant node to eatery
             for (Node node : graph.getNodes()) {
                 if (node.getId().equals(NodeMaker.getClickedButton().getText())) {
+                    RoundedButton clickedButton = NodeMaker.getClickedButton();
+
+                    // Iterate through the HashMap to find the matching key
+                    for (HashMap.Entry<String, RoundedButton> entry : pfp.getStringButtonMap().entrySet()) {
+                        if (entry.getKey().equals(clickedButton.getText())) {
+                            // Modify the button's properties
+                            RoundedButton button = entry.getValue();
+                            button.setBackground(Color.YELLOW);
+                            button.setText(name);
+                    
+                            // Remove the old entry and add a new entry with the updated key
+                            pfp.getStringButtonMap().remove(entry.getKey());
+                            pfp.getStringButtonMap().put(name, button);
+                            break;
+                        }
+                    }
+
                     node.setId(name);
                     node.setState("eatery");
                     node.setHeuristic(heuristic1*5);
-                    NodeMaker.getClickedButton().setBackground(Color.YELLOW);
-                    NodeMaker.getClickedButton().setText(name);
-                    NodeMaker.getClickedButton().setEnabled(false);
+                    clickedButton.setBackground(Color.YELLOW);
+                    clickedButton.setText(name);
+                    clickedButton.setEnabled(false);
                     mmp.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
-                    pfp.updateAllComboBoxes(graph.getAllNodes());   
+                    pfp.updateAllComboBoxes(graph.getAllNodes());
                     mmp.setAddedEatery("\"" + name + "\"" + " added");
+                    break;
                 }
             }
-        
         }
         else if (source == mmp.getAdd2Button()) { // Add Edge Button
             String startNode = mmp.getStartNode();

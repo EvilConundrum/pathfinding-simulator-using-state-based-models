@@ -8,6 +8,12 @@ import javax.swing.JFormattedTextField;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
+import java.awt.Component;
+
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
+import intsy.group7.pathfinder_sim.controller.NodeMaker;
 import intsy.group7.pathfinder_sim.model.*;
 import intsy.group7.pathfinder_sim.view.RoundedButton;
 
@@ -63,17 +69,40 @@ public class Helper {
         return numberFormatter;
     }
 
-    public static void setNodeButtonMap(RoundedButton[] buttons, Graph graph, HashMap<Node, RoundedButton> map) {
+    public static void setNodeButtonMap(RoundedButton[] buttons, Graph graph, HashMap<Node, RoundedButton> map, 
+                                        HashMap<String, RoundedButton> stringButtonMap, String mode) {
         // Populate the HashMap with nodes and their corresponding buttons
         for (Node node : graph.getNodes()) {
             for (RoundedButton button : buttons) {
                 if (button.getText().equals(node.getId())) {
                     map.put(node, button);
+                    if (mode.equalsIgnoreCase("PathFinder"));
+                        stringButtonMap.put(node.getId(), button);
                     System.out.println("Node: " + node.getId() + " Button: " + button.getText());
                     break;
                 }
             }
         }
+    }
+
+    public static void assignButtons(RoundedButton[] buttons, Graph graph, JLayeredPane layeredPane, 
+                                     String mode, HashMap<Node, RoundedButton> nodeButtonMap, 
+                                     HashMap<String, RoundedButton> stringButtonMap) {
+
+        // Revalidate and repaint the layeredPane to reflect the changes
+        layeredPane.revalidate();
+        layeredPane.repaint();
+
+        buttons = NodeMaker.getButtons(graph, mode);
+        for (RoundedButton button : buttons) {
+            layeredPane.add(button, JLayeredPane.POPUP_LAYER);
+        }
+
+        if (nodeButtonMap != null) 
+            nodeButtonMap.clear();
+        
+        setNodeButtonMap(buttons, graph, nodeButtonMap, stringButtonMap, mode);
+
     }
 
     public static double calcDist(Node origin, Node destination) {
@@ -84,6 +113,4 @@ public class Helper {
         double result = Math.sqrt(Math.pow((destination_x - origin_x),2) + Math.pow((destination_y-origin_y),2));
         return result;
     }
-
-
 }

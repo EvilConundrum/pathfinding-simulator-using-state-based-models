@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 
 import intsy.group7.pathfinder_sim.algorithm.*;
 import intsy.group7.pathfinder_sim.helper.Helper;
@@ -18,16 +17,20 @@ public class PathFinderController implements ActionListener {
 
     private PathFinderPage pfp;
     private JFrame mainFrame;
+    private HashMap<String, RoundedButton> stringButtonMap;
 
+    private RoundedButton[] buttons;
     private String[] locations;
     private HashMap<Node, RoundedButton> nodeButtonMap;
     
-    public PathFinderController(Graph graph, PathFinderPage pfp, JFrame mainFrame)  {
+    public PathFinderController(Graph graph, PathFinderPage pfp, JFrame mainFrame, 
+                                HashMap<Node, RoundedButton> nodeButtonMap) { 
         
         this.graph = graph;
 
         this.pfp = pfp;
         this.mainFrame = mainFrame;
+        this.nodeButtonMap = nodeButtonMap;
         
         this.locations = graph.getEateryNodes();
         
@@ -35,15 +38,16 @@ public class PathFinderController implements ActionListener {
         pfp.launchPathFinderPage(mainFrame, locations, algorithms);
         pfp.addClickListener(this);
 
-        RoundedButton[] buttons = NodeMaker.getButtons(graph, "PathFinder");
-        for (RoundedButton button : buttons) {
-            pfp.getLayeredPane().add(button, JLayeredPane.POPUP_LAYER);
-        }
+        this.stringButtonMap = new HashMap<>();
+        Helper.assignButtons(this.buttons, graph, pfp.getLayeredPane(), "PathFinder", 
+                             this.nodeButtonMap, this.stringButtonMap);
 
-        nodeButtonMap = new HashMap<>();
-        Helper.setNodeButtonMap(buttons, graph, nodeButtonMap);
+        pfp.setStringButtonMap(this.stringButtonMap);
     }
 
+    public void setPathFinderButtons() {
+
+    }
 
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -112,8 +116,5 @@ public class PathFinderController implements ActionListener {
         else {
             throw new UnsupportedOperationException("Unsupported action: " + source);
         }
-    }
-    
-    public void sample() {}
-    
+    }    
 }
