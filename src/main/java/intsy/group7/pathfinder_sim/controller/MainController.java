@@ -39,8 +39,8 @@ public class MainController implements ActionListener {
         this.ap = new AboutPage();
 
         this.nodeButtonMap = new HashMap<>();
-        new PathFinderController(graph, pfp, mainFrame, nodeButtonMap); // LaunchPage is inside here        
         new ManageMapController(graph, mmp, pfp, mainFrame, nodeButtonMap); // launchPage is inside here
+        new PathFinderController(graph, pfp, mainFrame, nodeButtonMap); // LaunchPage is inside here        
 
         vap.launchViewAlgorithmPage(mainFrame);
         ap.launchAboutPage(mainFrame);

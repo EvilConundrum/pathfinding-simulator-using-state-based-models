@@ -109,7 +109,14 @@ public class PathFinderController implements ActionListener {
                 throw new UnsupportedOperationException("Unsupported algorithm: " + algo);
             }
 
-            // TODO EDIT
+            // Reset all buttons to the default color
+            for (RoundedButton button : nodeButtonMap.values()) {
+                if (button.getBackground() == Helper.cBlue) {
+                    button.setForeground(Helper.cWhite);
+                    button.setBackground(Helper.cRed); // Set the default color for all buttons
+                }
+            }
+
             // Change the background color of the start and goal buttons
             if (nodeButtonMap.containsKey(start)) {
                 RoundedButton startButton = nodeButtonMap.get(start);
