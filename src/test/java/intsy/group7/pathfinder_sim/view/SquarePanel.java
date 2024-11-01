@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class SquarePanel extends JPanel {
 
-    private int size;
-    private Color color;
+    private final int size;
+    private final Color color;
 
     public SquarePanel(Color color, int size) {
         this.color = color;
@@ -25,7 +25,7 @@ public class SquarePanel extends JPanel {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
-        frame.add(new SquarePanel(Color.RED, 50));
+        frame.add(new intsy.group7.pathfinder_sim.view.asset.SquarePanel(Color.RED, 50));
         frame.setVisible(true);
     }
 }
