@@ -1,61 +1,77 @@
 package intsy.group7.pathfinder_sim.model;
+
 import java.util.LinkedList;
 
+/**
+ * Represents a node within the graph with an ID, heuristic value, coordinates, state, and connections.
+ * Each node can have multiple edges connected to other nodes.
+ * Used in pathfinding to represent locations with x and y coordinates.
+ *
+ * @author Vienn Balcita
+ */
 public class Node {
-    private String id;
-    private LinkedList<Edge> edges;
-    private int heuristic;
-    private int x_coord;
-    private int y_coord;
-    private String state;
- 
-    public Node(String var1, int var2, int var3, int var4, String state) {
-       this.id = var1;
-       this.heuristic = var2;
-       this.x_coord = var3;
-       this.y_coord = var4;
-       this.state = state;
-       this.edges = new LinkedList<Edge>();
-    }
- 
-    public String getId() {
-       return this.id;
-    }
- 
-    public int getHeuristic() {
-       return this.heuristic;
+    private String                  id;
+    private final LinkedList<Edge>  edges;
+    private int                     heuristic;
+    private final int               xCoord;
+    private final int               yCoord;
+    private String                  state;
+
+    /**
+     * Constructs a Node with specified ID, heuristic, coordinates, and state.
+     *
+     * @param id        The unique identifier for the node.
+     * @param heuristic The heuristic value for the node (used in pathfinding).
+     * @param xCoord    The x-coordinate of the node.
+     * @param yCoord    The y-coordinate of the node.
+     * @param state     The state of the node (e.g., "eatery").
+     */
+    public Node(String id, int heuristic, int xCoord, int yCoord, String state) {
+        this.id = id;
+        this.heuristic = heuristic;
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
+        this.state = state;
+        this.edges = new LinkedList<>();
     }
 
-    public void setHeuristic(int var1) {
-       this.heuristic = var1;
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getHeuristic() {
+        return heuristic;
+    }
+
+    public void setHeuristic(int heuristic) {
+        this.heuristic = heuristic;
+    }
+
     public String getState() {
-      return this.state;
+        return state;
     }
+
     public void setState(String state) {
-      this.state = state;
+        this.state = state;
     }
-    public void setId(String var1) {
-       this.id = var1;
+
+    public int getXCoord() {
+        return xCoord;
     }
- 
-    public int getX_coord() {
-       return this.x_coord;
+
+    public int getYCoord() {
+        return yCoord;
     }
- 
-    public int getY_coord() {
-       return this.y_coord;
+
+    public void addEdge(Edge edge) {
+        edges.add(edge);
     }
- 
-    public void addEdge(Edge var1) {
-       this.edges.add(var1);
-    }
- 
-    public void removeEdge(Edge var1) {
-       this.edges.remove(var1);
-    }
- 
+
     public LinkedList<Edge> getEdges() {
-       return this.edges;
+        return edges;
     }
- }
+}

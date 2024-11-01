@@ -3,9 +3,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Represents a graph consisting of nodes and edges.
+ * Nodes can have connections (edges) with weights, supporting bidirectional edges.
+ *
+ * @author Vienn Balcita
+ */
 public class Graph {
-    private LinkedList<Node> nodes;
-    private LinkedList<Edge> edges;
+    private final LinkedList<Node> nodes;
+    private final LinkedList<Edge> edges;
 
     public Graph() {
         this.nodes = new LinkedList<>();
@@ -17,15 +23,15 @@ public class Graph {
     }
 
     public Node getNode(int index){
-        if(index >= 0 && index < nodes.size()) {
+        if (index >= 0 && index < nodes.size()) {
             return nodes.get(index);
         }
         return null;
     }
 
     public Node findNode(String ID){
-        for(Node node : nodes) {
-            if(node.getId().equals(ID)) {
+        for (Node node : nodes) {
+            if (node.getId().equals(ID)) {
                 return node;
             }
         }
@@ -34,7 +40,7 @@ public class Graph {
 
     public boolean findEdge(Node origin, Node destination){
         for (Edge edge : edges) {
-            if(edge.getOrigin().equals(origin) && edge.getDestination().equals(destination)) {
+            if (edge.getOrigin().equals(origin) && edge.getDestination().equals(destination)) {
                 return true;
             }
         }
@@ -43,7 +49,7 @@ public class Graph {
 
     public boolean findNode(Node newnode){
         for (Node node : nodes) {
-            if(node.equals(newnode)) {
+            if (node.equals(newnode)) {
                 return true;
             }
         }
@@ -57,8 +63,10 @@ public class Graph {
     public void addEdges(Node Origin, Node Destination, int Weight) {
         Edge originEdge = new Edge(Origin, Destination, Weight);
         Edge destinationEdge = new Edge(Destination, Origin, Weight);
+
         Origin.addEdge(originEdge);
         Destination.addEdge(destinationEdge);
+
         edges.add(originEdge);
         edges.add(destinationEdge);
     }
