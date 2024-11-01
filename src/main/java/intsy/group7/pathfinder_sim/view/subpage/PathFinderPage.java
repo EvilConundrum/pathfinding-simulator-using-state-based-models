@@ -1,6 +1,5 @@
-package intsy.group7.pathfinder_sim.view;
+package intsy.group7.pathfinder_sim.view.subpage;
 
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -14,8 +13,9 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import intsy.group7.pathfinder_sim.helper.Helper;
+import intsy.group7.pathfinder_sim.view.asset.RoundedButton;
 
-public class PathFinderPage {
+public class PathFinderPage implements SubPage {
 
     private JLabel traversalLbl, pathLbl, pathCostLbl;
 
@@ -31,66 +31,66 @@ public class PathFinderPage {
     private JComboBox<String> fromMenu, toMenu, algoMenu;
 
     //@param MainFrame & list of locations
-    public void launchPathFinderPage(JFrame mainFrame, String[] locations, String[] algorithms){
+    public void launchPathFinderPage(String[] locations, String[] algorithms){
 
         // Jpanel for map
         mapPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(Helper.mapImage.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+                g.drawImage(Helper.MAP_IMAGE.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
             }
         };
         mapPanel.setBounds(385, 60, 890, 630);
 
         // LayeredPane for positioning
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(Helper.screenSize);
-        layeredPane.setBackground(Helper.cWhite);
+        layeredPane.setPreferredSize(Helper.SCREEN_SIZE);
+        layeredPane.setBackground(Helper.WHITE);
 
         //Submit Button (disable after click)
         subButton = new RoundedButton("Submit");
         subButton.setFont(new Font("Helvetica", Font.BOLD, 14));
-        subButton.setForeground(Helper.cWhite);
-        subButton.setBackground(Helper.cGreenTHA2);
+        subButton.setForeground(Helper.WHITE);
+        subButton.setBackground(Helper.GREEN_ACCENT);
         subButton.setBounds(175, 320, 100, 35); 
         subButton.setBorder(null);
         subButton.setContentAreaFilled(true); 
         subButton.setOpaque(false);
-        subButton.setCustomBorderColor(Helper.cWhite); 
+        subButton.setCustomBorderColor(Helper.WHITE);
         subButton.setCustomBorderThickness(2);
 
         //Labels (From, To, & Algorithm)
         JLabel locLbl = new JLabel("Locations");
         locLbl.setFont(new Font("Futura", Font.BOLD,18));
         locLbl.setBounds(180, 90, 300, 40);
-        locLbl.setForeground(Helper.cGreenText);
+        locLbl.setForeground(Helper.GREEN_TEXT);
 
         JLabel fromLbl = new JLabel("From:");
         fromLbl.setFont(new Font("Futura", Font.BOLD, 15));
         fromLbl.setBounds(95, 130, 300, 40);
-        fromLbl.setForeground(Helper.cGreenText);
+        fromLbl.setForeground(Helper.GREEN_TEXT);
 
         JLabel toLbl = new JLabel("To:");
         toLbl.setFont(new Font("Futura", Font.BOLD, 15));
         toLbl.setBounds(95,160, 300, 40);
-        toLbl.setForeground(Helper.cGreenText);
+        toLbl.setForeground(Helper.GREEN_TEXT);
 
         JLabel algoLbl = new JLabel("Algorithm");
         algoLbl.setFont(new Font("Futura", Font.BOLD, 18));
         algoLbl.setBounds(180,220, 300, 40);
-        algoLbl.setForeground(Helper.cGreenText);
+        algoLbl.setForeground(Helper.GREEN_TEXT);
 
         //Dropdown Menu
-        fromMenu = new JComboBox<String>(locations);
+        fromMenu = new JComboBox<>(locations);
         fromMenu.setVisible(true);
         fromMenu.setBounds(140,140,230,25);
 
-        toMenu = new JComboBox<String>(locations);
+        toMenu = new JComboBox<>(locations);
         toMenu.setVisible(true);
         toMenu.setBounds(140,170,230,25);
 
-        algoMenu = new JComboBox<String>(algorithms);
+        algoMenu = new JComboBox<>(algorithms);
         algoMenu.setVisible(true);
         algoMenu.setBounds(95,260,275,25);
 
@@ -98,12 +98,12 @@ public class PathFinderPage {
         traversalLbl = new JLabel("Traversal: ");
         traversalLbl.setFont(new Font("Futura", Font.BOLD,18));
         traversalLbl.setBounds(400, 42, 800, 80);
-        traversalLbl.setForeground(Helper.cWhite);
+        traversalLbl.setForeground(Helper.WHITE);
 
         pathLbl = new JLabel("Path: ");
         pathLbl.setFont(new Font("Futura", Font.BOLD,18));  
         pathLbl.setBounds(400, 184, 800, 40);
-        pathLbl.setForeground(Helper.cWhite);
+        pathLbl.setForeground(Helper.WHITE);
 
         // LayeredPane Components
         layeredPane.add(subButton, JLayeredPane.POPUP_LAYER);
@@ -155,15 +155,14 @@ public class PathFinderPage {
     }
 
     public void updateAllComboBoxes(String[] locations){
-        this.fromMenu.setModel(new DefaultComboBoxModel<String>(locations));
-        this.toMenu.setModel(new DefaultComboBoxModel<String>(locations));
-
-
+        this.fromMenu.setModel(new DefaultComboBoxModel<>(locations));
+        this.toMenu.setModel(new DefaultComboBoxModel<>(locations));
     }
 
     public HashMap<String, RoundedButton> getStringButtonMap() {
         return this.nodeButtonMap;
     }
+
     public void setStringButtonMap(HashMap<String, RoundedButton> nodeButtonMap) {
         this.nodeButtonMap = nodeButtonMap;
     }
@@ -179,12 +178,12 @@ public class PathFinderPage {
         traversalText.setFont(new Font("Futura", Font.BOLD, 12));
         traversalText.setBounds(494, 75, 800, 150);
         traversalText.setOpaque(false);
-        traversalText.setForeground(Helper.cWhite);
+        traversalText.setForeground(Helper.WHITE);
 
         pathCostLbl = new JLabel("Cost: " + pathCost);
         pathCostLbl.setFont(new Font("Futura", Font.BOLD, 16));
         pathCostLbl.setBounds(400, 160, 300, 40);
-        pathCostLbl.setForeground(Helper.cPureRed);
+        pathCostLbl.setForeground(Helper.BLOOD_RED);
 
         pathText = new JTextArea();
         pathText.setText(path);
@@ -192,7 +191,7 @@ public class PathFinderPage {
         pathText.setFont(new Font("Futura", Font.BOLD,15));
         pathText.setBounds(453, 194, 800, 100);
         pathText.setOpaque(false);
-        pathText.setForeground(Helper.cWhite);
+        pathText.setForeground(Helper.WHITE);
 
         layeredPane.add(traversalText, JLayeredPane.POPUP_LAYER);
         layeredPane.add(pathCostLbl, JLayeredPane.POPUP_LAYER);
@@ -202,9 +201,11 @@ public class PathFinderPage {
     public JLabel getTraversalLbl() {
         return traversalLbl;
     }
+
     public JLabel getPathCostLbl() {
         return pathCostLbl;
     }
+
     public JLabel getPathLbl() {
         return pathLbl;
     }
@@ -212,6 +213,7 @@ public class PathFinderPage {
     public JTextArea getPathText() {
         return pathText;
     }
+
     public JTextArea getTraversalText() {
         return traversalText;
     }

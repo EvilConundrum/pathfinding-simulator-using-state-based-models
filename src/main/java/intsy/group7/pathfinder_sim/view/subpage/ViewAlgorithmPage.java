@@ -1,6 +1,5 @@
-package intsy.group7.pathfinder_sim.view;
+package intsy.group7.pathfinder_sim.view.subpage;
 
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -11,37 +10,35 @@ import java.awt.Font;
 
 import intsy.group7.pathfinder_sim.helper.Helper;
 
-public class ViewAlgorithmPage extends JPanel {
-    private JLabel algo;
-    private JLabel algo2;
+public class ViewAlgorithmPage extends JPanel implements SubPage {
 
     private JLayeredPane layeredPane;
 
     //@param MainFrame & list of locations
-    public void launchViewAlgorithmPage(JFrame mainFrame) {
+    public void launchViewAlgorithmPage() {
 
         // LayeredPane for positioning
         layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(Helper.screenSize);
-        layeredPane.setBackground(Helper.cWhite);
+        layeredPane.setPreferredSize(Helper.SCREEN_SIZE);
+        layeredPane.setBackground(Helper.WHITE);
 
         //Algo label
-        algo = new JLabel("Algorithms");
+        JLabel algo = new JLabel("Algorithms");
         algo.setFont(new Font("Futura", Font.BOLD, 20));
         algo.setBounds(600, 95, 300, 40);
-        algo.setForeground(Helper.cGreenText);
+        algo.setForeground(Helper.GREEN_TEXT);
 
-        algo2 = new JLabel("Algorithm Definition");
+        JLabel algo2 = new JLabel("Algorithm Definition");
         algo2.setFont(new Font("Futura", Font.BOLD, 15));
         algo2.setBounds(100, 130, 300, 40);
-        algo2.setForeground(Helper.cGreenText);
+        algo2.setForeground(Helper.GREEN_TEXT);
 
         //text
         JTextArea algoDef = new JTextArea(25, 27);
         algoDef.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        algoDef.setForeground(Helper.cGreenText);
-        algoDef.setBackground(Helper.cDirtyWhite);
-        algoDef.setText(Helper.sampleText);
+        algoDef.setForeground(Helper.GREEN_TEXT);
+        algoDef.setBackground(Helper.DIRTY_WHITE);
+        algoDef.setText(Helper.SAMPLE_TEXT);
         algoDef.setEditable(false);
         algoDef.setWrapStyleWord(true);
         algoDef.setLineWrap(true);
@@ -49,7 +46,7 @@ public class ViewAlgorithmPage extends JPanel {
         //JScrollPane
         JScrollPane scrollPane = new JScrollPane(algoDef);
         scrollPane.setBounds(93, 165, 1175, 500); // Set bounds for the JScrollPane
-        scrollPane.setBorder(new LineBorder(Helper.cDirtyWhite, 2));
+        scrollPane.setBorder(new LineBorder(Helper.DIRTY_WHITE, 2));
 
         // LayeredPane Components
         layeredPane.add(algo, JLayeredPane.POPUP_LAYER);
