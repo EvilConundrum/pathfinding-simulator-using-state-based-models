@@ -105,8 +105,8 @@ public class DefaultPage extends JPanel {
 
         JLabel viewAlgosLbl = new JLabel("View Algorithms");
         viewAlgosLbl.setFont(new Font("Futura", Font.PLAIN, 8));
-        viewAlgosLbl.setBounds(8, 285, 300, 40)
-                
+        viewAlgosLbl.setBounds(8, 285, 300, 40);
+
         viewAlgosLbl.setForeground(Helper.GREEN_TEXT);
 
         JLabel aboutLbl = new JLabel("About");
