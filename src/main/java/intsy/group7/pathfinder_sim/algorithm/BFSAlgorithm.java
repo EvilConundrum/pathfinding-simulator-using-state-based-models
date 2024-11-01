@@ -8,23 +8,22 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Edge;
-import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 
 public class BFSAlgorithm {
 
     /**
      * The algorithm implementation for BFS Pathfinding algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return the path of the BFS algorithm or null if path is not found
      */
-    public static Result bfs (Graph graph, Node start, Node goal) {
-        Queue<Node> queue = new LinkedList<>(); // Queue implementation for BFS Traversal
+    public static Result BFS(Node start, Node goal) {
+        Queue<Node> queue = new LinkedList<>();     // Queue implementation for BFS Traversal
         Set<Node> visited = new HashSet<>();
         Map<Node, Node> parent = new HashMap<>();
-        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
+        List<Node> traversal = new LinkedList<>();  // List of traversed nodes
 
         queue.add(start);
         visited.add(start);
@@ -48,14 +47,12 @@ public class BFSAlgorithm {
                 }
             }
         }
-    
         return new Result(null, traversal);  // Return both path and traversal
     }
 
     /**
      * Function to return the list of nodes that shows the path of the BFS algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return list of nodes that shows the path of the BFS algorithm
      */
     private static LinkedList<Node> reconstructPath(Map<Node, Node> parent, Node goal) {

@@ -8,23 +8,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Edge;
-import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 
 public class DFSAlgorithm {
         
     /**
      * The algorithm implementation for DFS Pathfinding algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return the path of the DFS algorithm or null if path is not found
      */
-    public static Result dfs (Graph graph, Node start, Node goal) {
-        Stack<Node> stack = new Stack<>(); // Stack implementation for DFS Traversal
+    public static Result DFS(Node start, Node goal) {
+        Stack<Node> stack = new Stack<>();          // Stack implementation for DFS Traversal
         Set<Node> visited = new HashSet<>();
         Map<Node, Node> parent = new HashMap<>();
-        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
+        List<Node> traversal = new LinkedList<>();  // List of traversed nodes
 
         stack.push(start);
         visited.add(start);
@@ -48,14 +47,12 @@ public class DFSAlgorithm {
                 }
             }
         }
-        
         return new Result(null, traversal); // No path found
     }
 
     /**
      * Function to return the list of nodes that shows the path of the DFS algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return list of nodes that shows the path of the DFS algorithm
      */
     private static List<Node> reconstructPath(Map<Node, Node> parent, Node goal) {

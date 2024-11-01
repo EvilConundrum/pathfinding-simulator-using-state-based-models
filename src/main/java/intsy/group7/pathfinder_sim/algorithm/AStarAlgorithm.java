@@ -7,27 +7,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Edge;
-import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
-
 
 public class AStarAlgorithm {
 
     /**
      * The algorithm implementation for AStar Pathfinding algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return the path of the AStar algorithm or null if path is not found
      */
-    public static Result AStar(Graph graph, Node start, Node goal) {
-        // Using PriorityQueue for nodes to be sorted ascendingly
+    public static Result AStar(Node start, Node goal) {
+        // Using PriorityQueue for nodes to be sorted in ascending order
         PriorityQueue<AStar_NodeHelper> openSet = new PriorityQueue<>(Comparator.comparingInt(n -> n.fCost));
-        // Stores the cost from the start node to each node
-        Map<Node, Integer> gScore = new HashMap<>(); 
-        // Stores the parent node of each node
-        Map<Node, Node> parent = new HashMap<>();
-        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
+        Map<Node, Integer> gScore = new HashMap<>();    // Stores the cost from the start node to each node
+        Map<Node, Node> parent = new HashMap<>();       // Stores the parent node of each node
+        List<Node> traversal = new LinkedList<>();      // List of traversed nodes
 
         // Initialize gScore for start node
         gScore.put(start, 0);
@@ -62,8 +58,6 @@ public class AStarAlgorithm {
                     // Adds the node with the updated gScore and fScore
                     openSet.add(new AStar_NodeHelper(neighbor, tempGScore, fScore));
                     parent.put(neighbor, current.node);
-
-                    System.out.println(fScore);
                 }
             }
         }
@@ -72,8 +66,7 @@ public class AStarAlgorithm {
 
     /**
      * Function to return the list of nodes that shows the path of the BFS algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return list of nodes that shows the path of the BFS algorithm
      */
     private static List<Node> reconstructPath(Map<Node, Node> parent, Node goal) {
@@ -86,8 +79,6 @@ public class AStarAlgorithm {
 
     /**
      * Helper class to store node for priority queue
-     * 
-     * @author Jaztin Jimenez
      */
     static class AStar_NodeHelper {
         Node node;

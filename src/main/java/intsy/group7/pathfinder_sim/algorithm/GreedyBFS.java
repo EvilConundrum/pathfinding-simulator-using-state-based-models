@@ -9,27 +9,25 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Edge;
-import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 
 public class GreedyBFS {
 
     /**
      * The algorithm implementation for GBFS Pathfinding algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return the path of the GBFS algorithm or null if path is not found
      */
-    public static Result greedyBFS(Graph graph, Node start, Node goal) {
-        // Using PriorityQueue for nodes to be sorted ascendingly
+    public static Result greedyBFS(Node start, Node goal) {
+        // Using PriorityQueue for nodes to be sorted in ascending order
         PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingInt(Node::getHeuristic));
         // Using HashSet for visited nodes to avoid revisiting them
         Set<Node> visited = new HashSet<>();
         // Using HashMap for storing parent node of each node in the path
         Map<Node, Node> parent = new HashMap<>();
         List<Node> traversal = new LinkedList<>(); // List of traversed nodes
-        
 
         openSet.add(start);
         parent.put(start, null);
@@ -65,8 +63,7 @@ public class GreedyBFS {
 
     /**
      * Function to return the list of nodes that shows the path of the BFS algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return list of nodes that shows the path of the BFS algorithm
      */
     private static List<Node> reconstructPath(Map<Node, Node> parent, Node goal) {

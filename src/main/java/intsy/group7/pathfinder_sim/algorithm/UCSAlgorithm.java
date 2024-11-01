@@ -7,27 +7,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Edge;
-import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 
 public class UCSAlgorithm { 
 
     /**
      * The algorithm implementation for UCS Pathfinding algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return the path of the UCS algorithm or null if path is not found
      */
-    public static Result UCS(Graph graph, Node start, Node goal) {
-        // Using PriorityQueue for nodes to be sorted ascendingly
+    public static Result UCS(Node start, Node goal) {
+        // Using PriorityQueue for nodes to be sorted in ascending order
         PriorityQueue<UCS_NodeHelper> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
-        // Stores the cost from the start node to each node
-        Map<Node, Integer> costSoFar = new HashMap<>(); 
-        // Stores the parent node of each node
-        Map<Node, Node> parent = new HashMap<>();
-        List<Node> traversal = new LinkedList<>(); // List of traversed nodes
-
+        Map<Node, Integer> costSoFar = new HashMap<>(); // Stores the cost from the start node to each node
+        Map<Node, Node> parent = new HashMap<>();       // Stores the parent node of each node
+        List<Node> traversal = new LinkedList<>();      // List of traversed nodes
 
         // Initialize the costs
         priorityQueue.add(new UCS_NodeHelper(start, 0));
@@ -65,8 +61,7 @@ public class UCSAlgorithm {
 
     /**
      * Function to return the list of nodes that shows the path of the BFS algorithm
-     * 
-     * @author Jaztin Jimenez
+     *
      * @return list of nodes that shows the path of the BFS algorithm
      */
     private static List<Node> reconstructPath(Map<Node, Node> parent, Node goal) {
@@ -79,8 +74,6 @@ public class UCSAlgorithm {
 
     /**
      * Helper class to store node info for priority queue
-     * 
-     * @author Jaztin Jimenez
      */
     static class UCS_NodeHelper {
         Node node;
