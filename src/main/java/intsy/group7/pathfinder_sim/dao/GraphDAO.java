@@ -8,56 +8,75 @@ import intsy.group7.pathfinder_sim.helper.Helper;
 import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 
+/**
+ * GraphDAO class is responsible for loading nodes and edges into a Graph
+ * from text files. Each line in the file corresponds to a node or edge with
+ * specific attributes, such as coordinates, state, and distance.
+ *
+ * @author Vienn Balcita
+ */
 public class GraphDAO {
 
+    /**
+     * Loads nodes from a file and adds them to the given graph. Each line in the
+     * file should contain node details in CSV format.
+     *
+     * @param filepath the path to the file containing node data
+     * @param graph the Graph object to which nodes will be added
+     */
     public void loadGraphNodes(String filepath, Graph graph) {
-        try (Scanner scanner = new Scanner(new File(filepath))) {   
+        try (Scanner scanner = new Scanner(new File(filepath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] columns = line.split(",");
+
                 String nodeName = columns[0];
-                int heuristic = Integer.parseInt(columns[1]);
+                int heuristic = Integer.parseInt(columns[1]) * 5;
                 int xCoord = Integer.parseInt(columns[2]);
                 int yCoord = Integer.parseInt(columns[3]);
                 String nodeState = columns[4];
-                
-                // Create a new Node object using the variables
-                Node node = new Node(nodeName, heuristic*5, xCoord, yCoord, nodeState);
-                
-                // If the node does not exist already, create the new node and add it to the graph
-                if (graph.findNode(node) != true) {
+
+                Node node = new Node(nodeName, heuristic, xCoord, yCoord, nodeState);
+
+                // Add node to graph only if it does not already exist
+                if (!graph.findNode(node)) {
                     graph.addNode(node);
                 }
-                //System.out.println("Node: " + node.getId() + " created!"); check nodes created
             }
-            System.out.println("All nodes created successfully"); // DEBUGGING
-        } 
-        catch (FileNotFoundException e) {
-        System.out.println("File not found: " + filepath);
-        }
-    }
-    public void loadGraphEdges(String filepath, Graph graph){
-        try (Scanner scanner = new Scanner(new File(filepath))) {   
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] columns = line.split(",");
-                String originID = columns[0];
-                String destinationID = columns[1];
-    
-                Node origin = graph.findNode(originID);
-                Node destination = graph.findNode(destinationID);
-                //If the edge does not exist already, create the the new edge
-                System.out.println("Origin: " + origin.getId() + " Destination: " + destination.getId());
-                int distance = (int) Helper.calcDist(origin,destination);
-                graph.addEdges(origin, destination, distance);
-            }
-            // System.out.println("All edges created successfully"); check edges created
-        } 
-        catch (FileNotFoundException e) {
-        System.out.println("File not found: " + filepath);
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + filepath);
         }
     }
 
+    /**
+     * Loads edges from a file and adds them to the given graph. Each line in the
+     * file should contain edge details in CSV format, specifying an origin and
+     * destination node.
+     *
+     * @param filepath the path to the file containing edge data
+     * @param graph the Graph object to which edges will be added
+     */
+    public void loadGraphEdges(String filepath, Graph graph) {
+        try (Scanner scanner = new Scanner(new File(filepath))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] columns = line.split(",");
+
+                String originID = columns[0];
+                String destinationID = columns[1];
+
+                Node origin = graph.findNode(originID);
+                Node destination = graph.findNode(destinationID);
+
+                if (origin != null && destination != null) {
+                    int distance = (int) Helper.calcDist(origin, destination);
+                    graph.addEdges(origin, destination, distance);
+                } else {
+                    System.err.printf("Edge creation skipped: Origin %s or Destination %s not found.%n", originID, destinationID);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + filepath);
+        }
+    }
 }
-    
-    
