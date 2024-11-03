@@ -191,7 +191,7 @@ public class ManageMapController implements ActionListener {
                 clickedButton.setEnabled(false);
 
                 manageMapPage.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
-                pathFinderPage.updateAllComboBoxes(graph.getAllNodes());
+                pathFinderPage.updateAllComboBoxes(graph.getEateryNodes());
                 manageMapPage.setAddedEatery("\"" + name + "\"" + " added");
                 break;
             }
