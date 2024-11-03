@@ -9,13 +9,20 @@ import intsy.group7.pathfinder_sim.view.asset.IconButton;
 
 public class DefaultPage extends JPanel {
 
-    private final String imageFolderPath = "src/main/resources/images/";
-    private final ImageIcon pathFinderImg = new ImageIcon(imageFolderPath + "PathFinder.png");
-    private final ImageIcon manageMapImg = new ImageIcon(imageFolderPath + "ManageMap.png");
-    private final ImageIcon viewAlgosImg = new ImageIcon(imageFolderPath + "ViewAlgos.png");
-    private final ImageIcon aboutImg = new ImageIcon(imageFolderPath + "About.png");
-    private final ImageIcon exitImg = new ImageIcon(imageFolderPath + "Exit.png");
-    private final ImageIcon logoImg = new ImageIcon(imageFolderPath + "LogoTHA.png");
+    // private final String imageFolderPath = "src/main/resources/images/";
+    // private final ImageIcon pathFinderImg = new ImageIcon(imageFolderPath + "PathFinder.png");
+    // private final ImageIcon manageMapImg = new ImageIcon(imageFolderPath + "ManageMap.png");
+    // private final ImageIcon viewAlgosImg = new ImageIcon(imageFolderPath + "ViewAlgos.png");
+    // private final ImageIcon aboutImg = new ImageIcon(imageFolderPath + "About.png");
+    // private final ImageIcon exitImg = new ImageIcon(imageFolderPath + "Exit.png");
+    // private final ImageIcon logoImg = new ImageIcon(imageFolderPath + "LogoTHA.png");
+
+    private final ImageIcon pathFinderImg = new ImageIcon(getClass().getResource("/images/PathFinder.png"));
+    private final ImageIcon manageMapImg = new ImageIcon(getClass().getResource("/images/ManageMap.png"));
+    private final ImageIcon viewAlgosImg = new ImageIcon(getClass().getResource("/images/ViewAlgos.png"));
+    private final ImageIcon aboutImg = new ImageIcon(getClass().getResource("/images/About.png"));
+    private final ImageIcon exitImg = new ImageIcon(getClass().getResource("/images/Exit.png"));
+    private final ImageIcon logoImg = new ImageIcon(getClass().getResource("/images/LogoTHA.png"));
 
     private JLayeredPane layeredPane;
     private JLayeredPane layeredPane2;
