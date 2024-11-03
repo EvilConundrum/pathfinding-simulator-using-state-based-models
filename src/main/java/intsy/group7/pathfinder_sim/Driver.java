@@ -22,7 +22,6 @@ public class Driver{
             System.err.println("Resource files not found.");
         }
 
-
         new MainController(graph);
     }
 }
