@@ -33,7 +33,7 @@ public class AboutPage extends JPanel implements SubPage {
         JLabel abtLbl = createLabel(new Font("Futura", Font.BOLD, 20), Helper.GREEN_TEXT);
 
         // Create and configure the JTextArea for program information
-        JTextArea aboutProg = createTextArea(Helper.GREEN_TEXT, Helper.DIRTY_WHITE, Helper.SAMPLE_TEXT);
+        JTextPane aboutProg = createTextPane(Helper.GREEN_TEXT, Helper.DIRTY_WHITE, Helper.ABOUT_INFO);
 
         // Create and configure the JScrollPane to contain the JTextArea
         JScrollPane scrollPane = createScrollPane(aboutProg, new LineBorder(Helper.DIRTY_WHITE, 2));
@@ -77,16 +77,26 @@ public class AboutPage extends JPanel implements SubPage {
      * @param text            the initial text to display in the JTextArea
      * @return the configured JTextArea
      */
-    private JTextArea createTextArea(Color textColor, Color backgroundColor, String text) {
-        JTextArea textArea = new JTextArea(25, 27);
-        textArea.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        textArea.setForeground(textColor);
-        textArea.setBackground(backgroundColor);
-        textArea.setText(text);
-        textArea.setEditable(false);
-        textArea.setWrapStyleWord(true);
-        textArea.setLineWrap(true);
-        return textArea;
+    private JTextPane createTextPane(Color textColor, Color backgroundColor, String text) {
+        JTextPane textPane = new JTextPane();
+        textPane.setContentType("text/html"); // Set content type to HTML
+        
+        // Convert the Color object to a hex string
+        String textColorHex = String.format("#%02x%02x%02x", textColor.getRed(), 
+                        textColor.getGreen(), textColor.getBlue());
+        String backgroundColorHex = String.format("#%02x%02x%02x", backgroundColor.getRed(), 
+                        backgroundColor.getGreen(), backgroundColor.getBlue());
+        
+        // Include font settings and margins within the HTML content
+        String htmlText = "<html><body style='text-align: justify; font-family: Helvetica; " +
+                "font-size: 12px; color: " + textColorHex + "; background-color: " + 
+                backgroundColorHex + "; margin: 10px 20px 20px 10px;'>" + text + "</body></html>";
+        
+        textPane.setText(htmlText);
+        textPane.setEditable(false);
+
+        textPane.setBorder(BorderFactory.createEmptyBorder());
+        return textPane;
     }
 
     /**
@@ -96,9 +106,9 @@ public class AboutPage extends JPanel implements SubPage {
      * @param border   the border for the JScrollPane
      * @return the configured JScrollPane
      */
-    private JScrollPane createScrollPane(JTextArea textArea, LineBorder border) {
+    private JScrollPane createScrollPane(JTextPane textArea, LineBorder border) {
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setBounds(93, 155, 1175, 500);
+        scrollPane.setBounds(93, 140, 1175, 600);
         scrollPane.setBorder(border);
         return scrollPane;
     }

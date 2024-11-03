@@ -2,10 +2,14 @@ package intsy.group7.pathfinder_sim.view.subpage;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+
+import java.awt.Color;
 import java.awt.Font;
 
 import intsy.group7.pathfinder_sim.helper.Helper;
@@ -34,14 +38,7 @@ public class ViewAlgorithmPage extends JPanel implements SubPage {
         algo2.setForeground(Helper.GREEN_TEXT);
 
         //text
-        JTextArea algoDef = new JTextArea(25, 27);
-        algoDef.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        algoDef.setForeground(Helper.GREEN_TEXT);
-        algoDef.setBackground(Helper.DIRTY_WHITE);
-        algoDef.setText(Helper.SAMPLE_TEXT);
-        algoDef.setEditable(false);
-        algoDef.setWrapStyleWord(true);
-        algoDef.setLineWrap(true);
+        JTextPane algoDef = createTextPane(Helper.GREEN_TEXT, Helper.DIRTY_WHITE, Helper.VIEWALGO_INFO);
 
         //JScrollPane
         JScrollPane scrollPane = new JScrollPane(algoDef);
@@ -60,4 +57,36 @@ public class ViewAlgorithmPage extends JPanel implements SubPage {
     public JLayeredPane getLayeredPane(){
         return this.layeredPane;
     }
+
+    /**
+     * Creates a JTextArea with specified properties.
+     *
+     * @param textColor       the color of the text in the JTextArea
+     * @param backgroundColor the background color of the JTextArea
+     * @param text            the initial text to display in the JTextArea
+     * @return the configured JTextArea
+     */
+    private JTextPane createTextPane(Color textColor, Color backgroundColor, String text) {
+        JTextPane textPane = new JTextPane();
+        textPane.setContentType("text/html"); // Set content type to HTML
+        
+        // Convert the Color object to a hex string
+        String textColorHex = String.format("#%02x%02x%02x", textColor.getRed(), 
+                        textColor.getGreen(), textColor.getBlue());
+        String backgroundColorHex = String.format("#%02x%02x%02x", backgroundColor.getRed(), 
+                        backgroundColor.getGreen(), backgroundColor.getBlue());
+        
+        // Include font settings and margins within the HTML content
+        String htmlText = "<html><body style='text-align: justify; font-family: Helvetica; " +
+                "font-size: 12px; color: " + textColorHex + "; background-color: " + 
+                backgroundColorHex + "; margin: 10px 20px 20px 10px;'>" + text + "</body></html>";
+        
+        textPane.setText(htmlText);
+        textPane.setEditable(false);
+
+        textPane.setBorder(BorderFactory.createEmptyBorder());
+        return textPane;
+    }
+
+
 }
