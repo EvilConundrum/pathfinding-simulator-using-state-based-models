@@ -8,22 +8,52 @@ public class ComplexityCalculator {
     private long startMemory;
     private final Runtime runtime = Runtime.getRuntime();
 
+    private final Mode mode;
+
+    public enum Mode {
+        TIME,
+        SPACE
+    }
+
+    public ComplexityCalculator(Mode mode) {
+        this.mode = mode; // Set mode through constructor
+    }
+
     // Start measurement (used before running the algorithm)
     public void start() {
-        startTime = System.nanoTime();
-        System.gc();
-        startMemory = runtime.totalMemory() - runtime.freeMemory();
+        if (mode == null) {
+            throw new IllegalStateException("Error: mode is null");
+        }
+
+        switch (mode) {
+            case TIME:
+                startTime = System.nanoTime();
+                break;
+            case SPACE:
+                System.gc();
+                startMemory = runtime.totalMemory() - runtime.freeMemory();
+                break;
+        }
     }
 
     // Stop measurement (used after running the algorithm)
     public void stop() {
-        // Measure amount of time in nanoseconds
-        long endTime = System.nanoTime();
-        nanosecondDuration = endTime - startTime;
+        if (mode == null) {
+            throw new IllegalStateException("Error: mode is null");
+        }
 
-        // Measure amount of memory used in bytes
-        long endMemory = runtime.totalMemory() - runtime.freeMemory();
-        bytesUsed = endMemory - startMemory;
+        switch (mode) {
+            case TIME:
+                // Measure amount of time in nanoseconds
+                long endTime = System.nanoTime();
+                nanosecondDuration = endTime - startTime;
+                break;
+            case SPACE:
+                // Measure amount of memory used in bytes
+                long endMemory = runtime.totalMemory() - runtime.freeMemory();
+                bytesUsed = endMemory - startMemory;
+                break;
+        }
     }
 
     public long getNanosecondDuration() {
@@ -34,9 +64,11 @@ public class ComplexityCalculator {
         return bytesUsed;
     }
 
-    // Optional method to print results
-    public void printResults() {
-        System.out.println("Time taken: " + nanosecondDuration + " nanoseconds");
-        System.out.println("Memory used: " + bytesUsed + " bytes");
+    // Reset measurements for a new calculation
+    public void reset() {
+        nanosecondDuration = 0;
+        bytesUsed = 0;
+        startTime = 0;
+        startMemory = 0;
     }
 }
