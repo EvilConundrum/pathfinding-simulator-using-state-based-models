@@ -36,8 +36,8 @@ public class Helper {
     public static Color GREEN_ACCENT = new Color(0, 112, 60);
 
     public static Dimension SCREEN_SIZE = new Dimension(1280, 720);
-    private static final String IMAGE_FOLDER_PATH = "src/main/resources/images/";
-    public static ImageIcon MAP_IMAGE = new ImageIcon(IMAGE_FOLDER_PATH + "MapDLSU.png");
+    private static final String IMAGE_PATH = "/images/MapDLSU.png";
+    public static ImageIcon MAP_IMAGE = new ImageIcon(Helper.class.getResource(IMAGE_PATH));
 
     public static String VIEWALGO_INFO =
         "In The Bow and Bite Map, we use a set of powerful algorithms to find the best routes through various eateries: A*, Greedy Best-First Search (Greedy BFS), Breadth-First Search (BFS), Depth-First Search (DFS), and Uniform Cost Search (UCS). Each algorithm brings a unique approach to navigating the map and offers different advantages based on your needs.<br><br>" +
