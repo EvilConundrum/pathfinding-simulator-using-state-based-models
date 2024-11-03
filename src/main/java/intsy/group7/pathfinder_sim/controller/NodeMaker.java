@@ -6,8 +6,6 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.plaf.metal.MetalButtonUI;
-
 import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 import intsy.group7.pathfinder_sim.view.asset.RoundedButton;

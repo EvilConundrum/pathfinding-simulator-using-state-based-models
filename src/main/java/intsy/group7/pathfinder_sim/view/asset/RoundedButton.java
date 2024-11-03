@@ -1,7 +1,6 @@
 package intsy.group7.pathfinder_sim.view.asset;
 
 import javax.swing.JButton;
-import javax.swing.plaf.metal.MetalButtonUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
