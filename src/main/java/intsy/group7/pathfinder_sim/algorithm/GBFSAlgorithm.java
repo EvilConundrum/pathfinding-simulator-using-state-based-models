@@ -13,14 +13,14 @@ import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Edge;
 import intsy.group7.pathfinder_sim.model.Node;
 
-public class GreedyBFS {
+public class GBFSAlgorithm {
 
     /**
      * The algorithm implementation for GBFS Pathfinding algorithm
      *
      * @return the path of the GBFS algorithm or null if path is not found
      */
-    public static Result greedyBFS(Node start, Node goal) {
+    public static Result GBFS(Node start, Node goal) {
         // Using PriorityQueue for nodes to be sorted in ascending order
         PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingInt(Node::getHeuristic));
         // Using HashSet for visited nodes to avoid revisiting them

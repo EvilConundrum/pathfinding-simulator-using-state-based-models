@@ -4,16 +4,16 @@ import intsy.group7.pathfinder_sim.algorithm.result.ComplexityCalculator;
 import intsy.group7.pathfinder_sim.algorithm.result.Result;
 import intsy.group7.pathfinder_sim.model.Node;
 
-public class AStarAlgorithmTest implements AlgorithmTest {
+public class GBFSAlgorithmTest implements AlgorithmTest {
 
     private final int testRuns;
 
-    public AStarAlgorithmTest(int testRuns) {
+    public GBFSAlgorithmTest(int testRuns) {
         this.testRuns = testRuns;
     }
 
     /**
-     * Runs the AStar algorithm 5 times and returns the average time and memory usage.
+     * Runs the GBFS algorithm 5 times and returns the average time and memory usage.
      *
      * @param start The start node
      * @param goal  The goal node
@@ -27,8 +27,8 @@ public class AStarAlgorithmTest implements AlgorithmTest {
             ComplexityCalculator calculator = new ComplexityCalculator(ComplexityCalculator.Mode.TIME);
             calculator.start();
 
-            // Run AStar algorithm
-            finalResult = AStarAlgorithm.AStar(start, goal);
+            // Run GBFS algorithm
+            finalResult = GBFSAlgorithm.GBFS(start, goal);
 
             calculator.stop();
 

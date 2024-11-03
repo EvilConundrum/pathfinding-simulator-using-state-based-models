@@ -125,7 +125,7 @@ public class PathFinderController implements ActionListener {
                 result = DFSAlgorithm.DFS(start, goal);
                 break;
             case "Greedy BFS":
-                result = GreedyBFS.greedyBFS(start, goal);
+                result = GBFSAlgorithm.GBFS(start, goal);
                 break;
             case "UCS":
                 result = UCSAlgorithm.UCS(start, goal);
