@@ -148,9 +148,9 @@ public class Helper {
             layeredPane.add(button, JLayeredPane.POPUP_LAYER);
         }
 
-        if (nodeButtonMap != null) {
-            nodeButtonMap.clear();
-        }
+        // if (nodeButtonMap != null) {
+        //     nodeButtonMap.clear();
+        // }
 
         setNodeButtonMap(buttons, graph, nodeButtonMap, stringButtonMap, mode);
     }

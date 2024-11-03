@@ -29,7 +29,8 @@ public class NodeMaker {
         for (int i = 0; i < roundButtons.length; i++) {
             Node node = graph.getNodes().get(i);
             roundButtons[i] = createButton(node, mode);
-            roundButtons[i].addActionListener(new ButtonClickListener());
+            if (mode.equalsIgnoreCase("ManageMap")) 
+                roundButtons[i].addActionListener(new ButtonClickListener());
         }
         return roundButtons;
     }

@@ -66,9 +66,11 @@ public class MainController implements ActionListener {
      * @param graph the Graph model passed to each sub-controller.
      */
     private void setupControllers(Graph graph) {
-        HashMap<Node, RoundedButton> nodeButtonMap = new HashMap<>();
-        new ManageMapController(graph, manageMapPage, pathFinderPage, mainFrame, nodeButtonMap);
-        new PathFinderController(graph, pathFinderPage, mainFrame, nodeButtonMap);
+        HashMap<Node, RoundedButton> nodeButtonMap1 = new HashMap<>();
+        HashMap<Node, RoundedButton> nodeButtonMap2 = new HashMap<>();
+
+        new ManageMapController(graph, manageMapPage, pathFinderPage, mainFrame, nodeButtonMap1);
+        new PathFinderController(graph, pathFinderPage, mainFrame, nodeButtonMap2);
     }
 
     /**

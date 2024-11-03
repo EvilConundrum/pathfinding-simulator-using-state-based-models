@@ -349,12 +349,13 @@ public class ManageMapController implements ActionListener {
 
         node.setState("vacant");
         RoundedButton button = nodeButtonMap.get(node);
+        RoundedButton button2 = pathFinderPage.getStringButtonMap().get(node.getId());
 
         if (button == null) {
             return;
         }
 
-        resetButtonToVacantState(button);
+        resetButtonToVacantState(button, button2);
         manageMapPage.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());
         manageMapPage.setRemovedEatery("\"" + node.getId() + "\"" + " is set to vacant");
     }
@@ -364,9 +365,11 @@ public class ManageMapController implements ActionListener {
      *
      * @param button The button associated with the eatery.
      */
-    private void resetButtonToVacantState(RoundedButton button) {
-        button.setBackground(Helper.LIGHT_GRAY);
+    private void resetButtonToVacantState(RoundedButton button, RoundedButton button2) {
+        button.setBackground(Helper.MAROON_RED);
         button.setEnabled(true);
+
+        button2.setBackground(Helper.MAROON_RED);
     }
 
     @Override
