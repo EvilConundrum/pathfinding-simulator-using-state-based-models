@@ -29,6 +29,8 @@ public class DefaultPage extends JPanel {
     //@param MainFrame
     public void launchDefaultPage(JFrame mainFrame) {
 
+        mainFrame.setIconImage(logoImg.getImage()); // Set the icon of the JFrame
+
         // Header panel
         JPanel pageHeader = new JPanel();
         pageHeader.setBounds(0, 0, 1275, 60);
