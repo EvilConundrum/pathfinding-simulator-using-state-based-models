@@ -7,13 +7,19 @@ import intsy.group7.pathfinder_sim.dao.GraphDAOTest;
 import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TimeComplexityTest {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+
+    public TimeComplexityTest(InputStream inputStream) {
+        this.scanner = new Scanner(inputStream);
+    }
+
+    public void runTests() {
         scanner.nextInt();
 
         GraphDAOTest graphDAOTest = new GraphDAOTest();
@@ -24,11 +30,19 @@ public class TimeComplexityTest {
             // Initialize data structures
             Graph graph = new Graph();
             GraphDAO graphDAO = new GraphDAO();
-            String CSVFolderPath = "src/main/resources/csv/";
+            String CSVFolderPath = "/csv/";
 
             // Load in the graph
-            graphDAO.loadGraphNodes(CSVFolderPath + "nodes.csv", graph);
-            graphDAO.loadGraphEdges(CSVFolderPath + "edges.csv", graph);
+            InputStream nodesStream = getClass().getResourceAsStream(CSVFolderPath + "nodes.csv");
+            InputStream edgesStream = getClass().getResourceAsStream(CSVFolderPath + "edges.csv");
+
+            if (nodesStream != null && edgesStream != null) {
+                graphDAO.loadGraphNodes(nodesStream, graph);
+                graphDAO.loadGraphEdges(edgesStream, graph);
+            } else {
+                System.err.println("Resource files not found.");
+                continue;
+            }
 
             // Set up the nodes
             String initialStateKey = entry[0];
@@ -57,5 +71,10 @@ public class TimeComplexityTest {
             }
         }
         scanner.nextInt();
+    }
+
+    public static void main(String[] args) {
+        TimeComplexityTest test = new TimeComplexityTest(System.in);
+        test.runTests();
     }
 }

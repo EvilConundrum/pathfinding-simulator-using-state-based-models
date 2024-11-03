@@ -3,7 +3,6 @@ package intsy.group7.pathfinder_sim.helper;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.HashMap;
-import java.util.stream.Gatherer.Integrator.Greedy;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;

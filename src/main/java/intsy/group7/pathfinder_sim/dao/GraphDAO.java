@@ -1,7 +1,6 @@
 package intsy.group7.pathfinder_sim.dao;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 import intsy.group7.pathfinder_sim.helper.Helper;
@@ -24,8 +23,8 @@ public class GraphDAO {
      * @param filepath the path to the file containing node data
      * @param graph the Graph object to which nodes will be added
      */
-    public void loadGraphNodes(String filepath, Graph graph) {
-        try (Scanner scanner = new Scanner(new File(filepath))) {
+    public void loadGraphNodes(InputStream inputStream, Graph graph) {
+        try (Scanner scanner = new Scanner(inputStream)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] columns = line.split(",");
@@ -43,8 +42,6 @@ public class GraphDAO {
                     graph.addNode(node);
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + filepath);
         }
     }
 
@@ -56,8 +53,8 @@ public class GraphDAO {
      * @param filepath the path to the file containing edge data
      * @param graph the Graph object to which edges will be added
      */
-    public void loadGraphEdges(String filepath, Graph graph) {
-        try (Scanner scanner = new Scanner(new File(filepath))) {
+    public void loadGraphEdges(InputStream inputStream, Graph graph) {
+        try (Scanner scanner = new Scanner(inputStream)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] columns = line.split(",");
@@ -75,8 +72,6 @@ public class GraphDAO {
                     System.err.printf("Edge creation skipped: Origin %s or Destination %s not found.%n", originID, destinationID);
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + filepath);
         }
     }
 }
