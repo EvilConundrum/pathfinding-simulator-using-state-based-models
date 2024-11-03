@@ -188,6 +188,8 @@ public class ManageMapController implements ActionListener {
 
                 updateButtonText(name, clickedButton);
                 updateNodeProperties(node, name, heuristic1);
+                clickedButton.setOpaque(false);
+                clickedButton.setBackground(Color.YELLOW);
                 clickedButton.setEnabled(false);
 
                 manageMapPage.updateAllComboBoxes(graph.getEateryNodes(), graph.getAllNodes());

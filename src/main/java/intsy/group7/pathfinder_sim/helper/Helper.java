@@ -169,4 +169,6 @@ public class Helper {
         int destinationY = destination.getYCoord();
         return Math.sqrt(Math.pow(destinationX - originX, 2) + Math.pow(destinationY - originY, 2));
     }
+
+    
 }

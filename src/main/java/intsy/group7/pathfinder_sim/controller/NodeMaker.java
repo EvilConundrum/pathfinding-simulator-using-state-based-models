@@ -6,6 +6,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.plaf.metal.MetalButtonUI;
+
 import intsy.group7.pathfinder_sim.model.Graph;
 import intsy.group7.pathfinder_sim.model.Node;
 import intsy.group7.pathfinder_sim.view.asset.RoundedButton;
@@ -47,10 +49,10 @@ public class NodeMaker {
         RoundedButton button = new RoundedButton(node.getId());
 
         button.setFont(new Font("Helvetica", Font.BOLD, 10));
-        button.setForeground(Helper.WHITE);
         button.setBounds(location.x, location.y, 22, 22);
         button.setBorder(null);
         button.setContentAreaFilled(true);
+        button.setForeground(Helper.WHITE);
         button.setCustomBorderColor(Helper.WHITE);
         button.setCustomBorderThickness(2);
 
@@ -81,22 +83,21 @@ public class NodeMaker {
      * Sets the appearance for ManageMap mode based on the node state.
      */
     private static void setManageMapAppearance(RoundedButton button, String state) {
+        button.setOpaque(false);
+
         switch (state) {
             case "road":
                 button.setEnabled(false);
                 button.setVisible(true);
-                button.setOpaque(false);
                 button.setBackground(Helper.LIGHT_GRAY);
                 button.setCustomBorderColor(Helper.DARK_GRAY);
                 break;
             case "eatery":
                 button.setBackground(Color.YELLOW);
-                button.setOpaque(false);
                 button.setEnabled(false);
                 break;
             case "vacant":
                 button.setBackground(Helper.MAROON_RED);
-                button.setOpaque(false);
                 break;
         }
     }
@@ -105,20 +106,19 @@ public class NodeMaker {
      * Sets the appearance for PathFinder mode based on the node state.
      */
     private static void setPathFinderAppearance(RoundedButton button, String state) {
+        button.setOpaque(false);
+        button.setEnabled(false);
+
         switch (state) {
             case "road":
                 button.setBackground(Helper.BLACK);
-                button.setOpaque(false);
-                button.setEnabled(false);
                 break;
             case "eatery":
                 button.setBackground(Helper.NEON_YELLOW);
-                button.setOpaque(false);
-                button.setEnabled(false);
                 break;
             case "vacant":
                 button.setBackground(Helper.MAROON_RED);
-                button.setOpaque(false);
+
                 break;
         }
     }
