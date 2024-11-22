@@ -23,5 +23,7 @@ public class Driver{
         }
 
         new MainController(graph);
+
+        // TESTING
     }
 }
