@@ -272,6 +272,7 @@ public class ManageMapPage extends JPanel implements SubPage {
         return this.fTraf.getText();
     }
 
+    // TESTING
     //returns textArea values
     public void setAddedEatery(String addedEatery){
         this.addedEatery.setText(addedEatery);
