@@ -7,6 +7,7 @@ import intsy.group7.pathfinder_sim.controller.*;
 import java.io.InputStream;
 
 public class Driver{
+    
     public static void main(String[] args) {
         Graph       graph = new Graph();                        // Main model
         GraphDAO    graphDAO = new GraphDAO();    
